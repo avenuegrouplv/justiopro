@@ -1,0 +1,7 @@
+{
+  "name": "Justiopro Juridiskie Pakalpojumi",
+  "description": "Profesionāli juridiskie pakalpojumi, konsultācijas un tiesiskā aizsardzība uzņēmumiem un privātpersonām.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
