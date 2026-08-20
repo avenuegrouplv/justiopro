@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
-import { Scale, ChevronDown, Menu, X, PhoneCall } from 'lucide-react';
-import { NAV_ITEMS } from '../data/content';
+import { ChevronDown, Menu, X, PhoneCall } from 'lucide-react';
+import { useTranslation, Language } from '../translations';
 
-const LANGUAGES = [
+const LANGUAGES: { code: Language; label: string; flag: string }[] = [
   { code: 'LV', label: 'Latviešu', flag: '🇱🇻' },
   { code: 'ENG', label: 'English', flag: '🇬🇧' },
   { code: 'RUS', label: 'Русский', flag: '🇷🇺' },
@@ -11,10 +11,19 @@ const LANGUAGES = [
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [selectedLang, setSelectedLang] = useState(LANGUAGES[0]);
+  const { t, language, setLanguage } = useTranslation();
   const [isLangOpen, setIsLangOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+
+  const selectedLang = LANGUAGES.find((l) => l.code === language) || LANGUAGES[0];
+
+  const navItems = [
+    { label: t.nav.home, path: '/' },
+    { label: t.nav.practices, path: '/darbibas-jomas' },
+    { label: t.nav.faq, path: '/buj' },
+    { label: t.nav.contacts, path: '/kontakti' },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -49,11 +58,16 @@ export default function Header() {
         <Link
           to="/"
           id="header-logo"
-          className="flex items-center focus:outline-none py-1 transition-transform hover:opacity-90"
+          aria-label="JustioPro Sākumlapa"
+          className="flex items-center focus:outline-hidden py-1 transition-transform hover:opacity-90"
         >
           <img
             src="/Justiopro-logo.webp"
-            alt="JustioPro Logo"
+            alt="JustioPro Juridiskie Pakalpojumi Logo"
+            width={270}
+            height={58}
+            fetchPriority="high"
+            decoding="async"
             className={`h-[52px] sm:h-[58px] w-auto max-w-[270px] object-contain origin-left transition-all duration-300 ${
               isScrolled ? 'brightness-100 drop-shadow-xs' : 'brightness-0 invert drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]'
             }`}
@@ -64,7 +78,7 @@ export default function Header() {
         <div className="hidden lg:flex lg:items-center lg:gap-6">
           {/* 1. Navigation Menu with uppercase uniform lettering */}
           <nav id="desktop-navigation" className="flex items-center space-x-1">
-            {NAV_ITEMS.map((item) => (
+            {navItems.map((item) => (
               <NavLink
                 key={item.path}
                 to={item.path}
@@ -93,7 +107,7 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* 2. Highlighted 'SAZINĀTIES' Button with uppercase uniform lettering */}
+          {/* 2. Highlighted CTA Button with uppercase uniform lettering */}
           <Link
             to="/kontakti"
             id="header-cta-button"
@@ -104,7 +118,7 @@ export default function Header() {
             }`}
           >
             <PhoneCall className={`h-4 w-4 ${isScrolled ? 'text-[#C9A45C]' : 'text-[#0B1F33]'}`} />
-            <span>SAZINĀTIES</span>
+            <span>{t.nav.contactBtn}</span>
           </Link>
 
           {/* 3. Language Selector Dropdown */}
@@ -136,18 +150,18 @@ export default function Header() {
                 className="absolute right-0 mt-2 w-40 rounded-xl border border-black/20 bg-white p-1.5 shadow-xl backdrop-blur-lg z-50 animate-in fade-in slide-in-from-top-2 duration-150"
               >
                 <div className="px-2.5 py-1 text-[10px] font-bold tracking-wider uppercase text-slate-400">
-                  VALODA / LANGUAGE
+                  {t.nav.languageTitle}
                 </div>
                 {LANGUAGES.map((lang) => (
                   <button
                     key={lang.code}
                     type="button"
                     onClick={() => {
-                      setSelectedLang(lang);
+                      setLanguage(lang.code);
                       setIsLangOpen(false);
                     }}
-                    className={`flex w-full items-center justify-between rounded-lg px-2.5 py-2 text-left text-xs transition-colors ${
-                      selectedLang.code === lang.code
+                    className={`flex w-full items-center justify-between rounded-lg px-2.5 py-2 text-left text-xs transition-colors cursor-pointer ${
+                      language === lang.code
                         ? 'bg-[#0B1F33]/10 font-bold text-[#0B1F33]'
                         : 'text-slate-700 hover:bg-slate-100 hover:text-slate-950'
                     }`}
@@ -166,26 +180,61 @@ export default function Header() {
 
         {/* Mobile Hamburger Toggle Button */}
         <div className="flex items-center gap-2 lg:hidden">
-          {/* Mobile Language Button */}
-          <button
-            type="button"
-            onClick={() => setIsLangOpen(!isLangOpen)}
-            className={`flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-medium ${
-              isScrolled
-                ? 'border border-slate-300 bg-white/90 text-slate-800'
-                : 'border border-white/30 bg-black/40 text-white backdrop-blur-md'
-            }`}
-          >
-            <span>{selectedLang.flag}</span>
-            <span className="font-semibold">{selectedLang.code}</span>
-            <ChevronDown className="h-3 w-3" />
-          </button>
+          {/* Mobile Language Button with relative popup */}
+          <div className="relative">
+            <button
+              id="mobile-language-button"
+              type="button"
+              onClick={() => setIsLangOpen(!isLangOpen)}
+              className={`flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-medium cursor-pointer ${
+                isScrolled
+                  ? 'border border-slate-300 bg-white/90 text-slate-800'
+                  : 'border border-white/30 bg-black/40 text-white backdrop-blur-md'
+              }`}
+            >
+              <span>{selectedLang.flag}</span>
+              <span className="font-semibold">{selectedLang.code}</span>
+              <ChevronDown className={`h-3 w-3 transition-transform ${isLangOpen ? 'rotate-180' : ''}`} />
+            </button>
+
+            {isLangOpen && (
+              <div
+                id="mobile-language-dropdown-menu"
+                className="absolute right-0 mt-2 w-36 rounded-xl border border-black/20 bg-white p-1.5 shadow-xl backdrop-blur-lg z-50 animate-in fade-in slide-in-from-top-2 duration-150"
+              >
+                {LANGUAGES.map((lang) => (
+                  <button
+                    key={lang.code}
+                    type="button"
+                    onClick={() => {
+                      setLanguage(lang.code);
+                      setIsLangOpen(false);
+                    }}
+                    className={`flex w-full items-center justify-between rounded-lg px-2.5 py-2 text-left text-xs transition-colors cursor-pointer ${
+                      language === lang.code
+                        ? 'bg-[#0B1F33]/10 font-bold text-[#0B1F33]'
+                        : 'text-slate-700 hover:bg-slate-100 hover:text-slate-950'
+                    }`}
+                  >
+                    <span className="flex items-center gap-1.5">
+                      <span className="text-base leading-none">{lang.flag}</span>
+                      <span className="font-semibold">{lang.code}</span>
+                    </span>
+                    <span className="text-[10px] font-medium text-slate-500">{lang.label}</span>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
 
           <button
             id="mobile-menu-toggle"
             type="button"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className={`flex h-10 w-10 items-center justify-center rounded-xl transition-colors ${
+            onClick={() => {
+              setIsMobileMenuOpen(!isMobileMenuOpen);
+              setIsLangOpen(false);
+            }}
+            className={`flex h-10 w-10 items-center justify-center rounded-xl transition-colors cursor-pointer ${
               isScrolled
                 ? 'border border-slate-300 bg-white/90 text-[#0B1F33] shadow-2xs hover:bg-slate-100 hover:border-black'
                 : 'border border-white/30 bg-black/40 text-white shadow-md backdrop-blur-md hover:bg-black/60'
@@ -204,7 +253,7 @@ export default function Header() {
           className="border-b border-black/10 bg-[#F0F4F8] px-4 pt-3 pb-6 shadow-xl lg:hidden animate-in slide-in-from-top-4 duration-200"
         >
           <nav className="flex flex-col space-y-1">
-            {NAV_ITEMS.map((item) => (
+            {navItems.map((item) => (
               <NavLink
                 key={item.path}
                 to={item.path}
@@ -229,7 +278,7 @@ export default function Header() {
               className="flex w-full items-center justify-center gap-2 rounded-xl border border-black bg-[#0B1F33] py-3 text-center text-sm font-bold tracking-wider uppercase text-white shadow-xs"
             >
               <PhoneCall className="h-4 w-4 text-[#C9A45C]" />
-              <span>SAZINĀTIES</span>
+              <span>{t.nav.contactBtn}</span>
             </Link>
 
             {/* Mobile language options */}
@@ -238,9 +287,9 @@ export default function Header() {
                 <button
                   key={lang.code}
                   type="button"
-                  onClick={() => setSelectedLang(lang)}
-                  className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium ${
-                    selectedLang.code === lang.code
+                  onClick={() => setLanguage(lang.code)}
+                  className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium cursor-pointer ${
+                    language === lang.code
                       ? 'bg-[#0B1F33] text-white'
                       : 'bg-white text-slate-700 border border-slate-300'
                   }`}

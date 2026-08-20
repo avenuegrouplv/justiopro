@@ -1,11 +1,9 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import {
   ArrowRight,
   ShieldCheck,
-  Award,
   Scale,
-  Compass,
   Lock,
   PhoneCall,
   Phone,
@@ -18,34 +16,31 @@ import {
 } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import ContactFormSection from '../components/ContactFormSection';
-import { ImageWithLightbox } from '../components/LightboxModal';
 import { PolicyModalType } from '../types';
-import {
-  COMPANY_INFO,
-  PRACTICE_AREAS,
-  FAQS,
-} from '../data/content';
+import { COMPANY_INFO } from '../data/content';
+import { useTranslation } from '../translations';
 
 interface HomePageProps {
   onOpenLightbox: (src: string, alt: string, caption?: string) => void;
   onOpenPolicy?: (type: PolicyModalType) => void;
 }
 
-// 5 sets of practice areas for smooth continuous forward/backward scrolling without bounce
-const QUINTUPLE_PRACTICE_AREAS = [
-  ...PRACTICE_AREAS.map((a) => ({ ...a, uniqueKey: `${a.id}-s1` })),
-  ...PRACTICE_AREAS.map((a) => ({ ...a, uniqueKey: `${a.id}-s2` })),
-  ...PRACTICE_AREAS.map((a) => ({ ...a, uniqueKey: `${a.id}-s3` })),
-  ...PRACTICE_AREAS.map((a) => ({ ...a, uniqueKey: `${a.id}-s4` })),
-  ...PRACTICE_AREAS.map((a) => ({ ...a, uniqueKey: `${a.id}-s5` })),
-];
-
 export default function HomePage({ onOpenLightbox, onOpenPolicy }: HomePageProps) {
+  const { t } = useTranslation();
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
   const scrollTimeoutRef = useRef<number | null>(null);
   const isInteractingRef = useRef<boolean>(false);
   const autoScrollTimerRef = useRef<number | null>(null);
+
+  // 5 sets of practice areas for smooth continuous forward/backward scrolling without bounce
+  const quintuplePracticeAreas = useMemo(() => [
+    ...t.practiceAreas.map((a) => ({ ...a, uniqueKey: `${a.id}-s1` })),
+    ...t.practiceAreas.map((a) => ({ ...a, uniqueKey: `${a.id}-s2` })),
+    ...t.practiceAreas.map((a) => ({ ...a, uniqueKey: `${a.id}-s3` })),
+    ...t.practiceAreas.map((a) => ({ ...a, uniqueKey: `${a.id}-s4` })),
+    ...t.practiceAreas.map((a) => ({ ...a, uniqueKey: `${a.id}-s5` })),
+  ], [t.practiceAreas]);
 
   const toggleFaq = (index: number) => {
     setOpenFaqIndex(openFaqIndex === index ? null : index);
@@ -89,10 +84,10 @@ export default function HomePage({ onOpenLightbox, onOpenPolicy }: HomePageProps
     if (container) {
       const firstCard = container.querySelector('[data-carousel-card]') as HTMLElement;
       const cardStep = firstCard ? firstCard.offsetWidth + 16 : 280;
-      const singleSetWidth = PRACTICE_AREAS.length * cardStep;
+      const singleSetWidth = t.practiceAreas.length * cardStep;
       container.scrollLeft = singleSetWidth * 2;
     }
-  }, []);
+  }, [t.practiceAreas.length]);
 
   // Normalize scroll position silently when user scrolling has fully stopped
   const handleCarouselScroll = () => {
@@ -106,7 +101,7 @@ export default function HomePage({ onOpenLightbox, onOpenPolicy }: HomePageProps
 
       const firstCard = container.querySelector('[data-carousel-card]') as HTMLElement;
       const cardStep = firstCard ? firstCard.offsetWidth + 16 : 280;
-      const singleSetWidth = PRACTICE_AREAS.length * cardStep;
+      const singleSetWidth = t.practiceAreas.length * cardStep;
 
       // If scrolled deep into set 4 or 5, silently normalize back by 1 set without animation
       if (container.scrollLeft >= singleSetWidth * 3.5) {
@@ -139,8 +134,8 @@ export default function HomePage({ onOpenLightbox, onOpenPolicy }: HomePageProps
   return (
     <div id="home-page" className="min-h-screen bg-[#CDD4DC] text-slate-900">
       <SEOHead
-        title="JustioPro – Juridiskie Pakalpojumi"
-        description="JustioPro nodrošina juridiskos pakalpojumus fiziskām un juridiskām personām: Līgumu sagatavošana, Komerctiesības, Nekustamais īpašums, Pārstāvība tiesā, Parādu piedziņa un Bezmaksas konsultācijas. Zvaniet: 26841758."
+        title={t.homePage.seoTitle}
+        description={t.homePage.seoDesc}
       />
 
       {/* 1. HERO SECTION - Full screen hero */}
@@ -153,6 +148,10 @@ export default function HomePage({ onOpenLightbox, onOpenPolicy }: HomePageProps
           <img
             src="/juridiskas-konsultacijas.webp"
             alt="JustioPro juridiskās konsultācijas"
+            width={1920}
+            height={1080}
+            fetchPriority="high"
+            decoding="async"
             className="h-full w-full object-cover object-center"
           />
           {/* Balanced additional filter overlay for clear text readability */}
@@ -169,7 +168,8 @@ export default function HomePage({ onOpenLightbox, onOpenPolicy }: HomePageProps
               <a
                 href={`tel:${COMPANY_INFO.phone}`}
                 className="inline-flex items-center gap-2.5 rounded-xl border border-white/35 bg-[#06121E]/90 px-4 py-2 sm:px-4.5 sm:py-2.5 text-xs sm:text-sm font-medium text-white shadow-lg backdrop-blur-md transition-all hover:bg-[#0B1F33] hover:border-[#C9A45C] hover:text-[#C9A45C] cursor-pointer"
-                title="Zvanīt"
+                title={t.nav.callAction}
+                aria-label={`${t.nav.callAction} ${COMPANY_INFO.phoneDisplay}`}
               >
                 <Phone className="h-4 w-4 text-[#C9A45C]" />
                 <span>{COMPANY_INFO.phoneDisplay}</span>
@@ -178,7 +178,8 @@ export default function HomePage({ onOpenLightbox, onOpenPolicy }: HomePageProps
               <a
                 href={`mailto:${COMPANY_INFO.email}`}
                 className="inline-flex items-center gap-2.5 rounded-xl border border-white/35 bg-[#06121E]/90 px-4 py-2 sm:px-4.5 sm:py-2.5 text-xs sm:text-sm font-medium text-white shadow-lg backdrop-blur-md transition-all hover:bg-[#0B1F33] hover:border-[#C9A45C] hover:text-[#C9A45C] cursor-pointer"
-                title="Rakstīt e-pastu"
+                title={t.nav.emailAction}
+                aria-label={`${t.nav.emailAction} ${COMPANY_INFO.email}`}
               >
                 <Mail className="h-4 w-4 text-[#C9A45C]" />
                 <span>{COMPANY_INFO.email}</span>
@@ -192,18 +193,18 @@ export default function HomePage({ onOpenLightbox, onOpenPolicy }: HomePageProps
             <div className="flex justify-center text-center">
               <div className="inline-flex items-center gap-2.5 rounded-full border border-[#C9A45C]/70 bg-[#06121E]/90 backdrop-blur-md px-5 py-2 text-sm sm:text-base font-normal tracking-normal text-[#C9A45C] shadow-xl">
                 <Sparkles className="h-4 w-4 text-[#C9A45C]" />
-                <span>Juridiskie pakalpojumi & Konsultācijas</span>
+                <span>{t.homePage.heroBadge}</span>
               </div>
             </div>
 
             {/* Main Heading */}
             <div className="w-full text-center py-1">
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[46px] font-normal tracking-tight text-white leading-[1.2] sm:leading-[1.18] drop-shadow-[0_4px_20px_rgba(0,0,0,0.95)] max-w-4xl mx-auto text-center">
-                Profesionāls juridiskais atbalsts{' '}
+                {t.homePage.heroTitle}{' '}
                 <span className="font-semibold text-[#C9A45C]">
-                  Jūsu biznesa izaugsmei
+                  {t.homePage.heroTitleAccent}
                 </span>{' '}
-                un jebkurai ikdienā risināmai situācijai
+                {t.homePage.heroTitleEnd}
               </h1>
             </div>
           </div>
@@ -215,14 +216,14 @@ export default function HomePage({ onOpenLightbox, onOpenPolicy }: HomePageProps
               className="inline-flex items-center justify-center gap-2 rounded-xl border border-[#C9A45C] bg-[#C9A45C] px-6 py-2.5 sm:px-7 sm:py-3 text-sm sm:text-base font-medium text-[#0B1F33] shadow-lg transition-all hover:bg-[#D8B46C] hover:border-[#D8B46C] active:scale-98"
             >
               <PhoneCall className="h-4 w-4 sm:h-5 sm:w-5 text-[#0B1F33]" />
-              <span>Pieteikt konsultāciju</span>
+              <span>{t.homePage.requestConsultation}</span>
             </Link>
 
             <Link
               to="/darbibas-jomas"
               className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/40 bg-[#06121E]/75 backdrop-blur-md px-6 py-2.5 sm:px-7 sm:py-3 text-sm sm:text-base font-medium text-white shadow-md transition-all hover:bg-white/20 hover:border-white active:scale-98"
             >
-              <span>Skatīt darbības jomas</span>
+              <span>{t.homePage.viewPractices}</span>
               <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5 text-[#C9A45C]" />
             </Link>
           </div>
@@ -234,14 +235,17 @@ export default function HomePage({ onOpenLightbox, onOpenPolicy }: HomePageProps
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-center">
             {/* Left: 2 Static clean legal images with balanced heights and mobile optimization */}
-            <div className="lg:col-span-5 flex flex-col gap-4 max-w-[340px] sm:max-w-[420px] lg:max-w-none mx-auto lg:mx-0 w-full">
+            <div className="lg:col-span-5 flex flex-col gap-3 max-w-[340px] sm:max-w-[420px] lg:max-w-none mx-auto lg:mx-0 w-full">
               {/* Image 1: Profesionāli juridiskie pakalpojumi */}
               <div className="overflow-hidden rounded-2xl border border-black/70 bg-white shadow-xs w-full">
                 <img
                   src="/profesionali-juridiskie-pakalpojumi.webp"
                   alt="Profesionāli juridiskie pakalpojumi"
+                  width={600}
+                  height={350}
                   className="h-56 sm:h-60 lg:h-[245px] w-full object-cover"
                   loading="lazy"
+                  decoding="async"
                 />
               </div>
 
@@ -250,8 +254,11 @@ export default function HomePage({ onOpenLightbox, onOpenPolicy }: HomePageProps
                 <img
                   src="/juridiskas-konsultacijas-riga-1.webp"
                   alt="Juridiskās konsultācijas Rīgā un dokumentu sagatavošana"
+                  width={600}
+                  height={350}
                   className="h-56 sm:h-60 lg:h-[245px] w-full object-cover"
                   loading="lazy"
+                  decoding="async"
                 />
               </div>
             </div>
@@ -261,20 +268,16 @@ export default function HomePage({ onOpenLightbox, onOpenPolicy }: HomePageProps
               <div className="space-y-3">
                 <div className="inline-flex items-center gap-2 rounded-full bg-[#0B1F33]/10 border border-[#0B1F33]/20 px-3.5 py-1 text-xs font-semibold uppercase tracking-widest text-[#0B1F33]">
                   <Scale className="h-3.5 w-3.5 text-[#C9A45C]" />
-                  <span>Par mums</span>
+                  <span>{t.homePage.aboutBadge}</span>
                 </div>
 
                 <h2 className="text-3xl sm:text-4xl font-normal text-[#0B1F33] tracking-tight leading-tight">
-                  Profesionāls juridiskais atbalsts un individuāla pieeja katrai situācijai
+                  {t.homePage.aboutHeading}
                 </h2>
 
                 <div className="space-y-2.5 text-sm sm:text-base font-light text-slate-700 leading-relaxed">
-                  <p>
-                    Mēs sniedzam juridiskos pakalpojumus gan fiziskajām, gan juridiskajām personām, palīdzot labāk orientēties dažādos tiesību jautājumos, sagatavot nepieciešamos līgumus, juridiskos dokumentus, prasības pieteikumus, sūdzības, iesniegumus, un risināt jebkuras juridiska rakstura situācijas.
-                  </p>
-                  <p>
-                    Mēs vienmēr rīkojamies klienta labākajās interesēs, nodrošinot profesionālu juridisko palīdzību, konfidencialitāti, kā arī augstākos ētikas un profesionālos standartus. Mūsu pieeja balstās uz rūpīgu katras situācijas izvērtēšanu, iespējamo juridisko risku identificēšanu un praktiskiem risinājumiem, kas palīdz klientiem pieņemt juridiski pamatotus lēmumus.
-                  </p>
+                  <p>{t.homePage.aboutP1}</p>
+                  <p>{t.homePage.aboutP2}</p>
                 </div>
               </div>
 
@@ -282,16 +285,16 @@ export default function HomePage({ onOpenLightbox, onOpenPolicy }: HomePageProps
               <div className="rounded-2xl border border-black/25 bg-[#DFE3E8] p-4.5 sm:p-5 shadow-2xs space-y-2">
                 <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#0B1F33]">
                   <ShieldCheck className="h-4 w-4 text-[#C9A45C]" />
-                  <span>Kāpēc izvēlēties juridiskos ārpakalpojumus?</span>
+                  <span>{t.homePage.outsourceTitle}</span>
                 </div>
                 <p className="text-xs sm:text-sm font-light text-slate-700 leading-relaxed">
-                  Juridiskais ārpakalpojums uzņēmumiem sniedz elastīgu, profesionālu juridisko atbalstu tieši tad, kad tas ir nepieciešams – bez pastāvīgām darba vietas uzturēšanas izmaksām, profesionālu un ar augstu atbildību par katru sniegto pakalpojumu vai sagatavoto dokumentu. Šī iemesla dēļ klienti izmanto juridiskos ārpakalpojumus, kas bieži ir finansiāli izdevīgāk, nekā algot uzņēmumā savu juristu.
+                  {t.homePage.outsourceDesc}
                 </p>
               </div>
             </div>
           </div>
 
-          {/* 3 Core Value Cards: Uzticība, Profesionalitāte, Konfidencialitāte (Centered on screen) */}
+          {/* 3 Core Value Cards: Uzticība, Profesionalitāte, Konfidencialitāte */}
           <div className="mt-8 sm:mt-10 mx-auto max-w-5xl">
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div className="rounded-2xl border border-black/70 bg-white p-5 shadow-xs transition-all hover:border-[#C9A45C] hover:shadow-md flex flex-col justify-between">
@@ -299,9 +302,9 @@ export default function HomePage({ onOpenLightbox, onOpenPolicy }: HomePageProps
                   <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-black bg-[#0B1F33] text-[#C9A45C] mb-3 shadow-xs">
                     <HeartHandshake className="h-5 w-5" />
                   </div>
-                  <h3 className="text-base font-semibold text-[#0B1F33]">Uzticība</h3>
+                  <h3 className="text-base font-semibold text-[#0B1F33]">{t.homePage.values.trustTitle}</h3>
                   <p className="text-xs font-light text-slate-600 mt-1.5 leading-relaxed">
-                    Godprātīga, atklāta un uz ilgtermiņa sadarbību vērsta pieeja katram klientam un situācijai.
+                    {t.homePage.values.trustDesc}
                   </p>
                 </div>
               </div>
@@ -311,9 +314,9 @@ export default function HomePage({ onOpenLightbox, onOpenPolicy }: HomePageProps
                   <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-black bg-[#0B1F33] text-[#C9A45C] mb-3 shadow-xs">
                     <Scale className="h-5 w-5" />
                   </div>
-                  <h3 className="text-base font-semibold text-[#0B1F33]">Profesionalitāte</h3>
+                  <h3 className="text-base font-semibold text-[#0B1F33]">{t.homePage.values.profTitle}</h3>
                   <p className="text-xs font-light text-slate-600 mt-1.5 leading-relaxed">
-                    Ilggadējā pieredzē iegūtās juridiskās zināšanas, kā arī izpratne par normatīvo aktu piemērošanu.
+                    {t.homePage.values.profDesc}
                   </p>
                 </div>
               </div>
@@ -323,9 +326,9 @@ export default function HomePage({ onOpenLightbox, onOpenPolicy }: HomePageProps
                   <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-black bg-[#0B1F33] text-[#C9A45C] mb-3 shadow-xs">
                     <Lock className="h-5 w-5" />
                   </div>
-                  <h3 className="text-base font-semibold text-[#0B1F33]">Konfidencialitāte</h3>
+                  <h3 className="text-base font-semibold text-[#0B1F33]">{t.homePage.values.confTitle}</h3>
                   <p className="text-xs font-light text-slate-600 mt-1.5 leading-relaxed">
-                    Stingra profesionālā noslēpuma ievērošana un klienta datu pilnīga aizsardzība.
+                    {t.homePage.values.confDesc}
                   </p>
                 </div>
               </div>
@@ -354,10 +357,10 @@ export default function HomePage({ onOpenLightbox, onOpenPolicy }: HomePageProps
             <div>
               <div className="inline-flex items-center gap-1.5 rounded-full border border-[#C9A45C]/70 bg-[#06121E]/90 backdrop-blur-xs px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-[#C9A45C] mb-2.5 shadow-md">
                 <Sparkles className="h-3.5 w-3.5 text-[#C9A45C]" />
-                <span>Pakalpojumu klāsts</span>
+                <span>{t.homePage.practicesSummaryBadge}</span>
               </div>
               <h2 className="text-3xl sm:text-4xl font-light text-white tracking-tight">
-                Darbības <span className="font-semibold text-[#C9A45C]">jomas</span>
+                {t.homePage.practicesSummaryHeading} <span className="font-semibold text-[#C9A45C]">{t.homePage.practicesSummaryHeadingAccent}</span>
               </h2>
             </div>
 
@@ -366,7 +369,7 @@ export default function HomePage({ onOpenLightbox, onOpenPolicy }: HomePageProps
               <button
                 type="button"
                 onClick={() => scrollCarousel('left')}
-                aria-label="Iepriekšējais pakalpojums"
+                aria-label={t.homePage.prevService}
                 className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#C9A45C]/60 bg-[#0B1F33] text-[#C9A45C] shadow-md transition-all hover:bg-[#C9A45C] hover:text-[#0B1F33] hover:border-black active:scale-95 cursor-pointer"
               >
                 <ChevronLeft className="h-5 w-5" />
@@ -374,7 +377,7 @@ export default function HomePage({ onOpenLightbox, onOpenPolicy }: HomePageProps
               <button
                 type="button"
                 onClick={() => scrollCarousel('right')}
-                aria-label="Nākamais pakalpojums"
+                aria-label={t.homePage.nextService}
                 className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#C9A45C]/60 bg-[#0B1F33] text-[#C9A45C] shadow-md transition-all hover:bg-[#C9A45C] hover:text-[#0B1F33] hover:border-black active:scale-95 cursor-pointer"
               >
                 <ChevronRight className="h-5 w-5" />
@@ -384,7 +387,7 @@ export default function HomePage({ onOpenLightbox, onOpenPolicy }: HomePageProps
 
           {/* 1. Desktop View: 4 cards per row */}
           <div className="hidden lg:grid lg:grid-cols-4 gap-4.5">
-            {PRACTICE_AREAS.map((area) => (
+            {t.practiceAreas.map((area) => (
               <div
                 key={area.id}
                 className="flex flex-col justify-between rounded-2xl border border-black/70 bg-white p-3.5 shadow-xl transition-all duration-200 hover:border-[#C9A45C] hover:shadow-2xl"
@@ -394,12 +397,16 @@ export default function HomePage({ onOpenLightbox, onOpenPolicy }: HomePageProps
                   <Link
                     to={`/darbibas-jomas#${area.id}`}
                     className="block overflow-hidden rounded-xl border border-black/70 mb-3 bg-slate-100 cursor-pointer group"
+                    aria-label={`${t.homePage.learnMore} ${area.title}`}
                   >
                     <img
                       src={area.imageUrl}
                       alt={area.title}
+                      width={400}
+                      height={250}
                       className="h-32 w-full object-cover transition-transform duration-300 group-hover:scale-105"
                       loading="lazy"
+                      decoding="async"
                     />
                   </Link>
 
@@ -418,7 +425,7 @@ export default function HomePage({ onOpenLightbox, onOpenPolicy }: HomePageProps
                     to={`/darbibas-jomas#${area.id}`}
                     className="w-full inline-flex items-center justify-center gap-1.5 rounded-xl border border-black/80 bg-[#0B1F33] py-2 px-2.5 text-xs font-semibold text-white shadow-2xs transition-colors hover:bg-[#C9A45C] hover:text-[#0B1F33] hover:border-black"
                   >
-                    <span>Uzzināt vairāk</span>
+                    <span>{t.homePage.learnMore}</span>
                     <ArrowRight className="h-3.5 w-3.5 text-[#C9A45C]" />
                   </Link>
                 </div>
@@ -426,7 +433,7 @@ export default function HomePage({ onOpenLightbox, onOpenPolicy }: HomePageProps
             ))}
           </div>
 
-          {/* 2. Mobile / Tablet View: Centered active card slideshow with equal peek on both sides & auto-scroll */}
+          {/* 2. Mobile / Tablet View: Centered active card slideshow */}
           <div className="block lg:hidden -mx-4 sm:-mx-6">
             <div
               ref={carouselRef}
@@ -435,7 +442,7 @@ export default function HomePage({ onOpenLightbox, onOpenPolicy }: HomePageProps
               onMouseEnter={pauseAutoScrollTemporarily}
               className="flex gap-4 overflow-x-auto pb-4 pt-1 px-[12vw] sm:px-[15vw] select-none scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden touch-pan-x snap-x snap-mandatory"
             >
-              {QUINTUPLE_PRACTICE_AREAS.map((area) => (
+              {quintuplePracticeAreas.map((area) => (
                 <div
                   key={area.uniqueKey}
                   data-carousel-card="true"
@@ -446,12 +453,16 @@ export default function HomePage({ onOpenLightbox, onOpenPolicy }: HomePageProps
                     <Link
                       to={`/darbibas-jomas#${area.id}`}
                       className="block overflow-hidden rounded-xl border border-black/70 mb-3 bg-slate-100 cursor-pointer"
+                      aria-label={`${t.homePage.learnMore} ${area.title}`}
                     >
                       <img
                         src={area.imageUrl}
                         alt={area.title}
+                        width={400}
+                        height={250}
                         className="h-32 w-full object-cover"
                         loading="lazy"
+                        decoding="async"
                       />
                     </Link>
 
@@ -470,7 +481,7 @@ export default function HomePage({ onOpenLightbox, onOpenPolicy }: HomePageProps
                       to={`/darbibas-jomas#${area.id}`}
                       className="w-full inline-flex items-center justify-center gap-1.5 rounded-xl border border-black/80 bg-[#0B1F33] py-2 px-2.5 text-xs font-semibold text-white shadow-2xs transition-colors hover:bg-[#C9A45C] hover:text-[#0B1F33] hover:border-black"
                     >
-                      <span>Uzzināt vairāk</span>
+                      <span>{t.homePage.learnMore}</span>
                       <ArrowRight className="h-3 w-3 text-[#C9A45C]" />
                     </Link>
                   </div>
@@ -489,13 +500,13 @@ export default function HomePage({ onOpenLightbox, onOpenPolicy }: HomePageProps
                   </div>
                   <div className="text-left">
                     <span className="text-sm sm:text-base font-semibold text-[#C9A45C] block">
-                      Profesionālā sadarbība
+                      {t.homePage.partnerTitle}
                     </span>
                   </div>
                 </div>
 
                 <p className="text-xs sm:text-sm font-light text-slate-200 leading-relaxed sm:max-w-xl lg:max-w-2xl">
-                  Nepieciešamības gadījumā sadarbojamies ar zvērinātiem notāriem, maksātnespējas administratoriem, piesaistam zvērinātus tiesu izpildītājus, advokātus un privātdetektīvus.
+                  {t.homePage.partnerDesc}
                 </p>
               </div>
             </div>
@@ -508,13 +519,13 @@ export default function HomePage({ onOpenLightbox, onOpenPolicy }: HomePageProps
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-8">
             <h2 className="text-3xl sm:text-4xl font-normal text-[#0B1F33] tracking-tight">
-              Biežāk uzdotie jautājumi
+              {t.homePage.faqSummaryTitle}
             </h2>
           </div>
 
           {/* Accordion list */}
           <div className="space-y-3.5">
-            {FAQS.slice(0, 3).map((faq, index) => {
+            {t.faqs.slice(0, 3).map((faq, index) => {
               const isOpen = openFaqIndex === index;
               return (
                 <div
@@ -529,7 +540,9 @@ export default function HomePage({ onOpenLightbox, onOpenPolicy }: HomePageProps
                     id={`faq-summary-btn-${faq.id}`}
                     type="button"
                     onClick={() => toggleFaq(index)}
-                    className="flex w-full items-center justify-between text-left gap-4 focus:outline-none cursor-pointer group"
+                    aria-expanded={isOpen}
+                    aria-controls={`faq-summary-answer-${faq.id}`}
+                    className="flex w-full items-center justify-between text-left gap-4 focus:outline-hidden cursor-pointer group"
                   >
                     <span className="text-base sm:text-lg font-medium text-[#0B1F33] group-hover:text-[#06121E]">
                       {faq.question}
@@ -552,7 +565,10 @@ export default function HomePage({ onOpenLightbox, onOpenPolicy }: HomePageProps
                   </button>
 
                   {isOpen && (
-                    <div className="mt-4 text-xs sm:text-sm font-light text-slate-700 leading-relaxed border-t border-slate-200/80 pt-4 animate-in fade-in duration-200">
+                    <div
+                      id={`faq-summary-answer-${faq.id}`}
+                      className="mt-4 text-xs sm:text-sm font-light text-slate-700 leading-relaxed border-t border-slate-200/80 pt-4 animate-in fade-in duration-200"
+                    >
                       {faq.answer}
                     </div>
                   )}
@@ -567,7 +583,7 @@ export default function HomePage({ onOpenLightbox, onOpenPolicy }: HomePageProps
               to="/buj"
               className="inline-flex items-center gap-2 rounded-xl border border-black/80 bg-[#0B1F33] px-6 py-2.5 text-xs font-medium text-white shadow-2xs transition-all hover:bg-[#122B45] hover:border-[#C9A45C]"
             >
-              <span>Lasīt visus BUJ</span>
+              <span>{t.homePage.readAllFaq}</span>
               <ArrowRight className="h-3.5 w-3.5 text-[#C9A45C]" />
             </Link>
           </div>
@@ -579,3 +595,4 @@ export default function HomePage({ onOpenLightbox, onOpenPolicy }: HomePageProps
     </div>
   );
 }
+

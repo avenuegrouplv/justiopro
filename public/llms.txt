@@ -1,0 +1,39 @@
+# JustioPro — Profesionāli Juridiskie Pakalpojumi
+
+> JustioPro (Mag.iur. Kaspars Linters) sniedz profesionālu juridisko palīdzību, juridiskās konsultācijas, līgumu izstrādi un tiesisko interešu aizstāvību fiziskām un juridiskām personām Rīgā un visā Latvijā.
+
+## Galvenā informācija
+
+- **Uzņēmums / Pakalpojumu sniedzējs**: JustioPro (Mag.iur. Kaspars Linters)
+- **Pakalpojumi**: Civiltiesības, komerctiesības, līgumu sagatavošana, nekustamo īpašumu darījumi, pārstāvība tiesā, parādu piedziņa, fizisko personu maksātnespēja, mantojuma un ģimenes tiesības, uzņēmumu dibināšana Latvijā un ASV.
+- **Tālrunis**: +371 26841758
+- **E-pasts**: info@justiopro.lv
+- **Adrese**: Brīvības iela 85, Rīga, LV-1001, Latvija
+- **Darba laiks**: Pirmdiena – Piektdiena: 09:00 – 18:00
+- **Tīmekļa vietne**: https://www.justiopro.lv
+
+## Svarīgākās lapas un maršruti
+
+- [Sākumlapa](https://www.justiopro.lv/): Vispārējs pārskats, pakalpojumu kopsavilkums, priekšrocības un pieteikuma forma.
+- [Darbības Jomas](https://www.justiopro.lv/darbibas-jomas): Detalizēts visu 12 juridisko pakalpojumu jomu apraksts ar veicamajiem darbiem un specifiku.
+- [Biežāk Uzdotie Jautājumi (BUJ)](https://www.justiopro.lv/buj): Atbildes uz jautājumiem par izmaksām, sadarbības procesu, konfidencialitāti un konsultāciju gaitu.
+- [Kontakti](https://www.justiopro.lv/kontakti): Saziņas rekvizīti, atrašanās vieta kartē, bezmaksas pieteikuma veidlapa.
+
+## Pakalpojumu jomas
+
+1. **Līgumu sagatavošana un juridiskā analīze**: Visa veida civiltiesisko līgumu izstrāde, auditi, risku izvērtēšana un saskaņošana.
+2. **Komerctiesības**: Uzņēmumu reģistrācija LR Uzņēmumu reģistrā, pamatkapitāla un valdes izmaiņas, komerclīgumi, korporatīvie darījumi.
+3. **Nekustamā īpašuma darījumi**: Pirkuma, rokasnaudas, īres, nomas līgumi, nostiprinājuma lūgumi Zemesgrāmatai, droši darījumu konti.
+4. **Pārstāvība tiesā un strīdu risināšana**: Prasības pieteikumi, paskaidrojumi, apelācijas un kasācijas sūdzības, pārstāvība visu instanču tiesās.
+5. **Parādu piedziņa**: Pirmstiesas pretenzijas, brīdinājumi, prasības tiesā, sadarbība ar zvērinātiem tiesu izpildītājiem.
+6. **Fizisko personu maksātnespējas process**: Dokumentu sagatavošana tiesai, bankrota procedūras un saistību dzēšanas plāna juridiskā vadība.
+7. **Ģimenes un mantojuma tiesības**: Laulības šķiršana, uzturlīdzekļi, mantas sadale, mantojuma pieņemšana un strīdu risināšana.
+8. **Administratīvās tiesības**: Iestāžu lēmumu un administratīvo aktu apstrīdēšana, pārstāvība Administratīvajā rajona un apgabaltiesā.
+9. **Konkurences tiesības un M&A**: Uzņēmumu apvienošanās ziņojumi, negodīgas konkurences novēršana, uzticamības pārbaudes (Due Diligence).
+10. **Pārrobežu strīdu risināšana**: Eiropas maksājuma rīkojumi, ārvalstu tiesu spriedumu atzīšana un izpilde Latvijā.
+11. **Uzņēmējdarbība un kompāniju dibināšana ASV**: LLC un Corporation reģistrācija (Delavēra, Vaiominga, Florida), EIN un bankas kontu atbalsts.
+12. **Juridiskās konsultācijas**: Sākotnējais situācijas novērtējums bez maksas, pilnas konsultācijas klātienē vai attālināti (Zoom, Teams, telefons).
+
+## Papildu resursi
+
+- [Pilns dokumentācijas fails AI aģentiem](https://www.justiopro.lv/llms-full.txt): Pilns teksta materiāls ar visiem aprakstiem un BUJ atbildēm.

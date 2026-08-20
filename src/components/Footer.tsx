@@ -1,22 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {
-  Scale,
   Phone,
   Mail,
-  MapPin,
   Clock,
-  ShieldCheck,
-  Award,
 } from 'lucide-react';
-import { COMPANY_INFO, NAV_ITEMS, PRACTICE_AREAS } from '../data/content';
+import { COMPANY_INFO } from '../data/content';
 import { PolicyModalType } from '../types';
+import { useTranslation } from '../translations';
 
 interface FooterProps {
   onOpenPolicy: (type: PolicyModalType) => void;
 }
 
 export default function Footer({ onOpenPolicy }: FooterProps) {
+  const { t } = useTranslation();
+
   return (
     <footer
       id="main-footer"
@@ -25,29 +24,34 @@ export default function Footer({ onOpenPolicy }: FooterProps) {
       {/* Upper Footer: Main columns */}
       <div className="mx-auto max-w-7xl px-4 pt-16 pb-12 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-12 lg:gap-8">
-          {/* Column 1: Brand & Mūsu standarts (lg:col-span-4) */}
+          {/* Column 1: Brand & Slogan (lg:col-span-4) */}
           <div className="space-y-4 lg:col-span-4">
             <Link
               to="/"
               id="footer-logo"
-              className="inline-flex items-center gap-3 focus:outline-none"
+              aria-label="JustioPro Sākumlapa"
+              className="inline-flex items-center gap-3 focus:outline-hidden"
             >
               <img
                 src="/Justiopro-logo.webp"
                 alt="JustioPro Logo"
+                width={220}
+                height={46}
+                loading="lazy"
+                decoding="async"
                 className="h-[41px] sm:h-[46px] w-auto max-w-[220px] object-contain brightness-0 invert"
               />
             </Link>
 
             <p className="text-xs font-light leading-relaxed text-slate-300 max-w-sm">
-              Profesionāls juridiskais atbalsts Jūsu biznesa izaugsmei un jebkurai ikdienā risināmai situācijai
+              {t.footer.slogan}
             </p>
           </div>
 
           {/* Column 2: Navigation shifted to the right (lg:col-span-3 lg:col-start-7) */}
           <div className="space-y-4 lg:col-span-2 lg:col-start-7">
             <h4 className="text-xs font-semibold uppercase tracking-widest text-[#C9A45C]">
-              Navigācija
+              {t.footer.navTitle}
             </h4>
             <ul className="space-y-2.5 text-xs font-light text-slate-300">
               <li>
@@ -55,7 +59,7 @@ export default function Footer({ onOpenPolicy }: FooterProps) {
                   to="/"
                   className="hover:text-[#C9A45C] transition-colors"
                 >
-                  Galvenā
+                  {t.nav.home}
                 </Link>
               </li>
               <li>
@@ -63,7 +67,7 @@ export default function Footer({ onOpenPolicy }: FooterProps) {
                   to="/darbibas-jomas"
                   className="hover:text-[#C9A45C] transition-colors"
                 >
-                  Darbības jomas
+                  {t.nav.practices}
                 </Link>
               </li>
               <li>
@@ -71,7 +75,7 @@ export default function Footer({ onOpenPolicy }: FooterProps) {
                   to="/buj"
                   className="hover:text-[#C9A45C] transition-colors"
                 >
-                  BUJ
+                  {t.nav.faq}
                 </Link>
               </li>
               <li>
@@ -79,7 +83,7 @@ export default function Footer({ onOpenPolicy }: FooterProps) {
                   to="/kontakti"
                   className="hover:text-[#C9A45C] transition-colors"
                 >
-                  Kontakti
+                  {t.nav.contact}
                 </Link>
               </li>
             </ul>
@@ -88,7 +92,7 @@ export default function Footer({ onOpenPolicy }: FooterProps) {
           {/* Column 3: Direct Contact Information shifted to the far right with right-alignment (lg:col-span-4 lg:col-start-9) */}
           <div className="space-y-4 lg:col-span-4 lg:col-start-9 text-right flex flex-col items-end">
             <h4 className="text-xs font-semibold uppercase tracking-widest text-[#C9A45C] text-right">
-              Kontakti
+              {t.footer.contactTitle}
             </h4>
 
             <div className="space-y-3.5 text-xs font-light text-slate-300 w-full flex flex-col items-end text-right">
@@ -97,7 +101,7 @@ export default function Footer({ onOpenPolicy }: FooterProps) {
                   <Phone className="h-4 w-4" />
                 </div>
                 <div className="text-right flex flex-col items-end">
-                  <div className="text-[10px] uppercase text-slate-400">Tālrunis</div>
+                  <div className="text-[10px] uppercase text-slate-400">{t.footer.phoneLabel}</div>
                   <a
                     href={`tel:${COMPANY_INFO.phone}`}
                     className="font-medium text-white hover:text-[#C9A45C] transition-colors"
@@ -112,7 +116,7 @@ export default function Footer({ onOpenPolicy }: FooterProps) {
                   <Mail className="h-4 w-4" />
                 </div>
                 <div className="text-right flex flex-col items-end">
-                  <div className="text-[10px] uppercase text-slate-400">E-pasts</div>
+                  <div className="text-[10px] uppercase text-slate-400">{t.footer.emailLabel}</div>
                   <a
                     href={`mailto:${COMPANY_INFO.email}`}
                     className="font-medium text-white hover:text-[#C9A45C] transition-colors"
@@ -127,8 +131,8 @@ export default function Footer({ onOpenPolicy }: FooterProps) {
                   <Clock className="h-4 w-4" />
                 </div>
                 <div className="text-right flex flex-col items-end">
-                  <div className="text-[10px] uppercase text-slate-400">Darba laiks</div>
-                  <span className="text-white">{COMPANY_INFO.workingHours}</span>
+                  <div className="text-[10px] uppercase text-slate-400">{t.footer.workHoursLabel}</div>
+                  <span className="text-white">{t.footer.workHoursValue}</span>
                 </div>
               </div>
             </div>
@@ -141,7 +145,7 @@ export default function Footer({ onOpenPolicy }: FooterProps) {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
           {/* Left: 2025 © JustioPro I Visas tiesības aizsargātas */}
           <div className="text-slate-400">
-            2025 © JustioPro I Visas tiesības aizsargātas
+            {t.footer.rights}
           </div>
 
           {/* Center / Middle: Privātuma politika & Sīkdatņu politika */}
@@ -151,7 +155,7 @@ export default function Footer({ onOpenPolicy }: FooterProps) {
               onClick={() => onOpenPolicy('privacy')}
               className="hover:text-[#C9A45C] transition-colors cursor-pointer"
             >
-              Privātuma politika
+              {t.footer.privacyPolicy}
             </button>
             <span className="text-slate-600">•</span>
             <button
@@ -159,13 +163,13 @@ export default function Footer({ onOpenPolicy }: FooterProps) {
               onClick={() => onOpenPolicy('cookies')}
               className="hover:text-[#C9A45C] transition-colors cursor-pointer"
             >
-              Sīkdatņu politika
+              {t.footer.cookiesPolicy}
             </button>
           </div>
 
           {/* Right: Izstrādātājs: Sageon Media */}
           <div>
-            Izstrādātājs:{' '}
+            {t.footer.developer}{' '}
             <a
               href={COMPANY_INFO.developerUrl}
               target="_blank"
@@ -180,3 +184,4 @@ export default function Footer({ onOpenPolicy }: FooterProps) {
     </footer>
   );
 }
+

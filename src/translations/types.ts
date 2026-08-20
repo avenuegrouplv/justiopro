@@ -1,0 +1,200 @@
+import { FaqItem, PracticeArea } from '../types';
+
+export interface TranslationSchema {
+  nav: {
+    home: string;
+    practices: string;
+    faq: string;
+    contacts: string;
+    contact: string;
+    contactBtn: string;
+    languageTitle: string;
+    backToHome: string;
+    callAction: string;
+    emailAction: string;
+  };
+  homePage: {
+    seoTitle: string;
+    seoDesc: string;
+    heroBadge: string;
+    heroTitle: string;
+    heroTitleAccent: string;
+    heroTitleEnd: string;
+    requestConsultation: string;
+    viewPractices: string;
+    aboutBadge: string;
+    aboutHeading: string;
+    aboutP1: string;
+    aboutP2: string;
+    outsourceTitle: string;
+    outsourceDesc: string;
+    values: {
+      trustTitle: string;
+      trustDesc: string;
+      profTitle: string;
+      profDesc: string;
+      confTitle: string;
+      confDesc: string;
+    };
+    practicesSummaryBadge: string;
+    practicesSummaryHeading: string;
+    practicesSummaryHeadingAccent: string;
+    prevService: string;
+    nextService: string;
+    learnMore: string;
+    partnerTitle: string;
+    partnerDesc: string;
+    faqSummaryTitle: string;
+    readAllFaq: string;
+  };
+  practicesPage: {
+    seoTitle: string;
+    seoDesc: string;
+    breadcrumbHome: string;
+    breadcrumbCurrent: string;
+    badge: string;
+    headingMain: string;
+    headingAccent: string;
+  };
+  practicesSection: {
+    requestService: string;
+    usBusinessCallout: {
+      textBefore: string;
+      linkText: string;
+      textAfter: string;
+    };
+    freeAidDisclaimer: string;
+  };
+  faqPage: {
+    seoTitle: string;
+    seoDesc: string;
+    heading: string;
+    headingAccent: string;
+    badge: string;
+    backToHome: string;
+    notFoundTitle: string;
+    notFoundDesc: string;
+    askQuestion: string;
+  };
+  contactPage: {
+    seoTitle: string;
+    seoDesc: string;
+    heading: string;
+    headingAccent: string;
+    badge: string;
+    backToHome: string;
+  };
+  contactForm: {
+    badge: string;
+    heading: string;
+    subheading: string;
+    nameLabel: string;
+    emailLabel: string;
+    phoneLabel: string;
+    messageLabel: string;
+    messagePlaceholder: string;
+    requiredNote: string;
+    submitBtn: string;
+    submittingBtn: string;
+    validationError: string;
+    successTitle: string;
+    successMessage: string;
+    sendAnother: string;
+    contactInfoTitle: string;
+    phoneCardTitle: string;
+    emailCardTitle: string;
+    workingHours: string;
+    replyTime: string;
+  };
+  footer: {
+    slogan: string;
+    navTitle: string;
+    contactTitle: string;
+    phoneLabel: string;
+    emailLabel: string;
+    workHoursLabel: string;
+    workHoursValue: string;
+    rights: string;
+    privacyPolicy: string;
+    cookiesPolicy: string;
+    developer: string;
+  };
+  cookieBanner: {
+    badge: string;
+    text: string;
+    privacyLink: string;
+    acceptAll: string;
+    customize: string;
+    reject: string;
+  };
+  policyModal: {
+    privacyTitle: string;
+    privacySubtitle: string;
+    cookiesTitle: string;
+    cookiesSubtitle: string;
+    close: string;
+    acceptAll: string;
+    saveSelection: string;
+    lastUpdated: string;
+    savedToast: string;
+    privacy: {
+      sec1Title: string;
+      sec1Text: string;
+      contactInfo: string;
+      sec2Title: string;
+      sec2Text: string;
+      sec3Title: string;
+      sec3ContactLabel: string;
+      sec3ContactText: string;
+      sec3TechLabel: string;
+      sec3TechText: string;
+      sec3UsageLabel: string;
+      sec3UsageText: string;
+      sec4Title: string;
+      sec4Item1: string;
+      sec4Item2: string;
+      sec4Item3: string;
+      sec5Title: string;
+      sec5Text: string;
+      sec5Contact: string;
+    };
+    cookies: {
+      sec1Title: string;
+      sec1Text1: string;
+      sec1Text2: string;
+      sec2Title: string;
+      sec2Text: string;
+      sec2Purpose: string;
+      sec2Item1Title: string;
+      sec2Item1Desc: string;
+      sec2Item2Title: string;
+      sec2Item2Desc: string;
+      sec2Item3Title: string;
+      sec2Item3Desc: string;
+      sec3Title: string;
+      necessaryTitle: string;
+      alwaysActive: string;
+      necessaryDesc: string;
+      analyticsTitle: string;
+      analyticsDesc: string;
+      functionalTitle: string;
+      functionalDesc: string;
+      marketingTitle: string;
+      marketingDesc: string;
+      on: string;
+      off: string;
+      sec4Title: string;
+      sec4Text: string;
+      sec4NoticeLabel: string;
+      sec4NoticeText: string;
+      sec4Contact: string;
+    };
+  };
+  navButtons: {
+    toHome: string;
+    toTop: string;
+  };
+  practiceAreas: PracticeArea[];
+  faqs: FaqItem[];
+}
+

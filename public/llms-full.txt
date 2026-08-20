@@ -1,0 +1,145 @@
+# JustioPro — Pilna Informācija un Dokumentācija AI Aģentiem (LLMs)
+
+## Par JustioPro
+JustioPro ir juridisko pakalpojumu sniedzējs (vadītājs: jurists Mag.iur. Kaspars Linters), kas specializējas profesionāla juridiskā atbalsta sniegšanā privātpersonām, mazajiem, vidējiem un starptautiskajiem uzņēmumiem.
+Mūsu pamatprincips: Vienmēr rīkoties klienta labākajās interesēs, ievērojot stingru konfidencialitāti, augstākos ētikas un profesionālos standartus.
+
+### Rekvizīti un Kontakti
+- **Pakalpojumu sniedzējs**: JustioPro / Mag.iur. Kaspars Linters
+- **Tālrunis**: +371 26841758
+- **E-pasts**: info@justiopro.lv
+- **Adrese**: Brīvības iela 85, Rīga, LV-1001, Latvija
+- **Darba laiks**: Pirmdiena – Piektdiena: 09:00 – 18:00 (Pēc iepriekšējas vienošanās pieejamas arī ārpusdarba laika konsultācijas)
+- **Tīmekļa vietne**: https://www.justiopro.lv
+
+---
+
+## Detalizētas Darbības Jomas un Pakalpojumi
+
+### 1. Līgumu sagatavošana vai to juridiskā analīze
+Civiltiesisko līgumu sagatavošana parakstīšanai, saskaņošana starp iesaistītajām pusēm un to izpildes uzraudzība.
+- **Sagatavojam un saskaņojam**:
+  - Līgumus darījumiem ar kustamo un nekustamo īpašumu (pirkums, noma, īre, rokasnauda)
+  - Līgumus starp būvniecības uzņēmumiem, pasūtītājiem un izpildītājiem
+  - Līgumus preču tirdzniecības, ražošanas un pārvadāšanas darījumiem
+  - Aizdevuma, ķīlas, hipotēkas līgumus un līgumus kredītu pārstrukturēšanai
+  - Dāvinājuma, uztura, patapinājuma, pilnvarojuma, cesijas, kā arī dažādu ārpakalpojumu līgumus
+  - Līgumus digitālajiem un tiešsaistes uzņēmumiem (lietotāju noteikumi, SaaS, privātuma atrunas)
+  - Franšīzes un izplatīšanas līgumus
+  - Konfidencialitātes līgumus (NDA) un līgumus par personas datu apstrādi (GDPR)
+  - Aģentu un mārketinga līgumus
+
+### 2. Komerctiesības
+Juridiskā palīdzība uzņēmējiem jaunu sabiedrību reģistrēšanai, izmaiņu veikšanai Uzņēmumu reģistrā un komerclīgumu sagatavošanai.
+- **Nodrošinām**:
+  - Dokumentu sagatavošanu uzņēmuma dibināšanai LR Uzņēmumu reģistrā (SIA, AS, filiāles, pārstāvniecības)
+  - Dokumentu sagatavošanu uzņēmuma pamatkapitāla palielināšanai vai samazināšanai
+  - Dokumentu sagatavošanu uzņēmuma dalībnieku vai valdes sastāva izmaiņām, juridisko adrešu maiņai
+  - Visa veida komerclīgumu sagatavošanu un saskaņošanu starp darījuma dalībniekiem
+  - Konsultācijas par jautājumiem, kas saistīti ar korporatīvajiem darījumiem
+
+### 3. Darījumi ar nekustamo īpašumu
+Juridiskais atbalsts darījumos ar nekustamo īpašumu – no līguma projekta izstrādes līdz īpašumtiesību nostiprināšanai Zemesgrāmatā.
+- **Nodrošinām**:
+  - Visa veida nekustamā īpašuma darījumu līgumu sagatavošanu (rokasnaudas, pirkuma, dāvinājuma, maiņas u.c.)
+  - Īres un nomas līgumu sagatavošanu gan dzīvojamajam, gan komercsektoram
+  - Nostiprinājuma lūgumu sagatavošanu Zemesgrāmatai
+  - Īpašuma tiesiskā statusa un apgrūtinājumu padziļinātu pārbaudi pirms darījuma
+  - Darījumu kontu līgumu saskaņošanu ar bankām drošai norēķinu veikšanai
+
+### 4. Pārstāvība tiesā un strīdu risināšana
+Juridiskā palīdzība un klientu interešu pārstāvība vispārējās jurisdikcijas tiesās visās instancēs civillietās un administratīvajās lietās.
+- **Nodrošinām**:
+  - Prasības pieteikumu, paskaidrojumu un pretprasību sagatavošanu
+  - Apelācijas un kasācijas sūdzību sagatavošanu
+  - Klientu interešu pārstāvību tiesas sēdēs visās tiesu instancēs
+  - Miera izlīgumu izstrādi un sarunu vešanu ar pretējo pusi
+  - Pagaidu aizsardzības līdzekļu piemērošanas lūgumu sagatavošanu
+
+### 5. Parādu piedziņa
+Juridiskais atbalsts debitoru parādu atgūšanā gan pirmstiesas procesā, gan tiesas ceļā un sadarbībā ar tiesu izpildītājiem.
+- **Nodrošinām**:
+  - Pirmstiesas brīdinājumu un pretenziju sagatavošanu debitoriem
+  - Prasības pieteikumu par parāda piedziņu sagatavošanu un iesniegšanu tiesā
+  - Pārstāvību parādu piedziņas lietās tiesā
+  - Izpildu dokumentu nodošanu zvērinātiem tiesu izpildītājiem un procesa kontroli
+  - Saistību restrukturizācijas un atmaksas grafiku vienošanos sagatavošanu
+
+### 6. Fizisko personu maksātnespējas process
+Pilns juridiskais atbalsts fiziskas personas maksātnespējas procesa uzsākšanai, norisei un saistību dzēšanai.
+- **Nodrošinām**:
+  - Situācijas izvērtēšanu un atbilstības pārbaudi Maksātnespējas likuma prasībām
+  - Maksātnespējas procesa pieteikuma un tam pievienojamo dokumentu sagatavošanu tiesai
+  - Saistību dzēšanas plāna projekta izstrādi un saskaņošanu
+  - Konsultācijas un atbalstu visā bankrota un saistību dzēšanas procedūras laikā
+
+### 7. Ģimenes un mantojuma tiesības
+Juridiskā palīdzība ģimenes tiesību jautājumos un mantojuma lietu kārtošanā.
+- **Nodrošinām**:
+  - Laulības šķiršanas dokumentu sagatavošanu tiesai vai pie zvērināta notāra
+  - Uzturlīdzekļu (alimentu) piedziņas un bērnu aizgādības jautājumu risināšanu
+  - Laulāto kopīgās mantas sadales līgumu un prasības pieteikumu sagatavošanu
+  - Konsultācijas mantojuma pieņemšanas, atteikšanās un mantojuma dalīšanas jautājumos
+  - Pārstāvību mantojuma strīdos tiesā un attiecībās ar citiem mantiniekiem
+
+### 8. Administratīvās tiesības
+Juridiskā palīdzība un aizstāvība attiecībās ar valsts un pašvaldību iestādēm.
+- **Nodrošinām**:
+  - Valsts un pašvaldību iestāžu izdoto administratīvo aktu un lēmumu apstrīdēšanu augstākā iestādē
+  - Pieteikumu sagatavošanu Administratīvajai rajona tiesai
+  - Pārstāvību administratīvā procesa ietvaros iestādēs un tiesā
+
+### 9. Konkurences tiesības un M&A
+Juridiskais atbalsts uzņēmumu apvienošanās, iegādes un konkurences tiesību atbilstības jautājumos.
+- **Nodrošinām**:
+  - Ziņojumu sagatavošanu par uzņēmumu apvienošanos Konkurences padomei
+  - Juridisko auditu (Due Diligence) veikšanu pirms uzņēmumu iegādes darījumiem
+  - Konsultācijas par negodīgas konkurences aizlieguma ievērošanu un komercnoslēpuma aizsardzību
+
+### 10. Pārrobežu strīdu risināšana
+Juridiskā palīdzība starptautisko civilo un komerciālo strīdu risināšanā.
+- **Nodrošinām**:
+  - Eiropas maksājuma rīkojuma (European Order for Payment) pieteikumu sagatavošanu
+  - Ārvalstu tiesu un šķīrējtiesu spriedumu atzīšanas un izpildes procesu Latvijā
+  - Latvijas tiesu nolēmumu izpildes organizēšanu ārvalstīs saskaņā ar ES regulām
+
+### 11. Uzņēmumu dibināšana un uzņēmējdarbība ASV
+Juridiskais un konsultatīvais atbalsts Latvijas un ārvalstu uzņēmējiem biznesa uzsākšanai ASV.
+- **Nodrošinām**:
+  - Uzņēmuma formas izvēli un reģistrāciju (LLC, C-Corp) vadošajos štatos (Delavēra, Vaiominga, Florida u.c.)
+  - ASV nodokļu maksātāja numura (EIN) iegūšanas koordināciju
+  - Dibināšanas dokumentu, darbības līgumu (Operating Agreement) sagatavošanu
+  - Konsultācijas par atbilstību un ASV biznesa vides specifiku
+
+### 12. Juridiskās konsultācijas
+Sākotnējais situācijas novērtējums bez maksas, pilnvērtīgas klātienes un attālinātās konsultācijas.
+- **Formāts**: Klātienē Rīgā (Brīvības iela 85) vai attālināti (telefons, WhatsApp, Google Meet, Zoom, Teams).
+
+---
+
+## Biežāk Uzdotie Jautājumi un Atbildes (FAQ)
+
+### 1. Cik maksā juridiskie pakalpojumi un konsultācija?
+Pakalpojumu izmaksas ir atkarīgas no jautājuma sarežģītības un nepieciešamā darba apjoma. Sākotnējais situācijas izvērtējums un darba apjoma noteikšana ir bez maksas. Konkrētu cenu piedāvājumu sniedzam pirms darba uzsākšanas – tas var būt fiksēts honorārs par konkrētu dokumentu vai stundas likme ilgtermiņa sadarbībai.
+
+### 2. Kā notiek sadarbības process?
+Sadarbība sākas ar Jūsu pieteikumu vai zvanu. Mēs uzklausām situāciju, iepazīstamies ar pieejamajiem dokumentiem, sniedzam sākotnējo novērtējumu un piedāvājam rīcības plānu ar precīzām izmaksām. Pēc vienošanās noslēdzam juridisko pakalpojumu līgumu un uzsākam darbu.
+
+### 3. Vai konsultācijas ir pieejamas arī attālināti?
+Jā, pilnvērtīgi sniedzam konsultācijas un dokumentu sagatavošanu attālināti – pa tālruni, e-pastu vai videozvana formātā (Zoom, Google Meet, Microsoft Teams, WhatsApp). Dokumentu apritei un parakstīšanai ērti izmantojam drošu elektronisko parakstu (eParaksts / Smart-ID).
+
+### 4. Cik ātri var saņemt juridisko palīdzību?
+Steidzamos gadījumos sākotnējo konsultāciju var saņemt tajā pašā vai nākamajā darba dienā. Vienkāršu dokumentu un līgumu sagatavošana parasti aizņem 1–3 darba dienas, savukārt apjomīgāku lietu izstrādes termiņi tiek saskaņoti individuāli.
+
+### 5. Vai tiek nodrošināta pilnīga konfidencialitāte?
+Jā, pilnīga konfidencialitāte ir mūsu darbības pamatprincips. Visa klienta sniegtā informācija, darījumu dati un dokumenti tiek stingri aizsargāti saskaņā ar juristu profesionālās ētikas normām un GDPR datu aizsardzības regulu.
+
+### 6. Vai iespējams pieteikties konsultācijai ārpus parastā darba laika?
+Jā, ja klientam aizņemtības vai laika joslu atšķirības dēļ (piemēram, ASV uzņēmējdarbības projektos) nav iespējams sazināties standarta darba laikā, pēc iepriekšējas vienošanās konsultāciju varam noorganizēt arī agrās rīta stundās, vakaros vai brīvdienās.
+
+---
+
+## Saistītās lapas un meklētāju dati
+- Oficiālā adrese: https://www.justiopro.lv
+- Saziņa: info@justiopro.lv | +371 26841758
+- Atrašanās vieta: Brīvības iela 85, Rīga, LV-1001, Latvija

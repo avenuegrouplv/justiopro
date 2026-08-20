@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Phone, Mail, Send, CheckCircle2, AlertCircle } from 'lucide-react';
-import { COMPANY_INFO, PRACTICE_AREAS } from '../data/content';
+import { COMPANY_INFO } from '../data/content';
 import { ContactFormData } from '../types';
+import { useTranslation } from '../translations';
 
 interface ContactFormSectionProps {
   id?: string;
@@ -14,6 +15,7 @@ export default function ContactFormSection({
   isStandalonePage = false,
   showBottomImage = false,
 }: ContactFormSectionProps) {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState<ContactFormData>({
     name: '',
     email: '',
@@ -40,7 +42,7 @@ export default function ContactFormSection({
     e.preventDefault();
 
     if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
-      setErrorMessage('Lūdzu, aizpildiet visus ar sarkanu zvaigznīti (*) atzīmētos laukus.');
+      setErrorMessage(t.contactForm.validationError);
       return;
     }
 
@@ -72,8 +74,11 @@ export default function ContactFormSection({
         <img
           src="/juridiskie-pakalpojumi.webp"
           alt="JustioPro juridiskie pakalpojumi"
+          width={1920}
+          height={800}
           className="h-full w-full object-cover grayscale opacity-25 mix-blend-luminosity"
           loading="lazy"
+          decoding="async"
         />
         {/* Soft radial illumination overlay */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#3A6088]/25 via-transparent to-[#081320]/60" />
@@ -84,14 +89,14 @@ export default function ContactFormSection({
         <div className="mx-auto max-w-3xl text-center mb-12 sm:mb-16">
           {!isStandalonePage && (
             <span className="inline-flex items-center gap-2 rounded-full border border-[#C9A45C]/50 bg-[#06121E]/90 px-4 py-1.5 text-xs font-medium tracking-wide uppercase text-[#C9A45C] shadow-sm backdrop-blur-xs">
-              Saziņa un Konsultācijas
+              {t.contactForm.badge}
             </span>
           )}
           <h2 className={`text-3xl font-normal tracking-tight text-white sm:text-4xl ${!isStandalonePage ? 'mt-4' : ''}`}>
-            Piesakiet juridisko pakalpojumu vai konsultāciju
+            {t.contactForm.heading}
           </h2>
           <p className="mt-3 text-base font-light text-slate-200">
-            Rakstiet mums un mēs ar Jums sazināsimies tuvāko dažu stundu laikā
+            {t.contactForm.subheading}
           </p>
         </div>
 
@@ -106,17 +111,17 @@ export default function ContactFormSection({
                 <CheckCircle2 className="h-10 w-10 text-[#C9A45C]" />
               </div>
               <h3 className="text-2xl font-medium text-white mb-2">
-                Paldies. Jūsu ziņa ir nosūtīta.
+                {t.contactForm.successTitle}
               </h3>
               <p className="max-w-md text-sm font-light text-slate-300 mb-6">
-                Mēs esam saņēmuši Jūsu pieprasījumu un tuvākajā laikā ar Jums sazināsimies uz norādīto e-pasta adresi vai tālruņa numuru.
+                {t.contactForm.successMessage}
               </p>
               <button
                 type="button"
                 onClick={() => setIsSuccess(false)}
                 className="rounded-xl border border-[#C9A45C]/60 bg-[#0B131E] px-6 py-2.5 text-sm font-medium text-[#C9A45C] hover:bg-[#121E2E] hover:text-white transition-colors cursor-pointer"
               >
-                Nosūtīt vēl vienu ziņu
+                {t.contactForm.sendAnother}
               </button>
             </div>
           ) : (
@@ -135,7 +140,7 @@ export default function ContactFormSection({
                     htmlFor="contact-name"
                     className="text-xs font-semibold tracking-wide text-slate-200"
                   >
-                    Vārds, Uzvārds <span className="text-red-400 font-bold">*</span>
+                    {t.contactForm.nameLabel} <span className="text-red-400 font-bold">*</span>
                   </label>
                   <input
                     type="text"
@@ -154,7 +159,7 @@ export default function ContactFormSection({
                     htmlFor="contact-email"
                     className="text-xs font-semibold tracking-wide text-slate-200"
                   >
-                    E-pasts <span className="text-red-400 font-bold">*</span>
+                    {t.contactForm.emailLabel} <span className="text-red-400 font-bold">*</span>
                   </label>
                   <input
                     type="email"
@@ -174,7 +179,7 @@ export default function ContactFormSection({
                   htmlFor="contact-phone"
                   className="text-xs font-semibold tracking-wide text-slate-200"
                 >
-                  Tālruņa numurs
+                  {t.contactForm.phoneLabel}
                 </label>
                 <input
                   type="tel"
@@ -192,7 +197,7 @@ export default function ContactFormSection({
                   htmlFor="contact-message"
                   className="text-xs font-semibold tracking-wide text-slate-200"
                 >
-                  Ziņa / Īss situācijas apraksts <span className="text-red-400 font-bold">*</span>
+                  {t.contactForm.messageLabel} <span className="text-red-400 font-bold">*</span>
                 </label>
                 <textarea
                   id="contact-message"
@@ -201,14 +206,14 @@ export default function ContactFormSection({
                   required
                   value={formData.message}
                   onChange={handleChange}
-                  placeholder="Lūdzu, īsi aprakstiet situāciju vai jautājumu, kurā nepieciešama juridiskā palīdzība..."
+                  placeholder={t.contactForm.messagePlaceholder}
                   className="rounded-xl border border-slate-300 bg-[#ECEEF2] px-4 py-3 text-sm text-[#0B1F33] font-normal placeholder-slate-500 transition-all focus:bg-white focus:border-[#C9A45C] focus:outline-none focus:ring-1 focus:ring-[#C9A45C]"
                 />
               </div>
 
               <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
                 <p className="text-xs text-slate-400 font-light">
-                  <span className="text-red-400 font-bold">*</span> Obligāti aizpildāmie lauki
+                  <span className="text-red-400 font-bold">*</span> {t.contactForm.requiredNote}
                 </p>
 
                 {/* Premium Gold Button */}
@@ -219,7 +224,7 @@ export default function ContactFormSection({
                   className="inline-flex items-center gap-2 rounded-xl bg-[#C9A45C] text-[#0B1F33] font-semibold border border-black px-8 py-3.5 text-sm shadow-md transition-all duration-200 hover:bg-[#D8B46E] hover:shadow-lg active:scale-98 disabled:opacity-50 cursor-pointer w-full sm:w-auto justify-center"
                 >
                   <Send className="h-4 w-4 text-[#0B1F33]" />
-                  <span>{isSubmitting ? 'Nosūta...' : 'Sūtīt ziņu'}</span>
+                  <span>{isSubmitting ? t.contactForm.submittingBtn : t.contactForm.submitBtn}</span>
                 </button>
               </div>
             </form>
@@ -242,7 +247,7 @@ export default function ContactFormSection({
         <div id="contact-info-cards" className="mx-auto mt-14 max-w-3xl">
           <div className="text-center mb-6">
             <h3 className="text-xl font-normal text-white">
-              Saziņas informācija
+              {t.contactForm.contactInfoTitle}
             </h3>
           </div>
 
@@ -258,13 +263,13 @@ export default function ContactFormSection({
               </div>
               <div className="flex flex-col">
                 <span className="text-xs font-light tracking-wider uppercase text-slate-300">
-                  Tālrunis
+                  {t.contactForm.phoneCardTitle}
                 </span>
                 <span className="text-lg font-semibold tracking-wide text-white transition-colors group-hover:text-[#C9A45C]">
                   {COMPANY_INFO.phoneDisplay}
                 </span>
                 <span className="text-[11px] text-slate-300 font-light">
-                  P. - Pk. 09:00 - 18:00
+                  {t.contactForm.workingHours}
                 </span>
               </div>
             </a>
@@ -280,13 +285,13 @@ export default function ContactFormSection({
               </div>
               <div className="flex flex-col">
                 <span className="text-xs font-light tracking-wider uppercase text-slate-300">
-                  E-pasts
+                  {t.contactForm.emailCardTitle}
                 </span>
                 <span className="text-lg font-semibold tracking-wide text-white transition-colors group-hover:text-[#C9A45C]">
                   {COMPANY_INFO.email}
                 </span>
                 <span className="text-[11px] text-slate-300 font-light">
-                  Atbildam dažu stundu laikā
+                  {t.contactForm.replyTime}
                 </span>
               </div>
             </a>
@@ -296,3 +301,4 @@ export default function ContactFormSection({
     </section>
   );
 }
+

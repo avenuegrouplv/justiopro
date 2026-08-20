@@ -12,6 +12,7 @@ import PracticesPage from './pages/PracticesPage';
 import DocumentSamplesPage from './pages/DocumentSamplesPage';
 import FaqPage from './pages/FaqPage';
 import ContactPage from './pages/ContactPage';
+import { LanguageProvider } from './context/LanguageContext';
 import { LightboxImageState, PolicyModalType } from './types';
 
 function AnimatedRoutes({
@@ -77,25 +78,27 @@ export default function App() {
   };
 
   return (
-    <BrowserRouter>
-      <div id="app-container" className="flex min-h-screen flex-col bg-[#F4F5F7] text-slate-900">
-        <ScrollToTop />
-        <Header />
-        <AnimatedRoutes
-          onOpenLightbox={handleOpenLightbox}
-          onOpenPolicy={(type) => setActivePolicyModal(type)}
-        />
-        <Footer onOpenPolicy={(type) => setActivePolicyModal(type)} />
+    <LanguageProvider>
+      <BrowserRouter>
+        <div id="app-container" className="flex min-h-screen flex-col bg-[#F4F5F7] text-slate-900">
+          <ScrollToTop />
+          <Header />
+          <AnimatedRoutes
+            onOpenLightbox={handleOpenLightbox}
+            onOpenPolicy={(type) => setActivePolicyModal(type)}
+          />
+          <Footer onOpenPolicy={(type) => setActivePolicyModal(type)} />
 
-        {/* Global Lightbox Component */}
-        <LightboxModal state={lightboxState} onClose={handleCloseLightbox} />
+          {/* Global Lightbox Component */}
+          <LightboxModal state={lightboxState} onClose={handleCloseLightbox} />
 
-        {/* Policy Modals */}
-        <PolicyModal type={activePolicyModal} onClose={() => setActivePolicyModal(null)} />
+          {/* Policy Modals */}
+          <PolicyModal type={activePolicyModal} onClose={() => setActivePolicyModal(null)} />
 
-        {/* Cookie Consent Banner */}
-        <CookieBanner onOpenPolicy={(type) => setActivePolicyModal(type)} />
-      </div>
-    </BrowserRouter>
+          {/* Cookie Consent Banner */}
+          <CookieBanner onOpenPolicy={(type) => setActivePolicyModal(type)} />
+        </div>
+      </BrowserRouter>
+    </LanguageProvider>
   );
 }

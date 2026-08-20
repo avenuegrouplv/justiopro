@@ -18,6 +18,7 @@ import {
   UserCheck,
 } from 'lucide-react';
 import { PolicyModalType } from '../types';
+import { useTranslation } from '../translations';
 
 interface PolicyModalProps {
   type: PolicyModalType;
@@ -25,6 +26,7 @@ interface PolicyModalProps {
 }
 
 export default function PolicyModal({ type, onClose }: PolicyModalProps) {
+  const { t } = useTranslation();
   const [analyticsCookies, setAnalyticsCookies] = useState<boolean>(() => {
     const saved = localStorage.getItem('justiopro_cookie_analytics');
     return saved !== null ? saved === 'true' : true; // Default ON
@@ -86,7 +88,8 @@ export default function PolicyModal({ type, onClose }: PolicyModalProps) {
   if (!type) return null;
 
   const isPrivacy = type === 'privacy';
-  const title = isPrivacy ? 'Privātuma politika' : 'Sīkdatņu politika';
+  const title = isPrivacy ? t.policyModal.privacyTitle : t.policyModal.cookiesTitle;
+  const subtitle = isPrivacy ? t.policyModal.privacySubtitle : t.policyModal.cookiesSubtitle;
 
   return (
     <AnimatePresence>
@@ -118,9 +121,7 @@ export default function PolicyModal({ type, onClose }: PolicyModalProps) {
                   {title}
                 </h2>
                 <p className="text-[11px] text-slate-300">
-                  {isPrivacy
-                    ? 'Informācija par Jūsu personas datu apstrādi un aizsardzību'
-                    : 'Informācija par vietnē izmantotajām sīkdatnēm un to pārvaldību'}
+                  {subtitle}
                 </p>
               </div>
             </div>
@@ -128,7 +129,7 @@ export default function PolicyModal({ type, onClose }: PolicyModalProps) {
               id="policy-modal-close-icon"
               onClick={onClose}
               className="flex h-8 w-8 items-center justify-center rounded-lg text-slate-300 hover:bg-white/10 hover:text-white transition-colors cursor-pointer"
-              aria-label="Aizvērt"
+              aria-label={t.policyModal.close}
             >
               <X className="h-5 w-5" />
             </button>
@@ -149,16 +150,16 @@ export default function PolicyModal({ type, onClose }: PolicyModalProps) {
                       <FileText className="h-4 w-4" />
                     </div>
                     <h3 className="text-base font-semibold text-[#0B1F33]">
-                      1. Ievads
+                      {t.policyModal.privacy.sec1Title}
                     </h3>
                   </div>
                   <p className="text-slate-700 text-xs sm:text-sm font-light leading-relaxed">
-                    Datu pārzinis juridisko pakalpojumu sniedzējs Mag.iur. Kaspars Linters, Reģ.Nr. 21048110122 (turpmāk – &quot;mēs&quot;, &quot;mūsu&quot; vai &quot;Uzņēmums&quot;), apņemas aizsargāt un ievērot Jūsu tiesības uz privātumu. Šajā Privātuma politikā ir skaidrots, kā mēs apkopojam, izmantojam, glabājam un aizsargājam Jūsu personas datus saskaņā ar Eiropas Parlamenta un Padomes Regulu (ES) 2016/679 (Vispārīgā datu aizsardzības regula jeb GDPR) un Latvijas Republikas piemērojamajiem normatīvajiem aktiem.
+                    {t.policyModal.privacy.sec1Text}
                   </p>
 
                   <div className="mt-3 p-3.5 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
                     <div className="text-xs font-semibold uppercase tracking-wider text-slate-800">
-                      Kontaktinformācija:
+                      {t.policyModal.privacy.contactInfo}
                     </div>
                     <div className="flex flex-wrap items-center gap-4 text-xs sm:text-sm text-slate-700">
                       <a
@@ -189,11 +190,11 @@ export default function PolicyModal({ type, onClose }: PolicyModalProps) {
                       <Scale className="h-4 w-4" />
                     </div>
                     <h3 className="text-base font-semibold text-[#0B1F33]">
-                      2. Juridiskais pamats
+                      {t.policyModal.privacy.sec2Title}
                     </h3>
                   </div>
                   <p className="text-slate-700 text-xs sm:text-sm font-light leading-relaxed">
-                    Personas datu apstrādātājs – Latvijas Republikas Uzņēmumu reģistra Komercreģistrā reģistrētas juridiskas personas, kas Sabiedrības uzdevumā iegūst un apstrādā Klienta datus, lai nodrošinātu Pakalpojumu sniegšanu Sabiedrības vārdā.
+                    {t.policyModal.privacy.sec2Text}
                   </p>
                 </section>
 
@@ -207,7 +208,7 @@ export default function PolicyModal({ type, onClose }: PolicyModalProps) {
                       <Database className="h-4 w-4" />
                     </div>
                     <h3 className="text-base font-semibold text-[#0B1F33]">
-                      3. Kādus personas datus mēs vācam
+                      {t.policyModal.privacy.sec3Title}
                     </h3>
                   </div>
 
@@ -215,19 +216,19 @@ export default function PolicyModal({ type, onClose }: PolicyModalProps) {
                     <div className="flex items-start gap-2.5 p-3 rounded-lg bg-slate-50 border border-slate-200">
                       <CheckCircle2 className="h-4 w-4 text-[#C9A45C] shrink-0 mt-0.5" />
                       <div className="text-xs sm:text-sm text-slate-700 leading-relaxed font-light">
-                        <strong className="font-semibold text-[#0B1F33]">Kontaktinformācija:</strong> vārds, uzņēmuma nosaukums, e-pasta adrese, tālruņa numurs
+                        <strong className="font-semibold text-[#0B1F33]">{t.policyModal.privacy.sec3ContactLabel}</strong> {t.policyModal.privacy.sec3ContactText}
                       </div>
                     </div>
                     <div className="flex items-start gap-2.5 p-3 rounded-lg bg-slate-50 border border-slate-200">
                       <CheckCircle2 className="h-4 w-4 text-[#C9A45C] shrink-0 mt-0.5" />
                       <div className="text-xs sm:text-sm text-slate-700 leading-relaxed font-light">
-                        <strong className="font-semibold text-[#0B1F33]">Tehniskā informācija:</strong> IP adrese, pārlūkprogrammas veids, ierīces informācija
+                        <strong className="font-semibold text-[#0B1F33]">{t.policyModal.privacy.sec3TechLabel}</strong> {t.policyModal.privacy.sec3TechText}
                       </div>
                     </div>
                     <div className="flex items-start gap-2.5 p-3 rounded-lg bg-slate-50 border border-slate-200">
                       <CheckCircle2 className="h-4 w-4 text-[#C9A45C] shrink-0 mt-0.5" />
                       <div className="text-xs sm:text-sm text-slate-700 leading-relaxed font-light">
-                        <strong className="font-semibold text-[#0B1F33]">Lietošanas dati:</strong> informācija par to, kā Jūs izmantojat mūsu mājas lapu
+                        <strong className="font-semibold text-[#0B1F33]">{t.policyModal.privacy.sec3UsageLabel}</strong> {t.policyModal.privacy.sec3UsageText}
                       </div>
                     </div>
                   </div>
@@ -243,7 +244,7 @@ export default function PolicyModal({ type, onClose }: PolicyModalProps) {
                       <Sliders className="h-4 w-4" />
                     </div>
                     <h3 className="text-base font-semibold text-[#0B1F33]">
-                      4. Kā mēs izmantojam Jūsu datus
+                      {t.policyModal.privacy.sec4Title}
                     </h3>
                   </div>
 
@@ -251,19 +252,19 @@ export default function PolicyModal({ type, onClose }: PolicyModalProps) {
                     <div className="flex items-start gap-2.5 p-3 rounded-lg bg-slate-50 border border-slate-200">
                       <CheckCircle2 className="h-4 w-4 text-[#C9A45C] shrink-0 mt-0.5" />
                       <span className="text-xs sm:text-sm text-slate-700 leading-relaxed font-light">
-                        Lai sniegtu Jums pieprasītos pakalpojumus un atbildētu uz Jūsu pieprasījumiem
+                        {t.policyModal.privacy.sec4Item1}
                       </span>
                     </div>
                     <div className="flex items-start gap-2.5 p-3 rounded-lg bg-slate-50 border border-slate-200">
                       <CheckCircle2 className="h-4 w-4 text-[#C9A45C] shrink-0 mt-0.5" />
                       <span className="text-xs sm:text-sm text-slate-700 leading-relaxed font-light">
-                        Lai sazinātos ar Jums par mūsu pakalpojumiem un piedāvājumiem
+                        {t.policyModal.privacy.sec4Item2}
                       </span>
                     </div>
                     <div className="flex items-start gap-2.5 p-3 rounded-lg bg-slate-50 border border-slate-200">
                       <CheckCircle2 className="h-4 w-4 text-[#C9A45C] shrink-0 mt-0.5" />
                       <span className="text-xs sm:text-sm text-slate-700 leading-relaxed font-light">
-                        Lai uzlabotu mūsu mājas lapu un pakalpojumu kvalitāti
+                        {t.policyModal.privacy.sec4Item3}
                       </span>
                     </div>
                   </div>
@@ -279,17 +280,17 @@ export default function PolicyModal({ type, onClose }: PolicyModalProps) {
                       <UserCheck className="h-4 w-4" />
                     </div>
                     <h3 className="text-base font-semibold text-[#0B1F33]">
-                      5. Jūsu tiesības
+                      {t.policyModal.privacy.sec5Title}
                     </h3>
                   </div>
                   <p className="text-slate-700 text-xs sm:text-sm font-light leading-relaxed">
-                    Saskaņā ar GDPR Jums ir tiesības pieprasīt piekļuvi, labot, dzēst vai ierobežot Savu personas datu apstrādi.
+                    {t.policyModal.privacy.sec5Text}
                   </p>
                   <div className="pt-1">
                     <div className="p-3 rounded-lg bg-slate-50 border border-slate-200 flex items-center gap-2 text-xs text-slate-600">
                       <Mail className="h-4 w-4 text-[#C9A45C] shrink-0" />
                       <span>
-                        Lai īstenotu savas tiesības vai uzdotu jautājumus par datu apstrādi, rakstiet mums uz:{' '}
+                        {t.policyModal.privacy.sec5Contact}{' '}
                         <a
                           href="mailto:info@justiopro.lv"
                           className="font-semibold text-[#0B1F33] underline hover:text-[#C9A45C]"
@@ -314,14 +315,14 @@ export default function PolicyModal({ type, onClose }: PolicyModalProps) {
                       <Cookie className="h-4 w-4" />
                     </div>
                     <h3 className="text-base font-semibold text-[#0B1F33]">
-                      1. Kas ir sīkdatnes?
+                      {t.policyModal.cookies.sec1Title}
                     </h3>
                   </div>
                   <p className="text-slate-700 text-xs sm:text-sm font-light leading-relaxed">
-                    Sīkdatnes (cookies) ir mazi teksta faili, ko tīmekļa vietne saglabā Jūsu datorā vai mobilajā ierīcē, kad Jūs to apmeklējat. Katrā nākamajā apmeklējuma reizē sīkdatnes tiek nosūtītas atpakaļ uz izcelsmes vietni vai trešās puses vietni, kas atpazīst attiecīgo sīkdatni.
+                    {t.policyModal.cookies.sec1Text1}
                   </p>
                   <p className="text-slate-700 text-xs sm:text-sm font-light leading-relaxed">
-                    Sīkdatnes darbojas kā konkrētas vietnes atmiņa, ļaujot vietnei atcerēties Jūsu iestatījumus un darbības (piemēram, valodu, fontu izmērus un citus attēlošanas iestatījumus), lai Jums tie nebūtu jāievada no jauna katru reizi.
+                    {t.policyModal.cookies.sec1Text2}
                   </p>
                 </section>
 
@@ -335,11 +336,11 @@ export default function PolicyModal({ type, onClose }: PolicyModalProps) {
                       <Sliders className="h-4 w-4" />
                     </div>
                     <h3 className="text-base font-semibold text-[#0B1F33]">
-                      2. Kāpēc mēs izmantojam sīkdatnes?
+                      {t.policyModal.cookies.sec2Title}
                     </h3>
                   </div>
                   <p className="text-slate-700 text-xs sm:text-sm font-light leading-relaxed">
-                    Datu pārzinis juridisko pakalpojumu sniedzējs Mag.iur. Kaspars Linters, Reģ.Nr. 21048110122, atsauce uz GDPR un Latvijas Republikas normatīvajiem aktiem, kā arī tiešās kontaktinformācijas saites uz{' '}
+                    {t.policyModal.cookies.sec2Text}{' '}
                     <a
                       href="mailto:info@justiopro.lv"
                       className="font-semibold text-[#0B1F33] underline hover:text-[#C9A45C]"
@@ -355,25 +356,25 @@ export default function PolicyModal({ type, onClose }: PolicyModalProps) {
                     </a>.
                   </p>
                   <p className="text-slate-700 text-xs sm:text-sm font-light leading-relaxed">
-                    Sīkdatnes tiek izmantotas šādiem mērķiem:
+                    {t.policyModal.cookies.sec2Purpose}
                   </p>
                   <div className="space-y-2 pt-1">
                     <div className="flex items-start gap-2.5 p-2.5 rounded-lg bg-slate-50 border border-slate-200">
                       <CheckCircle2 className="h-4 w-4 text-[#C9A45C] shrink-0 mt-0.5" />
                       <div className="text-xs sm:text-sm text-slate-700 leading-relaxed font-light">
-                        <strong className="font-semibold text-[#0B1F33]">Vietnes funkcionalitātes nodrošināšanai:</strong> Lai tīmekļa vietne varētu darboties un nodrošināt pamatfunkcijas.
+                        <strong className="font-semibold text-[#0B1F33]">{t.policyModal.cookies.sec2Item1Title}:</strong> {t.policyModal.cookies.sec2Item1Desc}
                       </div>
                     </div>
                     <div className="flex items-start gap-2.5 p-2.5 rounded-lg bg-slate-50 border border-slate-200">
                       <CheckCircle2 className="h-4 w-4 text-[#C9A45C] shrink-0 mt-0.5" />
                       <div className="text-xs sm:text-sm text-slate-700 leading-relaxed font-light">
-                        <strong className="font-semibold text-[#0B1F33]">Lietošanas pieredzes uzlabošanai:</strong> Lai atcerētos Jūsu izvēles un sniegtu personalizētāku saturu.
+                        <strong className="font-semibold text-[#0B1F33]">{t.policyModal.cookies.sec2Item2Title}:</strong> {t.policyModal.cookies.sec2Item2Desc}
                       </div>
                     </div>
                     <div className="flex items-start gap-2.5 p-2.5 rounded-lg bg-slate-50 border border-slate-200">
                       <CheckCircle2 className="h-4 w-4 text-[#C9A45C] shrink-0 mt-0.5" />
                       <div className="text-xs sm:text-sm text-slate-700 leading-relaxed font-light">
-                        <strong className="font-semibold text-[#0B1F33]">Analītikai un statistikai:</strong> Lai saprastu, kā apmeklētāji mijiedarbojas ar vietni (kuras lapas apmeklē visbiežāk, cik ilgi uzturas vietnē), kas palīdz mums uzlabot vietnes struktūru un saturu.
+                        <strong className="font-semibold text-[#0B1F33]">{t.policyModal.cookies.sec2Item3Title}:</strong> {t.policyModal.cookies.sec2Item3Desc}
                       </div>
                     </div>
                   </div>
@@ -389,7 +390,7 @@ export default function PolicyModal({ type, onClose }: PolicyModalProps) {
                       <Lock className="h-4 w-4" />
                     </div>
                     <h3 className="text-base font-semibold text-[#0B1F33]">
-                      3. Sīkdatņu kategorijas un to pielāgošana
+                      {t.policyModal.cookies.sec3Title}
                     </h3>
                   </div>
 
@@ -400,15 +401,15 @@ export default function PolicyModal({ type, onClose }: PolicyModalProps) {
                         <div className="flex items-center gap-2">
                           <Lock className="h-4 w-4 text-[#0B1F33]" />
                           <span className="font-semibold text-xs sm:text-sm text-[#0B1F33]">
-                            Nepieciešamās sīkdatnes (Obligātas)
+                            {t.policyModal.cookies.necessaryTitle}
                           </span>
                         </div>
                         <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-wider uppercase bg-emerald-100 text-emerald-800 border border-emerald-300">
-                          Vienmēr aktīvas
+                          {t.policyModal.cookies.alwaysActive}
                         </span>
                       </div>
                       <p className="text-xs sm:text-sm text-slate-600 font-light leading-relaxed">
-                        Šīs sīkdatnes ir nepieciešamas vietnes pamata funkcijām, drošībai un nepārtrauktai darbībai (piemēram, sesijas uzturēšanai, navigācijai un kontaktformu apstrādei). Bez tām vietne nevar pareizi darboties.
+                        {t.policyModal.cookies.necessaryDesc}
                       </p>
                     </div>
 
@@ -418,7 +419,7 @@ export default function PolicyModal({ type, onClose }: PolicyModalProps) {
                         <div className="flex items-center gap-2">
                           <BarChart3 className="h-4 w-4 text-[#0B1F33]" />
                           <span className="font-semibold text-xs sm:text-sm text-[#0B1F33]">
-                            Analītiskās &amp; Statistiskās sīkdatnes
+                            {t.policyModal.cookies.analyticsTitle}
                           </span>
                         </div>
                         <div className="flex items-center gap-2">
@@ -448,12 +449,12 @@ export default function PolicyModal({ type, onClose }: PolicyModalProps) {
                                 : 'bg-slate-200 text-slate-600 border border-slate-300'
                             }`}
                           >
-                            {analyticsCookies ? 'IESLĒGTS' : 'IZSLĒGTS'}
+                            {analyticsCookies ? t.policyModal.cookies.on : t.policyModal.cookies.off}
                           </span>
                         </div>
                       </div>
                       <p className="text-xs sm:text-sm text-slate-600 font-light leading-relaxed">
-                        Izmanto trešo pušu analītikas rīkus (piemēram, Google Analytics), lai apkopotu anonīmu statistiku par apmeklētāju skaitu, populārākajām lapām un uzturēšanās ilgumu.
+                        {t.policyModal.cookies.analyticsDesc}
                       </p>
                     </div>
 
@@ -463,7 +464,7 @@ export default function PolicyModal({ type, onClose }: PolicyModalProps) {
                         <div className="flex items-center gap-2">
                           <Sliders className="h-4 w-4 text-[#0B1F33]" />
                           <span className="font-semibold text-xs sm:text-sm text-[#0B1F33]">
-                            Funkcionālās sīkdatnes
+                            {t.policyModal.cookies.functionalTitle}
                           </span>
                         </div>
                         <div className="flex items-center gap-2">
@@ -493,12 +494,12 @@ export default function PolicyModal({ type, onClose }: PolicyModalProps) {
                                 : 'bg-slate-200 text-slate-600 border border-slate-300'
                             }`}
                           >
-                            {functionalCookies ? 'IESLĒGTS' : 'IZSLĒGTS'}
+                            {functionalCookies ? t.policyModal.cookies.on : t.policyModal.cookies.off}
                           </span>
                         </div>
                       </div>
                       <p className="text-xs sm:text-sm text-slate-600 font-light leading-relaxed">
-                        Ļauj vietnei atcerēties Jūsu veiktās izvēles (piemēram, valodas iestatījumus, fontu izmēru un reģionu), nodrošinot ērtāku un personalizētāku lietošanu.
+                        {t.policyModal.cookies.functionalDesc}
                       </p>
                     </div>
 
@@ -508,7 +509,7 @@ export default function PolicyModal({ type, onClose }: PolicyModalProps) {
                         <div className="flex items-center gap-2">
                           <Megaphone className="h-4 w-4 text-[#0B1F33]" />
                           <span className="font-semibold text-xs sm:text-sm text-[#0B1F33]">
-                            Mārketinga &amp; Reklāmas sīkdatnes
+                            {t.policyModal.cookies.marketingTitle}
                           </span>
                         </div>
                         <div className="flex items-center gap-2">
@@ -538,12 +539,12 @@ export default function PolicyModal({ type, onClose }: PolicyModalProps) {
                                 : 'bg-slate-200 text-slate-600 border border-slate-300'
                             }`}
                           >
-                            {marketingCookies ? 'IESLĒGTS' : 'IZSLĒGTS'}
+                            {marketingCookies ? t.policyModal.cookies.on : t.policyModal.cookies.off}
                           </span>
                         </div>
                       </div>
                       <p className="text-xs sm:text-sm text-slate-600 font-light leading-relaxed">
-                        Izmanto, lai rādītu Jūsu interesēm atbilstošākus paziņojumus un piedāvājumus sociālajos tīklos vai sadarbības partneru vietnēs.
+                        {t.policyModal.cookies.marketingDesc}
                       </p>
                     </div>
                   </div>
@@ -559,12 +560,12 @@ export default function PolicyModal({ type, onClose }: PolicyModalProps) {
                       <Sliders className="h-4 w-4" />
                     </div>
                     <h3 className="text-base font-semibold text-[#0B1F33]">
-                      4. Kā pārvaldīt un dzēst sīkdatnes?
+                      {t.policyModal.cookies.sec4Title}
                     </h3>
                   </div>
 
                   <p className="text-slate-700 text-xs sm:text-sm font-light leading-relaxed">
-                    Lielākā daļa pārlūkprogrammu ir iestatītas tā, lai automātiski pieņemtu sīkdatnes. Jūs varat jebkurā laikā mainīt Savas pārlūkprogrammas iestatījumus, lai bloķētu sīkdatnes vai saņemtu brīdinājumu, kad tās tiek sūtītas.
+                    {t.policyModal.cookies.sec4Text}
                   </p>
 
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-1">
@@ -607,13 +608,13 @@ export default function PolicyModal({ type, onClose }: PolicyModalProps) {
                   </div>
 
                   <div className="p-3 rounded-lg bg-amber-50 border border-amber-200 text-amber-900 text-xs leading-relaxed">
-                    <strong className="font-semibold">Ievērojiet:</strong> Ja Jūs bloķēsiet sīkdatnes, dažas mūsu tīmekļa vietnes funkcijas var nebūt pieejamas vai darboties nepilnīgi.
+                    <strong className="font-semibold">{t.policyModal.cookies.sec4NoticeLabel}:</strong> {t.policyModal.cookies.sec4NoticeText}
                   </div>
 
                   <div className="flex items-center gap-2 text-xs text-slate-600 pt-1">
                     <Mail className="h-4 w-4 text-[#C9A45C] shrink-0" />
                     <span>
-                      Ja Jums ir jautājumi par mūsu sīkdatņu politiku, lūdzu, sazinieties ar mums:{' '}
+                      {t.policyModal.cookies.sec4Contact}{' '}
                       <a
                         href="mailto:info@justiopro.lv"
                         className="font-semibold text-[#0B1F33] underline hover:text-[#C9A45C]"
@@ -631,12 +632,12 @@ export default function PolicyModal({ type, onClose }: PolicyModalProps) {
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 border-t border-slate-200 bg-[#F1F5F9] px-5 sm:px-6 py-3.5">
             <div className="flex items-center gap-3">
               <div className="text-[11px] text-slate-500">
-                Pēdējās izmaiņas veiktas: 2026. gada janvārī
+                {t.policyModal.lastUpdated}
               </div>
               {saveToast && (
                 <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-100 text-emerald-800 border border-emerald-300 animate-in fade-in zoom-in-95 duration-200">
                   <CheckCircle2 className="h-3 w-3 text-emerald-700" />
-                  <span>Izvēle saglabāta</span>
+                  <span>{t.policyModal.savedToast}</span>
                 </span>
               )}
             </div>
@@ -647,7 +648,7 @@ export default function PolicyModal({ type, onClose }: PolicyModalProps) {
                 onClick={onClose}
                 className="rounded-xl border border-black/70 bg-[#0B1F33] px-6 py-2 text-xs font-semibold text-white uppercase tracking-wider transition-all hover:bg-[#C9A45C] hover:text-[#0B1F33] shadow-xs cursor-pointer text-center"
               >
-                Aizvērt
+                {t.policyModal.close}
               </button>
             ) : (
               <div className="flex flex-wrap items-center gap-2 justify-end">
@@ -657,7 +658,7 @@ export default function PolicyModal({ type, onClose }: PolicyModalProps) {
                   onClick={handleAcceptAllInModal}
                   className="rounded-xl bg-[#C9A45C] px-4 py-2 text-xs font-bold text-[#0B1F33] uppercase tracking-wider transition-all hover:bg-[#D9B772] shadow-xs cursor-pointer text-center"
                 >
-                  Piekrītu visām
+                  {t.policyModal.acceptAll}
                 </button>
                 <button
                   id="cookie-modal-save-btn"
@@ -665,7 +666,7 @@ export default function PolicyModal({ type, onClose }: PolicyModalProps) {
                   onClick={handleSaveSelection}
                   className="rounded-xl border border-black/70 bg-[#0B1F33] px-4 py-2 text-xs font-semibold text-white uppercase tracking-wider transition-all hover:bg-[#1A3654] shadow-xs cursor-pointer text-center"
                 >
-                  Saglabāt izvēli
+                  {t.policyModal.saveSelection}
                 </button>
                 <button
                   id="policy-modal-close-button"
@@ -673,7 +674,7 @@ export default function PolicyModal({ type, onClose }: PolicyModalProps) {
                   onClick={onClose}
                   className="rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-xs font-medium text-slate-700 uppercase tracking-wider transition-all hover:bg-slate-100 cursor-pointer text-center"
                 >
-                  Aizvērt
+                  {t.policyModal.close}
                 </button>
               </div>
             )}
@@ -683,3 +684,4 @@ export default function PolicyModal({ type, onClose }: PolicyModalProps) {
     </AnimatePresence>
   );
 }
+

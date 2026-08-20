@@ -21,8 +21,8 @@ import {
 } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import SectionNavButtons from '../components/SectionNavButtons';
-import { ImageWithLightbox } from '../components/LightboxModal';
-import { PRACTICE_AREAS, COMPANY_INFO } from '../data/content';
+import { COMPANY_INFO } from '../data/content';
+import { useTranslation } from '../translations';
 
 interface PracticesPageProps {
   onOpenLightbox: (src: string, alt: string, caption?: string) => void;
@@ -59,6 +59,7 @@ const renderPracticeIcon = (iconName: string) => {
 
 export default function PracticesPage({ onOpenLightbox }: PracticesPageProps) {
   const location = useLocation();
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (location.hash) {
@@ -85,8 +86,13 @@ export default function PracticesPage({ onOpenLightbox }: PracticesPageProps) {
   return (
     <div id="practices-page" className="min-h-screen bg-[#CDD4DC] text-slate-900">
       <SEOHead
-        title="Darbības Jomas"
-        description="JustioPro specializācija un juridiskie pakalpojumi: Līgumu sagatavošana, Komerctiesības, Nekustamais īpašums, Mantojuma tiesības, Maksātnespēja, Parādu piedziņa, Administratīvās tiesības, Pārstāvība tiesā, Konkurences tiesības/M&A, Pārrobežu strīdi, Uzņēmējdarbība ASV, Bezmaksas konsultācijas."
+        title={t.practicesPage.seoTitle}
+        description={t.practicesPage.seoDesc}
+        canonicalPath="/darbibas-jomas"
+        breadcrumbs={[
+          { name: t.practicesPage.breadcrumbHome, url: '/' },
+          { name: t.practicesPage.breadcrumbCurrent, url: '/darbibas-jomas' },
+        ]}
       />
 
       {/* Hero Header Banner with deep Navy #0B1F33, #06121E and Gold #C9A45C */}
@@ -95,7 +101,11 @@ export default function PracticesPage({ onOpenLightbox }: PracticesPageProps) {
           <img
             src="/profesionali-juridiskie-pakalpojumi.webp"
             alt="Darbības jomas fons"
+            width={1920}
+            height={400}
             className="h-full w-full object-cover"
+            loading="lazy"
+            decoding="async"
           />
         </div>
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center md:text-left translate-y-[5mm]">
@@ -104,16 +114,18 @@ export default function PracticesPage({ onOpenLightbox }: PracticesPageProps) {
             <Link
               to="/"
               className="inline-flex items-center gap-2 rounded-xl border border-white/25 bg-white/10 px-4 py-2 text-xs sm:text-sm font-medium text-white shadow-xs backdrop-blur-xs transition-colors hover:bg-white/20 hover:border-[#C9A45C] hover:text-[#C9A45C]"
+              aria-label={t.nav.backToHome}
             >
               <ArrowLeft className="h-4 w-4" />
-              <span>Uz Sākumu</span>
+              <span>{t.nav.backToHome}</span>
             </Link>
 
             <div className="flex flex-wrap items-center gap-3 translate-y-[-3mm]">
               <a
                 href={`tel:${COMPANY_INFO.phone}`}
                 className="inline-flex items-center gap-2.5 rounded-xl border border-white/35 bg-[#06121E]/90 px-4 py-2 sm:px-4.5 sm:py-2.5 text-xs sm:text-sm font-medium text-white shadow-lg backdrop-blur-md transition-all hover:bg-[#0B1F33] hover:border-[#C9A45C] hover:text-[#C9A45C] cursor-pointer"
-                title="Zvanīt"
+                title={t.nav.callAction}
+                aria-label={`${t.nav.callAction} ${COMPANY_INFO.phoneDisplay}`}
               >
                 <Phone className="h-4 w-4 text-[#C9A45C]" />
                 <span>{COMPANY_INFO.phoneDisplay}</span>
@@ -122,7 +134,8 @@ export default function PracticesPage({ onOpenLightbox }: PracticesPageProps) {
               <a
                 href={`mailto:${COMPANY_INFO.email}`}
                 className="inline-flex items-center gap-2.5 rounded-xl border border-white/35 bg-[#06121E]/90 px-4 py-2 sm:px-4.5 sm:py-2.5 text-xs sm:text-sm font-medium text-white shadow-lg backdrop-blur-md transition-all hover:bg-[#0B1F33] hover:border-[#C9A45C] hover:text-[#C9A45C] cursor-pointer"
-                title="Rakstīt e-pastu"
+                title={t.nav.emailAction}
+                aria-label={`${t.nav.emailAction} ${COMPANY_INFO.email}`}
               >
                 <Mail className="h-4 w-4 text-[#C9A45C]" />
                 <span>{COMPANY_INFO.email}</span>
@@ -132,10 +145,10 @@ export default function PracticesPage({ onOpenLightbox }: PracticesPageProps) {
 
           <div className="inline-flex items-center gap-2 rounded-full border border-[#C9A45C]/50 bg-[#06121E] px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-[#C9A45C]">
             <Sparkles className="h-3.5 w-3.5" />
-            <span>Juridiskie pakalpojumi & Konsultācijas</span>
+            <span>{t.practicesPage.badge}</span>
           </div>
           <h1 className="mt-4 text-4xl sm:text-5xl font-light tracking-tight text-white leading-tight">
-            Darbības <span className="font-semibold text-[#C9A45C]">jomas</span>
+            {t.practicesPage.headingMain} <span className="font-semibold text-[#C9A45C]">{t.practicesPage.headingAccent}</span>
           </h1>
         </div>
       </section>
@@ -147,7 +160,7 @@ export default function PracticesPage({ onOpenLightbox }: PracticesPageProps) {
 
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-            {PRACTICE_AREAS.map((area) => (
+            {t.practiceAreas.map((area) => (
               <a
                 key={area.id}
                 href={`#${area.id}`}
@@ -166,9 +179,8 @@ export default function PracticesPage({ onOpenLightbox }: PracticesPageProps) {
 
       {/* Main Practice Areas List */}
       <section className="relative overflow-hidden py-12 sm:py-16 bg-[#CDD4DC]">
-
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
-          {PRACTICE_AREAS.map((area, index) => {
+          {t.practiceAreas.map((area, index) => {
             const isEven = index % 2 === 0;
             return (
               <div
@@ -210,11 +222,9 @@ export default function PracticesPage({ onOpenLightbox }: PracticesPageProps) {
                       let col2: string[] = [];
 
                       if (area.id === 'ligumtiesibas') {
-                        // 9 items: col1 gets 4 items (0..3), col2 gets 5 items (4..8, starting with dāvinājuma, uztura...)
                         col1 = area.bulletPoints.slice(0, 4);
                         col2 = area.bulletPoints.slice(4);
                       } else if (area.id === 'gimenes-mantojuma-tiesibas') {
-                        // 6 items: col1 gets items 0, 1, 3 (bērnu tiesību, uzturlīdzekļu, laulības šķiršanas), col2 gets 2, 4, 5 (laulāto kopmantas, mantojuma, testamentu)
                         col1 = [
                           area.bulletPoints[0],
                           area.bulletPoints[1],
@@ -226,7 +236,6 @@ export default function PracticesPage({ onOpenLightbox }: PracticesPageProps) {
                           area.bulletPoints[5],
                         ];
                       } else if (area.id === 'fizisko-personu-maksatnespeja') {
-                        // 4 items: items 0, 2 in col1, items 1, 3 in col2
                         col1 = [area.bulletPoints[0], area.bulletPoints[2]];
                         col2 = [area.bulletPoints[1], area.bulletPoints[3]];
                       } else {
@@ -294,7 +303,7 @@ export default function PracticesPage({ onOpenLightbox }: PracticesPageProps) {
                         className="inline-flex items-center gap-2 rounded-xl border border-black/80 bg-[#0B1F33] px-4 py-2 text-xs font-medium text-white shadow-2xs transition-all hover:bg-[#122B45] hover:border-[#C9A45C]"
                       >
                         <PhoneCall className="h-3.5 w-3.5 text-[#C9A45C]" />
-                        <span>Pieteikt pakalpojumu</span>
+                        <span>{t.practicesSection.requestService}</span>
                       </Link>
                     </div>
                   </div>
@@ -311,22 +320,33 @@ export default function PracticesPage({ onOpenLightbox }: PracticesPageProps) {
                       <img
                         src={area.imageUrl}
                         alt={area.title}
+                        width={600}
+                        height={350}
                         className="h-56 sm:h-64 w-full object-cover"
                         loading="lazy"
+                        decoding="async"
                       />
                     </div>
 
                     {/* Callout under Komerctiesības image with link to Uzņēmējdarbība ASV */}
                     {area.id === 'komerctiesibas' && (
                       <div className="rounded-xl border border-[#C9A45C]/60 bg-[#FAF8F5] p-3.5 sm:p-4 text-xs font-light text-slate-800 leading-relaxed">
-                        <span>Gadījumā, ja vēlaties uzsākt uzņēmējdarbību ASV, tad šim nolūkam mēs varam Jums nodrošināt visu nepieciešamo servisu. Sīkāku informāciju Jūs variet atrast mūsu mājaslapas sadaļā – </span>
+                        <span>{t.practicesSection.usBusinessCallout.textBefore}</span>
                         <a
                           href="#uznemejdarbiba-asv"
+                          onClick={(e) => handleSmoothScroll(e, 'uznemejdarbiba-asv')}
                           className="font-medium text-[#0B1F33] underline hover:text-[#C9A45C] transition-colors"
                         >
-                          Uzņēmējdarbība ASV
+                          {t.practicesSection.usBusinessCallout.linkText}
                         </a>
-                        .
+                        <span>{t.practicesSection.usBusinessCallout.textAfter}</span>
+                      </div>
+                    )}
+
+                    {/* Card 12 Disclaimer under Bezmaksas juridiskā palīdzība image */}
+                    {area.id === 'bezmaksas-juridiskas-konsultacijas' && (
+                      <div className="rounded-xl border border-black/20 bg-[#FAF8F5] p-3.5 sm:p-4 text-xs font-light text-slate-700 leading-relaxed italic">
+                        {t.practicesSection.freeAidDisclaimer}
                       </div>
                     )}
                   </div>
@@ -342,3 +362,4 @@ export default function PracticesPage({ onOpenLightbox }: PracticesPageProps) {
     </div>
   );
 }
+

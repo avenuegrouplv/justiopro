@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Cookie, ShieldCheck } from 'lucide-react';
 import { PolicyModalType } from '../types';
+import { useTranslation } from '../translations';
 
 interface CookieBannerProps {
   onOpenPolicy: (type: PolicyModalType) => void;
 }
 
 export default function CookieBanner({ onOpenPolicy }: CookieBannerProps) {
+  const { t } = useTranslation();
   const [isVisible, setIsVisible] = useState<boolean>(false);
 
   useEffect(() => {
@@ -85,17 +87,17 @@ export default function CookieBanner({ onOpenPolicy }: CookieBannerProps) {
                   <div className="flex items-center gap-2">
                     <span className="text-xs font-semibold uppercase tracking-wider text-[#C9A45C] flex items-center gap-1">
                       <ShieldCheck className="h-3.5 w-3.5" />
-                      Privātums un Sīkdatnes
+                      {t.cookieBanner.badge}
                     </span>
                   </div>
                   <p className="text-xs sm:text-sm text-slate-200 font-light leading-relaxed">
-                    Mēs izmantojam sīkdatnes, lai uzlabotu Jūsu lietošanas pieredzi, nodrošinātu vietnes darbību un analizētu apmeklētāju plūsmu. Jūs varat piekrist visām sīkdatnēm vai pielāgot savas izvēles. Vairāk informācijas mūsu{' '}
+                    {t.cookieBanner.text}{' '}
                     <button
                       type="button"
                       onClick={() => onOpenPolicy('privacy')}
-                      className="text-slate-200 hover:text-white transition-colors cursor-pointer inline focus:outline-hidden"
+                      className="text-slate-200 hover:text-white transition-colors cursor-pointer inline focus:outline-hidden underline"
                     >
-                      Privātuma politikā.
+                      {t.cookieBanner.privacyLink}
                     </button>
                   </p>
                 </div>
@@ -110,7 +112,7 @@ export default function CookieBanner({ onOpenPolicy }: CookieBannerProps) {
                   onClick={handleAcceptAll}
                   className="w-full sm:w-auto rounded-xl bg-[#C9A45C] text-[#0B1F33] font-bold px-4 sm:px-5 py-2.5 text-xs sm:text-sm uppercase tracking-wider hover:bg-[#D9B772] transition-colors shadow-xs cursor-pointer text-center"
                 >
-                  Piekrītu visām
+                  {t.cookieBanner.acceptAll}
                 </button>
 
                 {/* 2. Pielāgot */}
@@ -120,7 +122,7 @@ export default function CookieBanner({ onOpenPolicy }: CookieBannerProps) {
                   onClick={handleCustomize}
                   className="flex-1 sm:flex-initial rounded-xl bg-white/10 text-white border border-white/25 font-semibold px-4 sm:px-5 py-2.5 text-xs sm:text-sm hover:bg-white/20 transition-colors shadow-xs cursor-pointer text-center"
                 >
-                  Pielāgot
+                  {t.cookieBanner.customize}
                 </button>
 
                 {/* 3. Noraidīt */}
@@ -130,7 +132,7 @@ export default function CookieBanner({ onOpenPolicy }: CookieBannerProps) {
                   onClick={handleReject}
                   className="flex-1 sm:flex-initial rounded-xl bg-transparent text-slate-300 border border-slate-600 font-medium px-4 sm:px-5 py-2.5 text-xs sm:text-sm hover:bg-white/5 hover:text-white transition-colors cursor-pointer text-center"
                 >
-                  Noraidīt
+                  {t.cookieBanner.reject}
                 </button>
               </div>
 
@@ -141,3 +143,4 @@ export default function CookieBanner({ onOpenPolicy }: CookieBannerProps) {
     </AnimatePresence>
   );
 }
+

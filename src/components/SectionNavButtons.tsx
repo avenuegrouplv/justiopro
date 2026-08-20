@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowUp, Home } from 'lucide-react';
+import { useTranslation } from '../translations';
 
 interface SectionNavButtonsProps {
   className?: string;
@@ -9,6 +10,7 @@ interface SectionNavButtonsProps {
 
 export default function SectionNavButtons({ className = '', dark = false }: SectionNavButtonsProps) {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleScrollTop = () => {
     window.scrollTo({
@@ -39,10 +41,10 @@ export default function SectionNavButtons({ className = '', dark = false }: Sect
             ? 'border border-[#C9A45C]/60 bg-[#0B1F33] text-[#C9A45C] hover:bg-[#122B45] hover:border-[#C9A45C]'
             : 'border border-black/80 bg-[#0B1F33] text-white hover:bg-[#122B45] hover:border-[#C9A45C]'
         }`}
-        title="Atgriež uz sākumlapu"
+        title={t.navButtons.toHome}
       >
         <Home className="h-4 w-4 text-[#C9A45C]" />
-        <span>Uz sākumu</span>
+        <span>{t.navButtons.toHome}</span>
       </button>
 
       <button
@@ -54,11 +56,12 @@ export default function SectionNavButtons({ className = '', dark = false }: Sect
             ? 'border border-slate-700 bg-[#0B1F33] text-slate-200 hover:border-[#C9A45C] hover:text-[#C9A45C]'
             : 'border border-slate-300 bg-white text-slate-800 hover:border-[#C9A45C] hover:bg-[#FAF9F5] hover:text-[#0B1F33]'
         }`}
-        title="Ritina uz lapas augšu"
+        title={t.navButtons.toTop}
       >
         <ArrowUp className="h-4 w-4 text-[#C9A45C]" />
-        <span>Uz augšu</span>
+        <span>{t.navButtons.toTop}</span>
       </button>
     </div>
   );
 }
+
