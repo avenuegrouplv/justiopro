@@ -6,6 +6,7 @@ import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import LightboxModal from './components/LightboxModal';
 import PolicyModal from './components/PolicyModal';
+import CookieBanner from './components/CookieBanner';
 import HomePage from './pages/HomePage';
 import PracticesPage from './pages/PracticesPage';
 import DocumentSamplesPage from './pages/DocumentSamplesPage';
@@ -35,7 +36,8 @@ function AnimatedRoutes({
         <Routes location={location}>
           <Route path="/" element={<HomePage onOpenLightbox={onOpenLightbox} onOpenPolicy={onOpenPolicy} />} />
           <Route path="/darbibas-jomas" element={<PracticesPage onOpenLightbox={onOpenLightbox} />} />
-          <Route path="/dokumentu-paraugi" element={<DocumentSamplesPage onOpenLightbox={onOpenLightbox} />} />
+          {/* Dokumentu paraugi lapa saglabāta kodā, pagaidām slēpta un pāradresē uz sākumu */}
+          <Route path="/dokumentu-paraugi" element={<Navigate to="/" replace />} />
           <Route path="/buj" element={<FaqPage />} />
           <Route path="/kontakti" element={<ContactPage />} />
 
@@ -90,6 +92,9 @@ export default function App() {
 
         {/* Policy Modals */}
         <PolicyModal type={activePolicyModal} onClose={() => setActivePolicyModal(null)} />
+
+        {/* Cookie Consent Banner */}
+        <CookieBanner onOpenPolicy={(type) => setActivePolicyModal(type)} />
       </div>
     </BrowserRouter>
   );

@@ -28,6 +28,16 @@ export default function SEOHead({ title, description }: SEOHeadProps) {
     if (ogDesc) {
       ogDesc.setAttribute('content', description);
     }
+
+    const shareImageUrl = `${window.location.origin}/logo%20share/logo_share.png`;
+    let ogImg = document.querySelector('meta[property="og:image"]');
+    if (ogImg) {
+      ogImg.setAttribute('content', shareImageUrl);
+    }
+    let ogImgSecure = document.querySelector('meta[property="og:image:secure_url"]');
+    if (ogImgSecure) {
+      ogImgSecure.setAttribute('content', shareImageUrl);
+    }
   }, [title, description]);
 
   return null;

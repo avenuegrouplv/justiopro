@@ -316,20 +316,6 @@ export default function PracticesPage({ onOpenLightbox }: PracticesPageProps) {
                       />
                     </div>
 
-                    {/* Callout under Līgumtiesības image */}
-                    {area.id === 'ligumtiesibas' && (
-                      <div className="rounded-xl border border-[#C9A45C]/60 bg-[#FAF8F5] p-3.5 sm:p-4 text-xs font-light text-slate-800 leading-relaxed">
-                        <span>Iespējams, kādu no Jums nepieciešamajiem līgumiem vai juridiskajiem dokumentiem Jūs variet atrast mūsu mājaslapas sadaļā – </span>
-                        <Link
-                          to="/dokumentu-paraugi"
-                          className="font-medium text-[#0B1F33] underline hover:text-[#C9A45C] transition-colors"
-                        >
-                          Dokumentu paraugi
-                        </Link>
-                        .
-                      </div>
-                    )}
-
                     {/* Callout under Komerctiesības image with link to Uzņēmējdarbība ASV */}
                     {area.id === 'komerctiesibas' && (
                       <div className="rounded-xl border border-[#C9A45C]/60 bg-[#FAF8F5] p-3.5 sm:p-4 text-xs font-light text-slate-800 leading-relaxed">

@@ -1,0 +1,205 @@
+[
+  {
+    "id": "pirkuma-ligums-dzivoklis",
+    "title": "Nekustamā īpašuma pirkuma līgums (dzīvoklis, māja)",
+    "price": 150.0,
+    "category": "Nekustamais īpašums",
+    "isService": false
+  },
+  {
+    "id": "pirkuma-ligums-zeme",
+    "title": "Nekustamā īpašuma pirkuma līgums (zeme)",
+    "price": 150.0,
+    "category": "Nekustamais īpašums",
+    "isService": false
+  },
+  {
+    "id": "davinajuma-ligums",
+    "title": "Nekustamā īpašuma dāvinājuma līgums",
+    "price": 130.0,
+    "category": "Nekustamais īpašums",
+    "isService": false
+  },
+  {
+    "id": "mainas-ligums",
+    "title": "Nekustamā īpašuma maiņas līgums",
+    "price": 130.0,
+    "category": "Nekustamais īpašums",
+    "isService": false
+  },
+  {
+    "id": "ires-ligums",
+    "title": "Nekustamā īpašuma īres līgums (dzīvojamās telpas)",
+    "price": 150.0,
+    "category": "Īre un noma",
+    "isService": false
+  },
+  {
+    "id": "nomas-ligums-komerc",
+    "title": "Telpu nomas līgums (komercplatības)",
+    "price": 150.0,
+    "category": "Īre un noma",
+    "isService": false
+  },
+  {
+    "id": "zemes-nomas-ligums",
+    "title": "Zemes nomas līgums",
+    "price": 130.0,
+    "category": "Īre un noma",
+    "isService": false
+  },
+  {
+    "id": "apbuves-tiesibu-ligums",
+    "title": "Apbūves tiesību līgums",
+    "price": 150.0,
+    "category": "Nekustamais īpašums",
+    "isService": false
+  },
+  {
+    "id": "servituta-ligums",
+    "title": "Servitūta līgums (piemēram, ceļa servitūts)",
+    "price": 130.0,
+    "category": "Nekustamais īpašums",
+    "isService": false
+  },
+  {
+    "id": "apsaimniekosanas-ligums",
+    "title": "Nekustamā īpašuma apsaimniekošanas līgums",
+    "price": 170.0,
+    "category": "Apsaimniekošana",
+    "isService": false
+  },
+  {
+    "id": "starpniecibas-ligums",
+    "title": "Starpniecības līgums (nekustamā īpašuma aģenti)",
+    "price": 150.0,
+    "category": "Pakalpojumi",
+    "isService": false
+  },
+  {
+    "id": "rezervacijas-ligums",
+    "title": "Rezervācijas līgums (pirms pirkuma)",
+    "price": 130.0,
+    "category": "Nekustamais īpašums",
+    "isService": false
+  },
+  {
+    "id": "prieksligums",
+    "title": "Priekšlīgums par nekustamā īpašuma iegādi",
+    "price": 130.0,
+    "category": "Nekustamais īpašums",
+    "isService": false
+  },
+  {
+    "id": "hipotekas-ligums",
+    "title": "Hipotēkas līgums (ar banku)",
+    "price": 150.0,
+    "category": "Finanses & Ķīla",
+    "isService": false
+  },
+  {
+    "id": "kopipasuma-ligums",
+    "title": "Kopīpašuma lietošanas kārtības līgums",
+    "price": 180.0,
+    "category": "Kopīpašums",
+    "isService": false
+  },
+  {
+    "id": "buvdarbu-ligums",
+    "title": "Būvdarbu līgums",
+    "price": 180.0,
+    "category": "Būvniecība",
+    "isService": false
+  },
+  {
+    "id": "projektesanas-ligums",
+    "title": "Projektēšanas līgums",
+    "price": 180.0,
+    "category": "Būvniecība",
+    "isService": false
+  },
+  {
+    "id": "autoruzraudzibas-ligums",
+    "title": "Autoruzraudzības līgums",
+    "price": 180.0,
+    "category": "Būvniecība",
+    "isService": false
+  },
+  {
+    "id": "buvuzraudzibas-ligums",
+    "title": "Būvuzraudzības līgums",
+    "price": 180.0,
+    "category": "Būvniecība",
+    "isService": false
+  },
+  {
+    "id": "remontdarbu-ligums",
+    "title": "Remontdarbu līgums",
+    "price": 180.0,
+    "category": "Būvniecība",
+    "isService": false
+  },
+  {
+    "id": "inzenerkomunikaciju-ligums",
+    "title": "Inženierkomunikāciju pieslēguma līgums (elektrība, ūdens u.c.)",
+    "price": 180.0,
+    "category": "Būvniecība",
+    "isService": false
+  },
+  {
+    "id": "uzturesanas-apsardzes-ligums",
+    "title": "Teritorijas uzturēšanas / apsardzes līgums",
+    "price": 150.0,
+    "category": "Apsaimniekošana",
+    "isService": false
+  },
+  {
+    "id": "prasibas-pieteikums-parads",
+    "title": "Prasības pieteikums par nomas/īres maksas parāda piedziņu",
+    "price": 250.0,
+    "category": "Tiesa & Pieteikumi",
+    "isService": false
+  },
+  {
+    "id": "prasibas-pieteikums-ipasuma-tiesibas",
+    "title": "Prasības pieteikums par īpašuma tiesību atzīšanu",
+    "price": 170.0,
+    "category": "Tiesa & Pieteikumi",
+    "isService": false
+  },
+  {
+    "id": "pieteikums-zemesgramatai",
+    "title": "Pieteikums zemesgrāmatai (īpašuma tiesību nostiprināšanai)",
+    "price": 130.0,
+    "category": "Reģistri & Iestādes",
+    "isService": false
+  },
+  {
+    "id": "pilnvara",
+    "title": "Pilnvara nekustamā īpašuma darījumiem",
+    "price": 70.0,
+    "category": "Pilnvaras",
+    "isService": false
+  },
+  {
+    "id": "sia-registracija",
+    "title": "Dokumenti SIA reģistrācijai UR",
+    "price": 250.0,
+    "category": "Uzņēmumu reģistrācija",
+    "isService": true
+  },
+  {
+    "id": "biedribas-registracija",
+    "title": "Dokumenti biedrības reģistrācijai UR",
+    "price": 250.0,
+    "category": "Uzņēmumu reģistrācija",
+    "isService": true
+  },
+  {
+    "id": "pvn-registracija",
+    "title": "Pieteikums PVN reģistrācijai",
+    "price": 290.0,
+    "category": "Nodokļi & VID",
+    "isService": true
+  }
+]

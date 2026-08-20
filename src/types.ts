@@ -60,3 +60,11 @@ export interface ContactFormData {
   message: string;
   practiceArea?: string;
 }
+
+export interface LegalDocumentItem {
+  id: string;
+  title: string;
+  price: number;
+  category: string;
+  isService: boolean;
+}

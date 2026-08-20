@@ -68,14 +68,6 @@ export default function Footer({ onOpenPolicy }: FooterProps) {
               </li>
               <li>
                 <Link
-                  to="/dokumentu-paraugi"
-                  className="hover:text-[#C9A45C] transition-colors"
-                >
-                  Dokumentu paraugi
-                </Link>
-              </li>
-              <li>
-                <Link
                   to="/buj"
                   className="hover:text-[#C9A45C] transition-colors"
                 >
@@ -147,9 +139,9 @@ export default function Footer({ onOpenPolicy }: FooterProps) {
       {/* Lower Bar: Copyright & Policies in one level */}
       <div className="border-t border-slate-800/80 bg-[#040C14] py-5 text-center text-xs font-light text-slate-400">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          {/* Left: 2026 © JustioPro I Visas tiesības aizsargātas */}
+          {/* Left: 2025 © JustioPro I Visas tiesības aizsargātas */}
           <div className="text-slate-400">
-            2026 © JustioPro I Visas tiesības aizsargātas
+            2025 © JustioPro I Visas tiesības aizsargātas
           </div>
 
           {/* Center / Middle: Privātuma politika & Sīkdatņu politika */}

@@ -20,7 +20,6 @@ export const COMPANY_INFO = {
 export const NAV_ITEMS = [
   { label: 'GALVENĀ', path: '/' },
   { label: 'DARBĪBAS JOMAS', path: '/darbibas-jomas' },
-  { label: 'DOKUMENTU PARAUGI', path: '/dokumentu-paraugi' },
   { label: 'BUJ', path: '/buj' },
   { label: 'KONTAKTI', path: '/kontakti' },
 ];
@@ -325,49 +324,60 @@ export const FAQS: FaqItem[] = [
 export const PRIVACY_POLICY_TEXT = `
 # Privātuma politika
 
-**JustioPro Juridiskie Pakalpojumi** (turpmāk – Pārzinis) augstu vērtē savu klientu un tīmekļa vietnes apmeklētāju privātumu. Šī Privātuma politika skaidro, kā mēs vācam, apstrādājam un aizsargājam Jūsu personas datus saskaņā ar Vispārīgo datu aizsardzības regulu (VDAR / GDPR) un Latvijas Republikas normatīvajiem aktiem.
+### 1. Ievads
+Datu pārzinis juridisko pakalpojumu sniedzējs Mag.iur. Kaspars Linters, Reģ.Nr. 21048110122 (turpmāk – "mēs", "mūsu" vai "Uzņēmums"), apņemas aizsargāt un ievērot Jūsu tiesības uz privātumu. Šajā Privātuma politikā ir skaidrots, kā mēs apkopojam, izmantojam, glabājam un aizsargājam Jūsu personas datus saskaņā ar Eiropas Parlamenta un Padomes Regulu (ES) 2016/679 (Vispārīgā datu aizsardzības regula jeb GDPR) un Latvijas Republikas piemērojamajiem normatīvajiem aktiem.
 
-### 1. Personas datu apstrādes pārzinis
-* **Nosaukums:** JustioPro
-* **E-pasts:** info@justiopro.lv
-* **Tālrunis:** +371 26841758
+**Kontaktinformācija:**
+* E-pasts: info@justiopro.lv
+* Tālr. +371 26841758
 
-### 2. Kādi dati tiek apstrādāti
-Mēs apstrādājam personas datus, kurus Jūs mums brīvprātīgi sniedzat saziņas formā vai e-pastā:
-* Vārds, uzvārds;
-* E-pasta adrese;
-* Tālruņa numurs;
-* Ziņojuma teksts un pievienotā informācija par Jūsu juridisko jautājumu.
+### 2. Juridiskais pamats
+Personas datu apstrādātājs – Latvijas Republikas Uzņēmumu reģistra Komercreģistrā reģistrētas juridiskas personas, kas Sabiedrības uzdevumā iegūst un apstrādā Klienta datus, lai nodrošinātu Pakalpojumu sniegšanu Sabiedrības vārdā.
 
-### 3. Datu apstrādes mērķis un tiesiskais pamats
-* **Mērķis:** Atbildēt uz Jūsu saņemtajiem jautājumiem, sniegt juridiskās konsultācijas, sagatavot pakalpojumu piedāvājumus un noslēgt sadarbības līgumus.
-* **Tiesiskais pamats:** Jūsu piekrišana (iesniedzot formu), līguma sagatavošana vai izpilde, kā arī mūsu leģitīmā interese nodrošināt kvalitatīvu klientu servisu.
+### 3. Kādus personas datus mēs vācam
+* **Kontaktinformācija:** vārds, uzņēmuma nosaukums, e-pasta adrese, tālruņa numurs
+* **Tehniskā informācija:** IP adrese, pārlūkprogrammas veids, ierīces informācija
+* **Lietošanas dati:** informācija par to, kā Jūs izmantojat mūsu mājas lapu
 
-### 4. Datu glabāšanas termiņš
-Dati tiek glabāti tikai tik ilgi, cik nepieciešams konkrētā mērķa sasniegšanai vai normatīvajos aktos noteiktajā termiņā.
+### 4. Kā mēs izmantojam Jūsu datus
+* Lai sniegtu Jums pieprasītos pakalpojumus un atbildētu uz Jūsu pieprasījumiem
+* Lai sazinātos ar Jums par mūsu pakalpojumiem un piedāvājumiem
+* Lai uzlabotu mūsu mājas lapu un pakalpojumu kvalitāti
 
-### 5. Datu nodošana trešajām personām
-Jūsu dati netiek nodoti, pārdoti vai iznomāti trešajām personām, izņemot gadījumus, kad to tieši pieprasa likums vai tas nepieciešams pakalpojuma sniegšanai ar Jūsu iepriekšēju piekrišanu.
-
-### 6. Jūsu tiesības
-Jums ir tiesības pieprasīt piekļuvi saviem personas datiem, to labošanu, dzēšanu vai apstrādes ierobežošanu, rakstot uz mūsu e-pastu: info@justiopro.lv.
+### 5. Jūsu tiesības
+Saskaņā ar GDPR Jums ir tiesības pieprasīt piekļuvi, labot, dzēst vai ierobežot Savu personas datu apstrādi.
 `;
 
 export const COOKIE_POLICY_TEXT = `
-# Sīkdatņu (Cookies) politika
-
-Šajā tīmekļa vietnē tiek izmantotas sīkdatnes, lai nodrošinātu vietnes pareizu darbību, uzlabotu lietotāju pieredzi un nodrošinātu drošību.
+# Sīkdatņu politika
 
 ### 1. Kas ir sīkdatnes?
-Sīkdatnes ir nelielas teksta datnes, ko tīmekļa vietne saglabā Jūsu datorā vai mobilajā ierīcē, kad Jūs apmeklējat vietni. Tās ļauj vietnei atcerēties Jūsu darbības un izvēles (piemēram, valodas iestatījumus).
+Sīkdatnes (cookies) ir mazi teksta faili, ko tīmekļa vietne saglabā Jūsu datorā vai mobilajā ierīcē, kad Jūs to apmeklējat. Katrā nākamajā apmeklējuma reizē sīkdatnes tiek nosūtītas atpakaļ uz izcelsmes vietni vai trešās puses vietni, kas atpazīst attiecīgo sīkdatni.
 
-### 2. Izmantotās sīkdatnes
-* **Nepieciešamās (tehniskās) sīkdatnes:** Nepieciešamas vietnes pamatfunkciju nodrošināšanai, drošībai un navigācijai. Bez šīm sīkdatnēm vietne nevar pilnvērtīgi funkcionēt.
-* **Funkcionālās sīkdatnes:** Nodrošina lietotāja pielāgoto iestatījumu (piemēram, valodas izvēles) saglabāšanu nākamajiem apmeklējumiem.
-* **Statistikas un analītikas sīkdatnes:** Palīdz mums saprast, kā apmeklētāji mijiedarbojas ar vietni, lai mēs varētu nepārtraukti uzlabot saturu un struktūru.
+Sīkdatnes darbojas kā konkrētas vietnes atmiņa, ļaujot vietnei atcerēties Jūsu iestatījumus un darbības (piemēram, valodu, fontu izmērus un citus attēlošanas iestatījumus), lai Jums tie nebūtu jāievada no jauna katru reizi.
 
-### 3. Kā kontrolēt un dzēst sīkdatnes?
-Jūs varat kontrolēt un dzēst sīkdatnes savas pārlūkprogrammas iestatījumos. Lūdzu, ņemiet vērā, ka dažu sīkdatņu atspējošana var ietekmēt vietnes funkcionalitāti.
+### 2. Kāpēc mēs izmantojam sīkdatnes?
+Datu pārzinis juridisko pakalpojumu sniedzējs Mag.iur. Kaspars Linters, Reģ.Nr. 21048110122, atsauce uz GDPR un Latvijas Republikas normatīvajiem aktiem, kā arī tiešās kontaktinformācijas saites uz info@justiopro.lv un +371 26841758.
 
-Ja Jums ir jautājumi par mūsu sīkdatņu politiku, lūdzu, sazinieties ar mums: info@justiopro.lv.
+Sīkdatnes tiek izmantotas šādiem mērķiem:
+* **Vietnes funkcionalitātes nodrošināšanai:** Lai tīmekļa vietne varētu darboties un nodrošināt pamatfunkcijas.
+* **Lietošanas pieredzes uzlabošanai:** Lai atcerētos Jūsu izvēles un sniegtu personalizētāku saturu.
+* **Analītikai un statistikai:** Lai saprastu, kā apmeklētāji mijiedarbojas ar vietni (kuras lapas apmeklē visbiežāk, cik ilgi uzturas vietnē), kas palīdz mums uzlabot vietnes struktūru un saturu.
+
+### 3. Sīkdatņu kategorijas un to pielāgošana
+* **Nepieciešamās sīkdatnes (Obligātas) - Vienmēr aktīvas:** Šīs sīkdatnes ir nepieciešamas vietnes pamata funkcijām, drošībai un nepārtrauktai darbībai (piemēram, sesijas uzturēšanai, navigācijai un kontaktformu apstrādei). Bez tām vietne nevar pareizi darboties.
+* **Analītiskās & Statistiskās sīkdatnes:** Izmanto trešo pušu analītikas rīkus (piemēram, Google Analytics), lai apkopotu anonīmu statistiku par apmeklētāju skaitu, populārākajām lapām un uzturēšanās ilgumu.
+* **Funkcionālās sīkdatnes:** Ļauj vietnei atcerēties Jūsu veiktās izvēles (piemēram, valodas iestatījumus, fontu izmēru un reģionu), nodrošinot ērtāku un personalizētāku lietošanu.
+* **Mārketinga & Reklāmas sīkdatnes:** Izmanto, lai rādītu Jūsu interesēm atbilstošākus paziņojumus un piedāvājumus sociālajos tīklos vai sadarbības partneru vietnēs.
+
+### 4. Kā pārvaldīt un dzēst sīkdatnes?
+Lielākā daļa pārlūkprogrammu ir iestatītas tā, lai automātiski pieņemtu sīkdatnes. Jūs varat jebkurā laikā mainīt Savas pārlūkprogrammas iestatījumus, lai bloķētu sīkdatnes vai saņemtu brīdinājumu, kad tās tiek sūtītas.
+* Google Chrome
+* Safari
+* Mozilla Firefox
+* MS Edge
+
+Ievērojiet: Ja Jūs bloķēsiet sīkdatnes, dažas mūsu tīmekļa vietnes funkcijas var nebūt pieejamas vai darboties nepilnīgi.
+
+Ja Jums ir jautājumi par mūsu sīkdatņu politiku, lūdzu, sazinieties ar mums: info@justiopro.lv
 `;
