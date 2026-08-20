@@ -179,20 +179,19 @@ export default function Header() {
         </div>
 
         {/* Mobile Hamburger Toggle Button */}
-        <div className="flex items-center gap-2 lg:hidden">
+        <div className="flex items-center gap-1.5 lg:hidden">
           {/* Mobile Language Button with relative popup */}
           <div className="relative">
             <button
               id="mobile-language-button"
               type="button"
               onClick={() => setIsLangOpen(!isLangOpen)}
-              className={`flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-medium cursor-pointer ${
+              className={`flex items-center gap-1 rounded-lg px-2 py-1.5 text-xs font-medium cursor-pointer transition-colors ${
                 isScrolled
-                  ? 'border border-slate-300 bg-white/90 text-slate-800'
-                  : 'border border-white/30 bg-black/40 text-white backdrop-blur-md'
+                  ? 'border border-slate-300 bg-white/95 text-slate-800 hover:bg-slate-50'
+                  : 'border border-white/30 bg-black/40 text-white backdrop-blur-md hover:bg-black/60'
               }`}
             >
-              <span>{selectedLang.flag}</span>
               <span className="font-semibold">{selectedLang.code}</span>
               <ChevronDown className={`h-3 w-3 transition-transform ${isLangOpen ? 'rotate-180' : ''}`} />
             </button>
@@ -200,7 +199,7 @@ export default function Header() {
             {isLangOpen && (
               <div
                 id="mobile-language-dropdown-menu"
-                className="absolute right-0 mt-2 w-36 rounded-xl border border-black/20 bg-white p-1.5 shadow-xl backdrop-blur-lg z-50 animate-in fade-in slide-in-from-top-2 duration-150"
+                className="absolute right-0 mt-1.5 w-32 rounded-xl border border-slate-200 bg-white p-1 shadow-lg backdrop-blur-lg z-50 animate-in fade-in slide-in-from-top-1 duration-150"
               >
                 {LANGUAGES.map((lang) => (
                   <button
@@ -210,16 +209,13 @@ export default function Header() {
                       setLanguage(lang.code);
                       setIsLangOpen(false);
                     }}
-                    className={`flex w-full items-center justify-between rounded-lg px-2.5 py-2 text-left text-xs transition-colors cursor-pointer ${
+                    className={`flex w-full items-center justify-between rounded-lg px-2.5 py-1.5 text-left text-xs transition-colors cursor-pointer ${
                       language === lang.code
                         ? 'bg-[#0B1F33]/10 font-bold text-[#0B1F33]'
                         : 'text-slate-700 hover:bg-slate-100 hover:text-slate-950'
                     }`}
                   >
-                    <span className="flex items-center gap-1.5">
-                      <span className="text-base leading-none">{lang.flag}</span>
-                      <span className="font-semibold">{lang.code}</span>
-                    </span>
+                    <span className="font-semibold">{lang.code}</span>
                     <span className="text-[10px] font-medium text-slate-500">{lang.label}</span>
                   </button>
                 ))}
@@ -234,14 +230,14 @@ export default function Header() {
               setIsMobileMenuOpen(!isMobileMenuOpen);
               setIsLangOpen(false);
             }}
-            className={`flex h-10 w-10 items-center justify-center rounded-xl transition-colors cursor-pointer ${
+            className={`flex h-8.5 w-8.5 items-center justify-center rounded-lg transition-colors cursor-pointer ${
               isScrolled
-                ? 'border border-slate-300 bg-white/90 text-[#0B1F33] shadow-2xs hover:bg-slate-100 hover:border-black'
-                : 'border border-white/30 bg-black/40 text-white shadow-md backdrop-blur-md hover:bg-black/60'
+                ? 'border border-slate-300 bg-white/95 text-[#0B1F33] hover:bg-slate-100'
+                : 'border border-white/30 bg-black/40 text-white shadow-xs backdrop-blur-md hover:bg-black/60'
             }`}
             aria-label="Atvērt izvēlni"
           >
-            {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {isMobileMenuOpen ? <X className="h-4.5 w-4.5" /> : <Menu className="h-4.5 w-4.5" />}
           </button>
         </div>
       </div>
@@ -250,51 +246,51 @@ export default function Header() {
       {isMobileMenuOpen && (
         <div
           id="mobile-menu-drawer"
-          className="border-b border-black/10 bg-[#F0F4F8] px-4 pt-3 pb-6 shadow-xl lg:hidden animate-in slide-in-from-top-4 duration-200"
+          className="border-b border-slate-200/90 bg-white/98 backdrop-blur-md px-3.5 pt-2.5 pb-3.5 shadow-xl lg:hidden animate-in slide-in-from-top-2 duration-150"
         >
-          <nav className="flex flex-col space-y-1">
+          <nav className="flex flex-col space-y-0.5">
             {navItems.map((item) => (
               <NavLink
                 key={item.path}
                 to={item.path}
                 onClick={() => setIsMobileMenuOpen(false)}
                 className={({ isActive }) =>
-                  `flex items-center rounded-xl px-4 py-3 text-sm font-bold tracking-wider uppercase transition-colors ${
+                  `flex items-center justify-between rounded-lg px-3 py-2 text-xs font-semibold tracking-wide uppercase transition-colors ${
                     isActive
-                      ? 'bg-[#0B1F33] text-white'
-                      : 'text-slate-800 hover:bg-slate-200/70 hover:text-[#0B1F33]'
+                      ? 'bg-[#0B1F33] text-white font-bold'
+                      : 'text-slate-700 hover:bg-slate-100 hover:text-[#0B1F33]'
                   }`
                 }
               >
-                {item.label}
+                <span>{item.label}</span>
+                <ChevronDown className="h-3 w-3 -rotate-90 opacity-40" />
               </NavLink>
             ))}
           </nav>
 
-          <div className="mt-4 pt-4 border-t border-slate-200 space-y-3">
+          <div className="mt-2.5 pt-2.5 border-t border-slate-100 space-y-2">
             <Link
               to="/kontakti"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="flex w-full items-center justify-center gap-2 rounded-xl border border-black bg-[#0B1F33] py-3 text-center text-sm font-bold tracking-wider uppercase text-white shadow-xs"
+              className="flex w-full items-center justify-center gap-2 rounded-lg bg-[#0B1F33] hover:bg-[#12283e] py-2 px-3 text-center text-xs font-bold tracking-wide uppercase text-white shadow-xs transition-colors"
             >
-              <PhoneCall className="h-4 w-4 text-[#C9A45C]" />
+              <PhoneCall className="h-3.5 w-3.5 text-[#C9A45C]" />
               <span>{t.nav.contactBtn}</span>
             </Link>
 
-            {/* Mobile language options */}
-            <div className="flex items-center justify-center gap-2 pt-2">
+            {/* Mobile language options segmented row */}
+            <div className="flex items-center justify-between p-0.5 bg-slate-100 rounded-lg border border-slate-200/70 gap-1">
               {LANGUAGES.map((lang) => (
                 <button
                   key={lang.code}
                   type="button"
                   onClick={() => setLanguage(lang.code)}
-                  className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium cursor-pointer ${
+                  className={`flex flex-1 items-center justify-center py-1.5 rounded-md text-xs font-semibold transition-colors cursor-pointer ${
                     language === lang.code
-                      ? 'bg-[#0B1F33] text-white'
-                      : 'bg-white text-slate-700 border border-slate-300'
+                      ? 'bg-white text-[#0B1F33] shadow-2xs font-bold'
+                      : 'text-slate-600 hover:text-slate-900'
                   }`}
                 >
-                  <span>{lang.flag}</span>
                   <span>{lang.code}</span>
                 </button>
               ))}

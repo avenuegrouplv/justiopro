@@ -485,7 +485,7 @@ export const lv: TranslationSchema = {
     {
       id: 6,
       category: 'Konfidencialitāte',
-      question: 'Cik droša ir manas informācijas un komercnoslēpuma konfidencialitāte?',
+      question: 'Vai manis sniegtā privātā informācija vai komercnoslēpums ir drošībā?',
       answer: 'Konfidencialitāte ir mūsu profesionālās ētikas pamats. Visa informācija, ko klients uztic mūsu komandai, tiek stingri aizsargāta un nekad netiek izpausta trešajām personām, izņemot LR normatīvajos aktos stingri noteiktajos gadījumos.',
     },
   ],

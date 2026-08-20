@@ -485,7 +485,7 @@ export const en: TranslationSchema = {
     {
       id: 6,
       category: 'Confidentiality',
-      question: 'How secure is my confidential and commercial information?',
+      question: 'Is my private information or trade secret secure?',
       answer: 'Confidentiality is the cornerstone of our professional ethics. All client communications and documents are strictly protected and never disclosed to third parties, except where mandated by statutory law.',
     },
   ],
