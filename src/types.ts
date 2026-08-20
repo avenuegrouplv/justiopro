@@ -13,6 +13,7 @@ export interface FaqItem {
 export interface PracticeArea {
   id: string;
   title: string;
+  summaryTitle?: string;
   shortDesc: string;
   fullDesc: string[];
   bulletPointsTitle?: string;

@@ -4,7 +4,7 @@ import { Sparkles, ArrowLeft, Phone, Mail } from 'lucide-react';
 import SEOHead from '../components/SEOHead';
 import ContactFormSection from '../components/ContactFormSection';
 import SectionNavButtons from '../components/SectionNavButtons';
-import { IMAGES, COMPANY_INFO } from '../data/content';
+import { COMPANY_INFO } from '../data/content';
 
 export default function ContactPage() {
   return (
@@ -16,14 +16,14 @@ export default function ContactPage() {
 
       {/* Header Banner */}
       <section className="relative overflow-hidden bg-gradient-to-b from-[#0B1F33] to-[#06121E] pt-20 sm:pt-24 pb-16 sm:pb-20 text-white border-b border-black">
-        <div className="absolute inset-0 opacity-15">
+        <div className="absolute inset-0 opacity-35">
           <img
-            src={IMAGES.officeModern}
+            src="/profesionali-juridiskie-pakalpojumi-riga.webp"
             alt="Kontaktu fons"
             className="h-full w-full object-cover"
           />
         </div>
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center md:text-left">
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center md:text-left translate-y-[5mm]">
           {/* Top navigation & Contact Info bar under top navbar (lifted closer to top navbar) */}
           <div className="mb-6 -mt-2 sm:-mt-3 flex flex-wrap items-center justify-between gap-3">
             <Link
@@ -34,7 +34,7 @@ export default function ContactPage() {
               <span>Uz Sākumu</span>
             </Link>
 
-            <div className="flex flex-wrap items-center gap-3">
+            <div className="flex flex-wrap items-center gap-3 translate-y-[-3mm]">
               <a
                 href={`tel:${COMPANY_INFO.phone}`}
                 className="inline-flex items-center gap-2.5 rounded-xl border border-white/35 bg-[#06121E]/90 px-4 py-2 sm:px-4.5 sm:py-2.5 text-xs sm:text-sm font-medium text-white shadow-lg backdrop-blur-md transition-all hover:bg-[#0B1F33] hover:border-[#C9A45C] hover:text-[#C9A45C] cursor-pointer"

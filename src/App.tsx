@@ -8,6 +8,7 @@ import LightboxModal from './components/LightboxModal';
 import PolicyModal from './components/PolicyModal';
 import HomePage from './pages/HomePage';
 import PracticesPage from './pages/PracticesPage';
+import DocumentSamplesPage from './pages/DocumentSamplesPage';
 import FaqPage from './pages/FaqPage';
 import ContactPage from './pages/ContactPage';
 import { LightboxImageState, PolicyModalType } from './types';
@@ -34,6 +35,7 @@ function AnimatedRoutes({
         <Routes location={location}>
           <Route path="/" element={<HomePage onOpenLightbox={onOpenLightbox} onOpenPolicy={onOpenPolicy} />} />
           <Route path="/darbibas-jomas" element={<PracticesPage onOpenLightbox={onOpenLightbox} />} />
+          <Route path="/dokumentu-paraugi" element={<DocumentSamplesPage onOpenLightbox={onOpenLightbox} />} />
           <Route path="/buj" element={<FaqPage />} />
           <Route path="/kontakti" element={<ContactPage />} />
 

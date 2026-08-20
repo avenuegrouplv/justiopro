@@ -40,7 +40,7 @@ export default function Footer({ onOpenPolicy }: FooterProps) {
             </Link>
 
             <p className="text-xs font-light leading-relaxed text-slate-300 max-w-sm">
-              Profesionāls juridiskais atbalsts Jūsu biznesa izaugsmei un jebkurai ikdienā risināmai situācijai.
+              Profesionāls juridiskais atbalsts Jūsu biznesa izaugsmei un jebkurai ikdienā risināmai situācijai
             </p>
           </div>
 
@@ -64,6 +64,14 @@ export default function Footer({ onOpenPolicy }: FooterProps) {
                   className="hover:text-[#C9A45C] transition-colors"
                 >
                   Darbības jomas
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/dokumentu-paraugi"
+                  className="hover:text-[#C9A45C] transition-colors"
+                >
+                  Dokumentu paraugi
                 </Link>
               </li>
               <li>

@@ -11,6 +11,7 @@ import {
   TrendingUp,
   Globe2,
   HeartHandshake,
+  Landmark,
   Sparkles,
   PhoneCall,
   Phone,
@@ -21,7 +22,7 @@ import {
 import SEOHead from '../components/SEOHead';
 import SectionNavButtons from '../components/SectionNavButtons';
 import { ImageWithLightbox } from '../components/LightboxModal';
-import { PRACTICE_AREAS, IMAGES, COMPANY_INFO } from '../data/content';
+import { PRACTICE_AREAS, COMPANY_INFO } from '../data/content';
 
 interface PracticesPageProps {
   onOpenLightbox: (src: string, alt: string, caption?: string) => void;
@@ -49,6 +50,8 @@ const renderPracticeIcon = (iconName: string) => {
       return <Globe2 className="h-5 w-5" />;
     case 'HeartHandshake':
       return <HeartHandshake className="h-5 w-5" />;
+    case 'Landmark':
+      return <Landmark className="h-5 w-5" />;
     default:
       return <Scale className="h-5 w-5" />;
   }
@@ -83,19 +86,19 @@ export default function PracticesPage({ onOpenLightbox }: PracticesPageProps) {
     <div id="practices-page" className="min-h-screen bg-[#CDD4DC] text-slate-900">
       <SEOHead
         title="Darbības Jomas"
-        description="JustioPro specializācija un juridiskie pakalpojumi: Līgumu sagatavošana, Komerctiesības, Nekustamais īpašums, Mantojuma tiesības, Maksātnespēja, Parādu piedziņa, Pārstāvība tiesā, Konkurences tiesības/M&A, Pārrobežu strīdi, Bezmaksas konsultācijas."
+        description="JustioPro specializācija un juridiskie pakalpojumi: Līgumu sagatavošana, Komerctiesības, Nekustamais īpašums, Mantojuma tiesības, Maksātnespēja, Parādu piedziņa, Administratīvās tiesības, Pārstāvība tiesā, Konkurences tiesības/M&A, Pārrobežu strīdi, Uzņēmējdarbība ASV, Bezmaksas konsultācijas."
       />
 
       {/* Hero Header Banner with deep Navy #0B1F33, #06121E and Gold #C9A45C */}
       <section className="relative overflow-hidden bg-gradient-to-b from-[#0B1F33] to-[#06121E] pt-20 sm:pt-24 pb-16 sm:pb-20 text-white border-b border-black">
-        <div className="absolute inset-0 opacity-15">
+        <div className="absolute inset-0 opacity-35">
           <img
-            src={IMAGES.officeModern}
+            src="/profesionali-juridiskie-pakalpojumi.webp"
             alt="Darbības jomas fons"
             className="h-full w-full object-cover"
           />
         </div>
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center md:text-left">
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center md:text-left translate-y-[5mm]">
           {/* Top navigation & Contact Info bar under top navbar (lifted closer to top navbar) */}
           <div className="mb-6 -mt-2 sm:-mt-3 flex flex-wrap items-center justify-between gap-3">
             <Link
@@ -106,7 +109,7 @@ export default function PracticesPage({ onOpenLightbox }: PracticesPageProps) {
               <span>Uz Sākumu</span>
             </Link>
 
-            <div className="flex flex-wrap items-center gap-3">
+            <div className="flex flex-wrap items-center gap-3 translate-y-[-3mm]">
               <a
                 href={`tel:${COMPANY_INFO.phone}`}
                 className="inline-flex items-center gap-2.5 rounded-xl border border-white/35 bg-[#06121E]/90 px-4 py-2 sm:px-4.5 sm:py-2.5 text-xs sm:text-sm font-medium text-white shadow-lg backdrop-blur-md transition-all hover:bg-[#0B1F33] hover:border-[#C9A45C] hover:text-[#C9A45C] cursor-pointer"
@@ -143,7 +146,7 @@ export default function PracticesPage({ onOpenLightbox }: PracticesPageProps) {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_50%_0%,rgba(201,164,92,0.18),transparent_70%)] pointer-events-none" />
 
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
             {PRACTICE_AREAS.map((area) => (
               <a
                 key={area.id}
@@ -153,7 +156,7 @@ export default function PracticesPage({ onOpenLightbox }: PracticesPageProps) {
               >
                 <span className="h-2 w-2 rounded-full bg-[#C9A45C] group-hover:bg-[#0B1F33] shrink-0 transition-colors" />
                 <span className="truncate">
-                  {area.title}
+                  {area.summaryTitle || area.title}
                 </span>
               </a>
             ))}
@@ -201,26 +204,73 @@ export default function PracticesPage({ onOpenLightbox }: PracticesPageProps) {
                     </div>
 
                     {/* Bullet Points */}
-                    {area.bulletPoints && area.bulletPoints.length > 0 && (
-                      <div className="rounded-xl bg-[#F0F2F5] p-4 sm:p-5 border border-black/10 space-y-2.5">
-                        {area.bulletPointsTitle && (
-                          <h3 className="text-xs font-semibold uppercase tracking-wider text-[#0B1F33]">
-                            {area.bulletPointsTitle}
-                          </h3>
-                        )}
-                        <ul className={`grid grid-cols-1 ${area.bulletPoints.length >= 3 ? 'sm:grid-cols-2 md:grid-cols-3' : 'sm:grid-cols-2'} gap-2 sm:gap-2.5`}>
-                          {area.bulletPoints.map((point, bpIdx) => (
-                            <li
-                              key={bpIdx}
-                              className="flex items-start gap-2 text-xs font-light text-slate-800 leading-relaxed"
-                            >
-                              <span className="h-1.5 w-1.5 rounded-full bg-[#C9A45C] border border-black/40 shrink-0 mt-1.5" />
-                              <span>{point}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
+                    {area.bulletPoints && area.bulletPoints.length > 0 && (() => {
+                      // Distribute items into 2 columns to balance visual height/line-count
+                      let col1: string[] = [];
+                      let col2: string[] = [];
+
+                      if (area.id === 'ligumtiesibas') {
+                        // 9 items: col1 gets 4 items (0..3), col2 gets 5 items (4..8, starting with dāvinājuma, uztura...)
+                        col1 = area.bulletPoints.slice(0, 4);
+                        col2 = area.bulletPoints.slice(4);
+                      } else if (area.id === 'gimenes-mantojuma-tiesibas') {
+                        // 6 items: col1 gets items 0, 1, 3 (bērnu tiesību, uzturlīdzekļu, laulības šķiršanas), col2 gets 2, 4, 5 (laulāto kopmantas, mantojuma, testamentu)
+                        col1 = [
+                          area.bulletPoints[0],
+                          area.bulletPoints[1],
+                          area.bulletPoints[3],
+                        ];
+                        col2 = [
+                          area.bulletPoints[2],
+                          area.bulletPoints[4],
+                          area.bulletPoints[5],
+                        ];
+                      } else if (area.id === 'fizisko-personu-maksatnespeja') {
+                        // 4 items: items 0, 2 in col1, items 1, 3 in col2
+                        col1 = [area.bulletPoints[0], area.bulletPoints[2]];
+                        col2 = [area.bulletPoints[1], area.bulletPoints[3]];
+                      } else {
+                        const midPoint = Math.ceil(area.bulletPoints.length / 2);
+                        col1 = area.bulletPoints.slice(0, midPoint);
+                        col2 = area.bulletPoints.slice(midPoint);
+                      }
+
+                      return (
+                        <div className="rounded-xl bg-[#F0F2F5] p-3.5 sm:p-4 border border-black/10 space-y-2">
+                          {area.bulletPointsTitle && (
+                            <h3 className="text-xs font-semibold uppercase tracking-wider text-[#0B1F33]">
+                              {area.bulletPointsTitle}
+                            </h3>
+                          )}
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1.5 items-start">
+                            <ul className="space-y-1.5">
+                              {col1.map((point, bpIdx) => (
+                                <li
+                                  key={bpIdx}
+                                  className="flex items-start gap-2 text-xs font-light text-slate-800 leading-normal"
+                                >
+                                  <span className="h-1.5 w-1.5 rounded-full bg-[#C9A45C] border border-black/40 shrink-0 mt-1" />
+                                  <span>{point}</span>
+                                </li>
+                              ))}
+                            </ul>
+                            {col2.length > 0 && (
+                              <ul className="space-y-1.5">
+                                {col2.map((point, bpIdx) => (
+                                  <li
+                                    key={bpIdx}
+                                    className="flex items-start gap-2 text-xs font-light text-slate-800 leading-normal"
+                                  >
+                                    <span className="h-1.5 w-1.5 rounded-full bg-[#C9A45C] border border-black/40 shrink-0 mt-1" />
+                                    <span>{point}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            )}
+                          </div>
+                        </div>
+                      );
+                    })()}
 
                     {/* SubSection */}
                     {area.subSection && (
@@ -244,25 +294,55 @@ export default function PracticesPage({ onOpenLightbox }: PracticesPageProps) {
                         className="inline-flex items-center gap-2 rounded-xl border border-black/80 bg-[#0B1F33] px-4 py-2 text-xs font-medium text-white shadow-2xs transition-all hover:bg-[#122B45] hover:border-[#C9A45C]"
                       >
                         <PhoneCall className="h-3.5 w-3.5 text-[#C9A45C]" />
-                        <span>Pieteikt konsultāciju</span>
+                        <span>Pieteikt pakalpojumu</span>
                       </Link>
                     </div>
                   </div>
 
-                  {/* Image Card - Clean Architecture / Legal Document photo */}
+                  {/* Image Column + Callouts under image */}
                   <div
-                    className={`overflow-hidden rounded-xl border border-black/70 bg-slate-100 shadow-xs ${
+                    className={`space-y-3.5 ${
                       isEven
                         ? 'lg:col-span-4 lg:order-2'
                         : 'lg:col-span-4 lg:order-1'
                     }`}
                   >
-                    <img
-                      src={area.imageUrl}
-                      alt={area.title}
-                      className="h-56 sm:h-64 w-full object-cover"
-                      loading="lazy"
-                    />
+                    <div className="overflow-hidden rounded-xl border border-black/70 bg-slate-100 shadow-xs">
+                      <img
+                        src={area.imageUrl}
+                        alt={area.title}
+                        className="h-56 sm:h-64 w-full object-cover"
+                        loading="lazy"
+                      />
+                    </div>
+
+                    {/* Callout under Līgumtiesības image */}
+                    {area.id === 'ligumtiesibas' && (
+                      <div className="rounded-xl border border-[#C9A45C]/60 bg-[#FAF8F5] p-3.5 sm:p-4 text-xs font-light text-slate-800 leading-relaxed">
+                        <span>Iespējams, kādu no Jums nepieciešamajiem līgumiem vai juridiskajiem dokumentiem Jūs variet atrast mūsu mājaslapas sadaļā – </span>
+                        <Link
+                          to="/dokumentu-paraugi"
+                          className="font-medium text-[#0B1F33] underline hover:text-[#C9A45C] transition-colors"
+                        >
+                          Dokumentu paraugi
+                        </Link>
+                        .
+                      </div>
+                    )}
+
+                    {/* Callout under Komerctiesības image with link to Uzņēmējdarbība ASV */}
+                    {area.id === 'komerctiesibas' && (
+                      <div className="rounded-xl border border-[#C9A45C]/60 bg-[#FAF8F5] p-3.5 sm:p-4 text-xs font-light text-slate-800 leading-relaxed">
+                        <span>Gadījumā, ja vēlaties uzsākt uzņēmējdarbību ASV, tad šim nolūkam mēs varam Jums nodrošināt visu nepieciešamo servisu. Sīkāku informāciju Jūs variet atrast mūsu mājaslapas sadaļā – </span>
+                        <a
+                          href="#uznemejdarbiba-asv"
+                          className="font-medium text-[#0B1F33] underline hover:text-[#C9A45C] transition-colors"
+                        >
+                          Uzņēmējdarbība ASV
+                        </a>
+                        .
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

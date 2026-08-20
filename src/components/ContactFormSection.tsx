@@ -88,7 +88,7 @@ export default function ContactFormSection({
             </span>
           )}
           <h2 className={`text-3xl font-normal tracking-tight text-white sm:text-4xl ${!isStandalonePage ? 'mt-4' : ''}`}>
-            Piesakiet juridisko konsultāciju
+            Piesakiet juridisko pakalpojumu vai konsultāciju
           </h2>
           <p className="mt-3 text-base font-light text-slate-200">
             Rakstiet mums un mēs ar Jums sazināsimies tuvāko dažu stundu laikā
