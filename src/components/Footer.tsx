@@ -4,6 +4,7 @@ import {
   Phone,
   Mail,
   Clock,
+  Laptop,
 } from 'lucide-react';
 import { COMPANY_INFO } from '../data/content';
 import { PolicyModalType } from '../types';
@@ -133,6 +134,16 @@ export default function Footer({ onOpenPolicy }: FooterProps) {
                 <div className="text-right flex flex-col items-end">
                   <div className="text-[10px] uppercase text-slate-400">{t.footer.workHoursLabel}</div>
                   <span className="text-white">{t.footer.workHoursValue}</span>
+                </div>
+              </div>
+
+              <div className="flex flex-row-reverse items-center gap-3 text-right justify-end">
+                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-black/40 bg-[#0B1F33] text-[#C9A45C]">
+                  <Laptop className="h-4 w-4" />
+                </div>
+                <div className="text-right flex flex-col items-end">
+                  <div className="text-[10px] uppercase text-slate-400">{t.footer.remoteServiceLabel}</div>
+                  <span className="text-white">{t.footer.remoteServiceValue}</span>
                 </div>
               </div>
             </div>

@@ -163,7 +163,7 @@ export default function HomePage({ onOpenLightbox, onOpenPolicy }: HomePageProps
         {/* Hero Content */}
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full flex flex-col justify-between flex-1">
           {/* Top Contact Info bar under top navbar (exact match with other pages' top positioning) */}
-          <div className="mb-6 -mt-2 sm:-mt-3 flex flex-wrap items-center justify-end gap-3 translate-y-[2mm]">
+          <div className="mb-6 -mt-2 sm:-mt-3 flex flex-wrap items-center justify-end gap-3 translate-y-[4mm] sm:translate-y-[2mm]">
             <div className="flex flex-wrap items-center gap-3">
               <a
                 href={`tel:${COMPANY_INFO.phone}`}
@@ -210,7 +210,7 @@ export default function HomePage({ onOpenLightbox, onOpenPolicy }: HomePageProps
           </div>
 
           {/* Bottom: CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-start gap-3.5 pt-2">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-start gap-3 sm:gap-3.5 pt-2 -translate-y-[12mm] sm:translate-y-0">
             <Link
               to="/kontakti"
               className="inline-flex items-center justify-center gap-2 rounded-xl border border-[#C9A45C] bg-[#C9A45C] px-6 py-2.5 sm:px-7 sm:py-3 text-sm sm:text-base font-medium text-[#0B1F33] shadow-lg transition-all hover:bg-[#D8B46C] hover:border-[#D8B46C] active:scale-98"

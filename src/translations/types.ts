@@ -114,6 +114,8 @@ export interface TranslationSchema {
     emailLabel: string;
     workHoursLabel: string;
     workHoursValue: string;
+    remoteServiceLabel: string;
+    remoteServiceValue: string;
     rights: string;
     privacyPolicy: string;
     cookiesPolicy: string;

@@ -39,7 +39,7 @@ export default function SEOHead({
   const canonicalUrl = `${BASE_URL}${currentPath === '/' ? '' : currentPath}`;
   const shareImageUrl = ogImage
     ? (ogImage.startsWith('http') ? ogImage : `${BASE_URL}${ogImage}`)
-    : `${BASE_URL}/logo%20share/logo_share.png`;
+    : `${BASE_URL}/logo-share/logo_share.png`;
 
   const fullTitle = title.includes('JustioPro')
     ? title
@@ -80,10 +80,12 @@ export default function SEOHead({
     setMetaTag('property', 'og:image', shareImageUrl);
     setMetaTag('property', 'og:image:secure_url', shareImageUrl);
     setMetaTag('property', 'og:image:type', 'image/png');
+    setMetaTag('property', 'og:image:width', '120');
+    setMetaTag('property', 'og:image:height', '120');
     setMetaTag('property', 'og:image:alt', 'JustioPro');
 
     // 5. Twitter Card Tags
-    setMetaTag('name', 'twitter:card', 'summary_large_image');
+    setMetaTag('name', 'twitter:card', 'summary');
     setMetaTag('name', 'twitter:url', canonicalUrl);
     setMetaTag('name', 'twitter:title', fullTitle);
     setMetaTag('name', 'twitter:description', description);

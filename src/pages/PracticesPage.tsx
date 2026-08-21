@@ -120,7 +120,7 @@ export default function PracticesPage({ onOpenLightbox }: PracticesPageProps) {
               <span>{t.nav.backToHome}</span>
             </Link>
 
-            <div className="flex flex-wrap items-center gap-3 translate-y-[-3mm]">
+            <div className="flex flex-wrap items-center gap-3 translate-y-[-1mm] sm:translate-y-[-3mm]">
               <a
                 href={`tel:${COMPANY_INFO.phone}`}
                 className="inline-flex items-center gap-2.5 rounded-xl border border-white/35 bg-[#06121E]/90 px-4 py-2 sm:px-4.5 sm:py-2.5 text-xs sm:text-sm font-medium text-white shadow-lg backdrop-blur-md transition-all hover:bg-[#0B1F33] hover:border-[#C9A45C] hover:text-[#C9A45C] cursor-pointer"
@@ -143,7 +143,7 @@ export default function PracticesPage({ onOpenLightbox }: PracticesPageProps) {
             </div>
           </div>
 
-          <div className="inline-flex items-center gap-2 rounded-full border border-[#C9A45C]/50 bg-[#06121E] px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-[#C9A45C]">
+          <div className="inline-flex items-center gap-2 rounded-full border border-[#C9A45C]/50 bg-[#06121E] px-4 py-1.5 text-xs sm:text-sm font-normal text-[#C9A45C]">
             <Sparkles className="h-3.5 w-3.5" />
             <span>{t.practicesPage.badge}</span>
           </div>

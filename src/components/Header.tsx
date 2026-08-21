@@ -268,7 +268,7 @@ export default function Header() {
             ))}
           </nav>
 
-          <div className="mt-2.5 pt-2.5 border-t border-slate-100 space-y-2">
+          <div className="mt-2.5 pt-2.5 border-t border-slate-100">
             <Link
               to="/kontakti"
               onClick={() => setIsMobileMenuOpen(false)}
@@ -277,24 +277,6 @@ export default function Header() {
               <PhoneCall className="h-3.5 w-3.5 text-[#C9A45C]" />
               <span>{t.nav.contactBtn}</span>
             </Link>
-
-            {/* Mobile language options segmented row */}
-            <div className="flex items-center justify-between p-0.5 bg-slate-100 rounded-lg border border-slate-200/70 gap-1">
-              {LANGUAGES.map((lang) => (
-                <button
-                  key={lang.code}
-                  type="button"
-                  onClick={() => setLanguage(lang.code)}
-                  className={`flex flex-1 items-center justify-center py-1.5 rounded-md text-xs font-semibold transition-colors cursor-pointer ${
-                    language === lang.code
-                      ? 'bg-white text-[#0B1F33] shadow-2xs font-bold'
-                      : 'text-slate-600 hover:text-slate-900'
-                  }`}
-                >
-                  <span>{lang.code}</span>
-                </button>
-              ))}
-            </div>
           </div>
         </div>
       )}
