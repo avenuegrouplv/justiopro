@@ -52,7 +52,11 @@ export default function DocumentSamplesPage({ onOpenLightbox }: DocumentSamplesP
           <img
             src="/profesionali-juridiskie-pakalpojumi.webp"
             alt="Dokumentu paraugu fons"
+            width={1920}
+            height={400}
             className="h-full w-full object-cover"
+            loading="lazy"
+            decoding="async"
           />
         </div>
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center md:text-left translate-y-[5mm]">

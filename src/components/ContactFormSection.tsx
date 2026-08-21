@@ -237,8 +237,11 @@ export default function ContactFormSection({
             <img
               src="/juridiskie-pakalpojumi.webp"
               alt="JustioPro juridiskie pakalpojumi un konsultācijas"
+              width={800}
+              height={400}
               className="w-full h-64 sm:h-80 md:h-96 object-cover object-center transition-transform duration-500 hover:scale-[1.02]"
               loading="lazy"
+              decoding="async"
             />
           </div>
         )}

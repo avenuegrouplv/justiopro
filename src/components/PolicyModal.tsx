@@ -16,6 +16,9 @@ import {
   Scale,
   FileText,
   UserCheck,
+  RefreshCw,
+  AlertCircle,
+  Building,
 } from 'lucide-react';
 import { PolicyModalType } from '../types';
 import { useTranslation } from '../translations';
@@ -89,7 +92,7 @@ export default function PolicyModal({ type, onClose }: PolicyModalProps) {
 
   const isPrivacy = type === 'privacy';
   const title = isPrivacy ? t.policyModal.privacyTitle : t.policyModal.cookiesTitle;
-  const subtitle = isPrivacy ? t.policyModal.privacySubtitle : t.policyModal.cookiesSubtitle;
+  const subtitle = isPrivacy ? null : (t.policyModal.cookiesSubtitle || null);
 
   return (
     <AnimatePresence>
@@ -120,9 +123,11 @@ export default function PolicyModal({ type, onClose }: PolicyModalProps) {
                 <h2 className="text-base sm:text-lg font-semibold text-white tracking-wide">
                   {title}
                 </h2>
-                <p className="text-[11px] text-slate-300">
-                  {subtitle}
-                </p>
+                {subtitle && (
+                  <p className="text-[11px] text-slate-300">
+                    {subtitle}
+                  </p>
+                )}
               </div>
             </div>
             <button
@@ -163,18 +168,18 @@ export default function PolicyModal({ type, onClose }: PolicyModalProps) {
                     </div>
                     <div className="flex flex-wrap items-center gap-4 text-xs sm:text-sm text-slate-700">
                       <a
-                        href="mailto:info@justiopro.lv"
-                        className="inline-flex items-center gap-1.5 text-[#0B1F33] font-semibold hover:text-[#C9A45C] transition-colors"
-                      >
-                        <Mail className="h-4 w-4 text-[#C9A45C]" />
-                        <span>E-pasts: info@justiopro.lv</span>
-                      </a>
-                      <a
                         href="tel:+37126841758"
                         className="inline-flex items-center gap-1.5 text-[#0B1F33] font-semibold hover:text-[#C9A45C] transition-colors"
                       >
                         <Phone className="h-4 w-4 text-[#C9A45C]" />
-                        <span>Tālr. +371 26841758</span>
+                        <span>{t.policyModal.privacy.phoneLabel}</span>
+                      </a>
+                      <a
+                        href="mailto:info@justiopro.lv"
+                        className="inline-flex items-center gap-1.5 text-[#0B1F33] font-semibold hover:text-[#C9A45C] transition-colors"
+                      >
+                        <Mail className="h-4 w-4 text-[#C9A45C]" />
+                        <span>{t.policyModal.privacy.emailLabel}</span>
                       </a>
                     </div>
                   </div>
@@ -212,11 +217,15 @@ export default function PolicyModal({ type, onClose }: PolicyModalProps) {
                     </h3>
                   </div>
 
+                  <p className="text-slate-700 text-xs sm:text-sm font-light leading-relaxed">
+                    {t.policyModal.privacy.sec3Intro}
+                  </p>
+
                   <div className="space-y-2 pt-1">
                     <div className="flex items-start gap-2.5 p-3 rounded-lg bg-slate-50 border border-slate-200">
                       <CheckCircle2 className="h-4 w-4 text-[#C9A45C] shrink-0 mt-0.5" />
                       <div className="text-xs sm:text-sm text-slate-700 leading-relaxed font-light">
-                        <strong className="font-semibold text-[#0B1F33]">{t.policyModal.privacy.sec3ContactLabel}</strong> {t.policyModal.privacy.sec3ContactText}
+                        <strong className="font-semibold text-[#0B1F33] capitalize">{t.policyModal.privacy.sec3ContactLabel}</strong> {t.policyModal.privacy.sec3ContactText}
                       </div>
                     </div>
                     <div className="flex items-start gap-2.5 p-3 rounded-lg bg-slate-50 border border-slate-200">
@@ -229,6 +238,12 @@ export default function PolicyModal({ type, onClose }: PolicyModalProps) {
                       <CheckCircle2 className="h-4 w-4 text-[#C9A45C] shrink-0 mt-0.5" />
                       <div className="text-xs sm:text-sm text-slate-700 leading-relaxed font-light">
                         <strong className="font-semibold text-[#0B1F33]">{t.policyModal.privacy.sec3UsageLabel}</strong> {t.policyModal.privacy.sec3UsageText}
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-2.5 p-3 rounded-lg bg-slate-50 border border-slate-200">
+                      <CheckCircle2 className="h-4 w-4 text-[#C9A45C] shrink-0 mt-0.5" />
+                      <div className="text-xs sm:text-sm text-slate-700 leading-relaxed font-light">
+                        <strong className="font-semibold text-[#0B1F33]">{t.policyModal.privacy.sec3CommLabel}</strong> {t.policyModal.privacy.sec3CommText}
                       </div>
                     </div>
                   </div>
@@ -247,6 +262,10 @@ export default function PolicyModal({ type, onClose }: PolicyModalProps) {
                       {t.policyModal.privacy.sec4Title}
                     </h3>
                   </div>
+
+                  <p className="text-slate-700 text-xs sm:text-sm font-light leading-relaxed">
+                    {t.policyModal.privacy.sec4Intro}
+                  </p>
 
                   <div className="space-y-2 pt-1">
                     <div className="flex items-start gap-2.5 p-3 rounded-lg bg-slate-50 border border-slate-200">
@@ -267,12 +286,58 @@ export default function PolicyModal({ type, onClose }: PolicyModalProps) {
                         {t.policyModal.privacy.sec4Item3}
                       </span>
                     </div>
+                    <div className="flex items-start gap-2.5 p-3 rounded-lg bg-slate-50 border border-slate-200">
+                      <CheckCircle2 className="h-4 w-4 text-[#C9A45C] shrink-0 mt-0.5" />
+                      <span className="text-xs sm:text-sm text-slate-700 leading-relaxed font-light">
+                        {t.policyModal.privacy.sec4Item4}
+                      </span>
+                    </div>
                   </div>
                 </section>
 
-                {/* 5. Jūsu tiesības */}
+                {/* 5. Kādam mērķim mēs apstrādājam Jūsu datus */}
                 <section
                   id="privacy-sec-5"
+                  className="rounded-xl border border-black/15 bg-white p-5 shadow-2xs space-y-3"
+                >
+                  <div className="flex items-center gap-2.5 text-[#0B1F33]">
+                    <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#0B1F33] text-[#C9A45C]">
+                      <Lock className="h-4 w-4" />
+                    </div>
+                    <h3 className="text-base font-semibold text-[#0B1F33]">
+                      {t.policyModal.privacy.sec5Title}
+                    </h3>
+                  </div>
+
+                  <p className="text-slate-700 text-xs sm:text-sm font-light leading-relaxed">
+                    {t.policyModal.privacy.sec5Intro}
+                  </p>
+
+                  <div className="space-y-2 pt-1">
+                    <div className="flex items-start gap-2.5 p-3 rounded-lg bg-slate-50 border border-slate-200">
+                      <CheckCircle2 className="h-4 w-4 text-[#C9A45C] shrink-0 mt-0.5" />
+                      <div className="text-xs sm:text-sm text-slate-700 leading-relaxed font-light">
+                        <strong className="font-semibold text-[#0B1F33]">{t.policyModal.privacy.sec5Item1Title}</strong> – {t.policyModal.privacy.sec5Item1Text}
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-2.5 p-3 rounded-lg bg-slate-50 border border-slate-200">
+                      <CheckCircle2 className="h-4 w-4 text-[#C9A45C] shrink-0 mt-0.5" />
+                      <div className="text-xs sm:text-sm text-slate-700 leading-relaxed font-light">
+                        <strong className="font-semibold text-[#0B1F33]">{t.policyModal.privacy.sec5Item2Title}</strong> – {t.policyModal.privacy.sec5Item2Text}
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-2.5 p-3 rounded-lg bg-slate-50 border border-slate-200">
+                      <CheckCircle2 className="h-4 w-4 text-[#C9A45C] shrink-0 mt-0.5" />
+                      <div className="text-xs sm:text-sm text-slate-700 leading-relaxed font-light">
+                        <strong className="font-semibold text-[#0B1F33]">{t.policyModal.privacy.sec5Item3Title}</strong> – {t.policyModal.privacy.sec5Item3Text}
+                      </div>
+                    </div>
+                  </div>
+                </section>
+
+                {/* 6. Jūsu tiesības */}
+                <section
+                  id="privacy-sec-6"
                   className="rounded-xl border border-black/15 bg-white p-5 shadow-2xs space-y-3"
                 >
                   <div className="flex items-center gap-2.5 text-[#0B1F33]">
@@ -280,27 +345,130 @@ export default function PolicyModal({ type, onClose }: PolicyModalProps) {
                       <UserCheck className="h-4 w-4" />
                     </div>
                     <h3 className="text-base font-semibold text-[#0B1F33]">
-                      {t.policyModal.privacy.sec5Title}
+                      {t.policyModal.privacy.sec6Title}
+                    </h3>
+                  </div>
+
+                  <p className="text-slate-700 text-xs sm:text-sm font-light leading-relaxed">
+                    {t.policyModal.privacy.sec6Intro}
+                  </p>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
+                    <div className="p-3 rounded-lg bg-slate-50 border border-slate-200 text-xs sm:text-sm">
+                      <strong className="font-semibold text-[#0B1F33] block mb-0.5">{t.policyModal.privacy.sec6Item1Title}</strong>
+                      <span className="text-slate-600 font-light">{t.policyModal.privacy.sec6Item1Text}</span>
+                    </div>
+                    <div className="p-3 rounded-lg bg-slate-50 border border-slate-200 text-xs sm:text-sm">
+                      <strong className="font-semibold text-[#0B1F33] block mb-0.5">{t.policyModal.privacy.sec6Item2Title}</strong>
+                      <span className="text-slate-600 font-light">{t.policyModal.privacy.sec6Item2Text}</span>
+                    </div>
+                    <div className="p-3 rounded-lg bg-slate-50 border border-slate-200 text-xs sm:text-sm">
+                      <strong className="font-semibold text-[#0B1F33] block mb-0.5">{t.policyModal.privacy.sec6Item3Title}</strong>
+                      <span className="text-slate-600 font-light">{t.policyModal.privacy.sec6Item3Text}</span>
+                    </div>
+                    <div className="p-3 rounded-lg bg-slate-50 border border-slate-200 text-xs sm:text-sm">
+                      <strong className="font-semibold text-[#0B1F33] block mb-0.5">{t.policyModal.privacy.sec6Item4Title}</strong>
+                      <span className="text-slate-600 font-light">{t.policyModal.privacy.sec6Item4Text}</span>
+                    </div>
+                    <div className="p-3 rounded-lg bg-slate-50 border border-slate-200 text-xs sm:text-sm">
+                      <strong className="font-semibold text-[#0B1F33] block mb-0.5">{t.policyModal.privacy.sec6Item5Title}</strong>
+                      <span className="text-slate-600 font-light">{t.policyModal.privacy.sec6Item5Text}</span>
+                    </div>
+                    <div className="p-3 rounded-lg bg-slate-50 border border-slate-200 text-xs sm:text-sm">
+                      <strong className="font-semibold text-[#0B1F33] block mb-0.5">{t.policyModal.privacy.sec6Item6Title}</strong>
+                      <span className="text-slate-600 font-light">{t.policyModal.privacy.sec6Item6Text}</span>
+                    </div>
+                    <div className="p-3 rounded-lg bg-slate-50 border border-slate-200 text-xs sm:text-sm sm:col-span-2">
+                      <strong className="font-semibold text-[#0B1F33] block mb-0.5">{t.policyModal.privacy.sec6Item7Title}</strong>
+                      <span className="text-slate-600 font-light">{t.policyModal.privacy.sec6Item7Text}</span>
+                    </div>
+                  </div>
+
+                  <p className="text-slate-700 text-xs sm:text-sm font-light leading-relaxed pt-1">
+                    {t.policyModal.privacy.sec6Outro}
+                  </p>
+                </section>
+
+                {/* 7. Sīkdatnes (Cookies) */}
+                <section
+                  id="privacy-sec-7"
+                  className="rounded-xl border border-black/15 bg-white p-5 shadow-2xs space-y-3"
+                >
+                  <div className="flex items-center gap-2.5 text-[#0B1F33]">
+                    <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#0B1F33] text-[#C9A45C]">
+                      <Cookie className="h-4 w-4" />
+                    </div>
+                    <h3 className="text-base font-semibold text-[#0B1F33]">
+                      {t.policyModal.privacy.sec7Title}
                     </h3>
                   </div>
                   <p className="text-slate-700 text-xs sm:text-sm font-light leading-relaxed">
-                    {t.policyModal.privacy.sec5Text}
+                    {t.policyModal.privacy.sec7Text1}
                   </p>
-                  <div className="pt-1">
-                    <div className="p-3 rounded-lg bg-slate-50 border border-slate-200 flex items-center gap-2 text-xs text-slate-600">
-                      <Mail className="h-4 w-4 text-[#C9A45C] shrink-0" />
-                      <span>
-                        {t.policyModal.privacy.sec5Contact}{' '}
-                        <a
-                          href="mailto:info@justiopro.lv"
-                          className="font-semibold text-[#0B1F33] underline hover:text-[#C9A45C]"
-                        >
-                          info@justiopro.lv
-                        </a>
-                      </span>
-                    </div>
-                  </div>
+                  <p className="text-slate-700 text-xs sm:text-sm font-light leading-relaxed">
+                    {t.policyModal.privacy.sec7Text2}
+                  </p>
                 </section>
+
+                {/* 8. Trešo pušu pakalpojumi */}
+                <section
+                  id="privacy-sec-8"
+                  className="rounded-xl border border-black/15 bg-white p-5 shadow-2xs space-y-3"
+                >
+                  <div className="flex items-center gap-2.5 text-[#0B1F33]">
+                    <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#0B1F33] text-[#C9A45C]">
+                      <Building className="h-4 w-4" />
+                    </div>
+                    <h3 className="text-base font-semibold text-[#0B1F33]">
+                      {t.policyModal.privacy.sec8Title}
+                    </h3>
+                  </div>
+                  <p className="text-slate-700 text-xs sm:text-sm font-light leading-relaxed">
+                    {t.policyModal.privacy.sec8Text}
+                  </p>
+                </section>
+
+                {/* 9. Izmaiņas privātuma politikā */}
+                <section
+                  id="privacy-sec-9"
+                  className="rounded-xl border border-black/15 bg-white p-5 shadow-2xs space-y-3"
+                >
+                  <div className="flex items-center gap-2.5 text-[#0B1F33]">
+                    <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#0B1F33] text-[#C9A45C]">
+                      <RefreshCw className="h-4 w-4" />
+                    </div>
+                    <h3 className="text-base font-semibold text-[#0B1F33]">
+                      {t.policyModal.privacy.sec9Title}
+                    </h3>
+                  </div>
+                  <p className="text-slate-700 text-xs sm:text-sm font-light leading-relaxed">
+                    {t.policyModal.privacy.sec9Text}
+                  </p>
+                </section>
+
+                {/* 10. Sūdzības */}
+                <section
+                  id="privacy-sec-10"
+                  className="rounded-xl border border-black/15 bg-white p-5 shadow-2xs space-y-3"
+                >
+                  <div className="flex items-center gap-2.5 text-[#0B1F33]">
+                    <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#0B1F33] text-[#C9A45C]">
+                      <AlertCircle className="h-4 w-4" />
+                    </div>
+                    <h3 className="text-base font-semibold text-[#0B1F33]">
+                      {t.policyModal.privacy.sec10Title}
+                    </h3>
+                  </div>
+                  <p className="text-slate-700 text-xs sm:text-sm font-light leading-relaxed">
+                    {t.policyModal.privacy.sec10Text}
+                  </p>
+                </section>
+
+                <div className="pt-2 text-right">
+                  <span className="text-xs text-slate-500 font-light italic">
+                    {t.policyModal.lastUpdated}
+                  </span>
+                </div>
               </div>
             ) : (
               /* Cookie Policy Layout with structured sections & visual categories */
@@ -624,6 +792,12 @@ export default function PolicyModal({ type, onClose }: PolicyModalProps) {
                     </span>
                   </div>
                 </section>
+
+                <div className="pt-2 text-right">
+                  <span className="text-xs text-slate-500 font-light italic">
+                    {t.policyModal.lastUpdated}
+                  </span>
+                </div>
               </div>
             )}
           </div>
@@ -631,9 +805,6 @@ export default function PolicyModal({ type, onClose }: PolicyModalProps) {
           {/* Modal Footer */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 border-t border-slate-200 bg-[#F1F5F9] px-5 sm:px-6 py-3.5">
             <div className="flex items-center gap-3">
-              <div className="text-[11px] text-slate-500">
-                {t.policyModal.lastUpdated}
-              </div>
               {saveToast && (
                 <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-100 text-emerald-800 border border-emerald-300 animate-in fade-in zoom-in-95 duration-200">
                   <CheckCircle2 className="h-3 w-3 text-emerald-700" />
