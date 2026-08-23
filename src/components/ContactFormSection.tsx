@@ -38,7 +38,7 @@ export default function ContactFormSection({
     if (errorMessage) setErrorMessage('');
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
@@ -47,19 +47,44 @@ export default function ContactFormSection({
     }
 
     setIsSubmitting(true);
+    setErrorMessage('');
 
-    // Simulate reliable form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSuccess(true);
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        message: '',
-        practiceArea: 'Līgumtiesības',
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          service: formData.practiceArea,
+          message: formData.message,
+        }),
       });
-    }, 600);
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        setIsSuccess(true);
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          message: '',
+          practiceArea: 'Līgumtiesības',
+        });
+      } else {
+        setErrorMessage(
+          result.error || 'Neizdevās nosūtīt pieteikumu. Lūdzu, mēģiniet vēlreiz vai sazinieties ar mums tieši pa tālruni.'
+        );
+      }
+    } catch {
+      setErrorMessage('Tīkla kļūda. Lūdzu, pārbaudiet savienojumu un mēģiniet vēlreiz.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
