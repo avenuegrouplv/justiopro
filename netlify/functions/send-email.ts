@@ -1,11 +1,27 @@
 import nodemailer from "nodemailer";
 
+const headers = {
+  "Content-Type": "application/json",
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Headers": "Content-Type",
+  "Access-Control-Allow-Methods": "POST, OPTIONS",
+};
+
 export const handler = async (event: any) => {
+  // Handle preflight CORS request
+  if (event.httpMethod === "OPTIONS") {
+    return {
+      statusCode: 200,
+      headers,
+      body: JSON.stringify({ status: "ok" }),
+    };
+  }
+
   // Only allow POST requests
   if (event.httpMethod !== "POST") {
     return {
       statusCode: 405,
-      headers: { "Content-Type": "application/json" },
+      headers,
       body: JSON.stringify({ success: false, error: "Method Not Allowed" }),
     };
   }
@@ -17,7 +33,7 @@ export const handler = async (event: any) => {
     if (!name || !email || !phone || !message) {
       return {
         statusCode: 400,
-        headers: { "Content-Type": "application/json" },
+        headers,
         body: JSON.stringify({
           success: false,
           error: "Visi obligātie lauki (Vārds, E-pasts, Tālrunis, Ziņojums) ir jāaizpilda.",
@@ -32,12 +48,13 @@ export const handler = async (event: any) => {
     const recipientEmail = process.env.SMTP_TO_EMAIL || "info@justiopro.lv";
 
     if (!smtpPass) {
+      console.error("Kļūda: SMTP_PASS vides mainīgais Netlify nav atrasts.");
       return {
         statusCode: 500,
-        headers: { "Content-Type": "application/json" },
+        headers,
         body: JSON.stringify({
           success: false,
-          error: "SMTP_PASS parole nav iestatīta vides mainīgajos (Environment Variables).",
+          error: "SMTP_PASS parole nav atrasta Netlify iestatījumos. Lūdzu, pārbaudiet Environment Variables.",
         }),
       };
     }
@@ -90,14 +107,14 @@ export const handler = async (event: any) => {
 
     return {
       statusCode: 200,
-      headers: { "Content-Type": "application/json" },
+      headers,
       body: JSON.stringify({ success: true, message: "Pieteikums veiksmīgi nosūtīts!" }),
     };
   } catch (err: any) {
     console.error("SMTP error:", err);
     return {
       statusCode: 500,
-      headers: { "Content-Type": "application/json" },
+      headers,
       body: JSON.stringify({
         success: false,
         error: err.message || "Neizdevās nosūtīt e-pastu caur SMTP serveri.",

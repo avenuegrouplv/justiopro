@@ -49,24 +49,49 @@ export default function ContactFormSection({
     setIsSubmitting(true);
     setErrorMessage('');
 
+    const payload = {
+      name: formData.name.trim(),
+      email: formData.email.trim(),
+      phone: formData.phone.trim(),
+      service: formData.practiceArea,
+      message: formData.message.trim(),
+    };
+
     try {
-      const response = await fetch('/api/send-email', {
+      let response = await fetch('/api/send-email', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          service: formData.practiceArea,
-          message: formData.message,
-        }),
+        body: JSON.stringify(payload),
       });
 
-      const result = await response.json();
+      // Ja /api/send-email atgriež 404 vai nav JSON, mēģinām tiešo Netlify funkciju
+      if (!response.ok && (response.status === 404 || response.status === 502)) {
+        try {
+          const fallbackRes = await fetch('/.netlify/functions/send-email', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload),
+          });
+          if (fallbackRes.ok || fallbackRes.status === 400 || fallbackRes.status === 500) {
+            response = fallbackRes;
+          }
+        } catch {
+          // turpinām ar sākotnējo atbildi
+        }
+      }
 
-      if (response.ok && result.success) {
+      let result: any = null;
+      try {
+        result = await response.json();
+      } catch {
+        throw new Error('Serveris neatgrieza derīgu atbildi. Lūdzu, pārbaudiet funkcijas darbību.');
+      }
+
+      if (response.ok && result?.success) {
         setIsSuccess(true);
         setFormData({
           name: '',
@@ -77,11 +102,13 @@ export default function ContactFormSection({
         });
       } else {
         setErrorMessage(
-          result.error || 'Neizdevās nosūtīt pieteikumu. Lūdzu, mēģiniet vēlreiz vai sazinieties ar mums tieši pa tālruni.'
+          result?.error || result?.message || 'Neizdevās nosūtīt e-pastu caur SMTP serveri. Lūdzu, pārbaudiet paroles un servera iestatījumus.'
         );
       }
-    } catch {
-      setErrorMessage('Neizdevās nosūtīt pieteikumu. Lūdzu, pārbaudiet datus un mēģiniet vēlreiz.');
+    } catch (err: any) {
+      setErrorMessage(
+        err?.message ? `Kļūda: ${err.message}` : 'Neizdevās sazināties ar e-pasta serveri. Lūdzu, mēģiniet vēlreiz.'
+      );
     } finally {
       setIsSubmitting(false);
     }
