@@ -11,7 +11,7 @@ async function startServer() {
   const app = express();
   const PORT = 3000;
 
-  // JSON request body parser
+  // JSON body parser
   app.use(express.json());
 
   // API Route: Health Check
@@ -19,19 +19,18 @@ async function startServer() {
     res.json({ status: "ok" });
   });
 
-  // API Route: Send Contact Form Email via SMTP
+  // API Route: Send Email directly through your SMTP server
   app.post("/api/send-email", async (req, res) => {
     try {
       const { name, email, phone, service, message } = req.body;
 
-      if (!name || !email || !message) {
+      if (!name || !email || !phone || !message) {
         return res.status(400).json({
           success: false,
-          error: "Visi obligātie lauki (Vārds, E-pasts, Ziņojums) ir jāaizpilda.",
+          error: "Visi obligātie lauki (Vārds, E-pasts, Tālrunis, Ziņojums) ir jāaizpilda.",
         });
       }
 
-      // Check environment variables for SMTP configuration
       const smtpHost = process.env.SMTP_HOST || "server54.areait.lv";
       const smtpPort = parseInt(process.env.SMTP_PORT || "465", 10);
       const smtpUser = process.env.SMTP_USER || "info@justiopro.lv";
@@ -39,17 +38,12 @@ async function startServer() {
       const recipientEmail = process.env.SMTP_TO_EMAIL || "info@justiopro.lv";
 
       if (!smtpPass) {
-        console.warn(
-          "⚠️ SMTP_PASS nav iestatīts vides mainīgajos. E-pasts netiks nosūtīts caur serveri."
-        );
         return res.status(500).json({
           success: false,
-          error:
-            "E-pasta servera parole (SMTP_PASS) nav iestatīta sistēmas iestatījumos.",
+          error: "SMTP_PASS parole nav iestatīta vides mainīgajos (Environment Variables).",
         });
       }
 
-      // Create Nodemailer Transporter
       const transporter = nodemailer.createTransport({
         host: smtpHost,
         port: smtpPort,
@@ -63,83 +57,53 @@ async function startServer() {
         },
       });
 
-      // HTML Email Template
       const htmlContent = `
-        <div style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 600px; margin: 0 auto; background-color: #f8fafc; border-radius: 8px; overflow: hidden; border: 1px solid #e2e8f0;">
-          <div style="background-color: #1a365d; padding: 24px; text-align: center; border-bottom: 3px solid #c59b27;">
-            <h2 style="color: #ffffff; margin: 0; font-size: 22px; font-weight: 600; letter-spacing: 0.5px;">JustioPro — Jauns pieteikums</h2>
-            <p style="color: #cbd5e1; margin: 6px 0 0 0; font-size: 13px;">Saņemts no mājaslapas kontaktu formas</p>
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background-color: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0; overflow: hidden;">
+          <div style="background-color: #0B1F33; padding: 20px; text-align: center; border-bottom: 3px solid #C9A45C;">
+            <h2 style="color: #ffffff; margin: 0; font-size: 20px;">JustioPro — Jauns pieteikums</h2>
+            <p style="color: #cbd5e1; margin: 4px 0 0 0; font-size: 12px;">Saņemts no mājaslapas kontaktu formas</p>
           </div>
-          <div style="padding: 28px; background-color: #ffffff;">
-            <table style="width: 100%; border-collapse: collapse; font-size: 14px; color: #334155;">
-              <tr>
-                <td style="padding: 10px 0; width: 140px; font-weight: 600; color: #64748b; border-bottom: 1px solid #f1f5f9;">Vārds, Uzvārds:</td>
-                <td style="padding: 10px 0; font-weight: 600; color: #0f172a; border-bottom: 1px solid #f1f5f9;">${name}</td>
-              </tr>
-              <tr>
-                <td style="padding: 10px 0; font-weight: 600; color: #64748b; border-bottom: 1px solid #f1f5f9;">E-pasts:</td>
-                <td style="padding: 10px 0; border-bottom: 1px solid #f1f5f9;"><a href="mailto:${email}" style="color: #1d4ed8; text-decoration: none;">${email}</a></td>
-              </tr>
-              <tr>
-                <td style="padding: 10px 0; font-weight: 600; color: #64748b; border-bottom: 1px solid #f1f5f9;">Tālrunis:</td>
-                <td style="padding: 10px 0; border-bottom: 1px solid #f1f5f9;">${phone ? `<a href="tel:${phone}" style="color: #0f172a; text-decoration: none;">${phone}</a>` : '<em>Nav norādīts</em>'}</td>
-              </tr>
-              <tr>
-                <td style="padding: 10px 0; font-weight: 600; color: #64748b; border-bottom: 1px solid #f1f5f9;">Pakalpojums:</td>
-                <td style="padding: 10px 0; color: #1e293b; border-bottom: 1px solid #f1f5f9;">${service || 'Vispārēja juridiskā konsultācija'}</td>
-              </tr>
-            </table>
-
-            <div style="margin-top: 24px;">
-              <h3 style="font-size: 14px; font-weight: 600; color: #64748b; margin: 0 0 8px 0; text-transform: uppercase; letter-spacing: 0.5px;">Klienta ziņojums:</h3>
-              <div style="background-color: #f8fafc; border-left: 4px solid #1a365d; padding: 14px 16px; border-radius: 4px; color: #1e293b; font-size: 14px; line-height: 1.6; white-space: pre-wrap;">${message}</div>
+          <div style="padding: 24px; background-color: #ffffff; color: #334155; font-size: 14px;">
+            <p style="margin: 0 0 8px 0;"><strong>Vārds, Uzvārds:</strong> ${name}</p>
+            <p style="margin: 0 0 8px 0;"><strong>E-pasts:</strong> <a href="mailto:${email}" style="color: #1d4ed8;">${email}</a></p>
+            <p style="margin: 0 0 8px 0;"><strong>Tālrunis:</strong> <a href="tel:${phone}" style="color: #0f172a;">${phone}</a></p>
+            <p style="margin: 0 0 16px 0;"><strong>Pakalpojums:</strong> ${service || 'Vispārēja konsultācija'}</p>
+            <div style="margin-top: 16px; padding: 14px; background-color: #f1f5f9; border-left: 4px solid #0B1F33; border-radius: 4px;">
+              <strong style="color: #0B1F33;">Klienta ziņojums:</strong><br/>
+              <div style="margin-top: 6px; white-space: pre-wrap; line-height: 1.6;">${message}</div>
             </div>
           </div>
-          <div style="background-color: #f1f5f9; padding: 16px 24px; text-align: center; font-size: 12px; color: #64748b; border-top: 1px solid #e2e8f0;">
-            Lai atbildētu klientam, vienkārši spiediet <strong>"Atbildēt" (Reply)</strong> savā e-pasta programmā.
+          <div style="background-color: #f1f5f9; padding: 12px; text-align: center; font-size: 12px; color: #64748b;">
+            Lai atbildētu klientam, spiediet "Reply" savā e-pastā.
           </div>
         </div>
       `;
 
-      // Plain Text Alternative
-      const textContent = `
-JustioPro — Jauns pieteikums no mājaslapas:
+      const textContent = `JustioPro — Jauns pieteikums:\n\nVārds: ${name}\nE-pasts: ${email}\nTālrunis: ${phone}\nPakalpojums: ${service || 'Konsultācija'}\n\nZiņojums:\n${message}`;
 
-Vārds: ${name}
-E-pasts: ${email}
-Tālrunis: ${phone || 'Nav norādīts'}
-Pakalpojums: ${service || 'Vispārēja konsultācija'}
-
-Ziņojums:
-${message}
-      `;
-
-      // Mail Options
-      const mailOptions = {
+      await transporter.sendMail({
         from: `"JustioPro Mājaslapa" <${smtpUser}>`,
         to: recipientEmail,
         replyTo: email,
         subject: `Jauns pieteikums: ${name} (${service || 'Konsultācija'})`,
         text: textContent,
         html: htmlContent,
-      };
-
-      await transporter.sendMail(mailOptions);
+      });
 
       return res.json({
         success: true,
-        message: "E-pasts ir veiksmīgi nosūtīts!",
+        message: "Pieteikums veiksmīgi nosūtīts!",
       });
     } catch (err: any) {
       console.error("Kļūda nosūtot e-pastu:", err);
       return res.status(500).json({
         success: false,
-        error: err.message || "Neizdevās nosūtīt e-pastu. Lūdzu, mēģiniet vēlāk.",
+        error: err.message || "Neizdevās nosūtīt e-pastu caur SMTP.",
       });
     }
   });
 
-  // Vite middleware for development vs static production serving
+  // Vite middleware for dev / static for prod
   if (process.env.NODE_ENV !== "production") {
     const vite = await createViteServer({
       server: { middlewareMode: true },

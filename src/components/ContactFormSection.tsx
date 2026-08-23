@@ -81,7 +81,7 @@ export default function ContactFormSection({
         );
       }
     } catch {
-      setErrorMessage('Tīkla kļūda. Lūdzu, pārbaudiet savienojumu un mēģiniet vēlreiz.');
+      setErrorMessage('Neizdevās nosūtīt pieteikumu. Lūdzu, pārbaudiet datus un mēģiniet vēlreiz.');
     } finally {
       setIsSubmitting(false);
     }
