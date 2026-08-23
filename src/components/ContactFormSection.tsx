@@ -41,7 +41,7 @@ export default function ContactFormSection({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+    if (!formData.name.trim() || !formData.email.trim() || !formData.phone.trim() || !formData.message.trim()) {
       setErrorMessage(t.contactForm.validationError);
       return;
     }
@@ -204,12 +204,13 @@ export default function ContactFormSection({
                   htmlFor="contact-phone"
                   className="text-xs font-semibold tracking-wide text-slate-200"
                 >
-                  {t.contactForm.phoneLabel}
+                  {t.contactForm.phoneLabel} <span className="text-red-400 font-bold">*</span>
                 </label>
                 <input
                   type="tel"
                   id="contact-phone"
                   name="phone"
+                  required
                   value={formData.phone}
                   onChange={handleChange}
                   className="rounded-xl border border-slate-300 bg-[#ECEEF2] px-4 py-3 text-sm text-[#0B1F33] font-normal placeholder-slate-500 transition-all focus:bg-white focus:border-[#C9A45C] focus:outline-none focus:ring-1 focus:ring-[#C9A45C]"
@@ -231,7 +232,6 @@ export default function ContactFormSection({
                   required
                   value={formData.message}
                   onChange={handleChange}
-                  placeholder={t.contactForm.messagePlaceholder}
                   className="rounded-xl border border-slate-300 bg-[#ECEEF2] px-4 py-3 text-sm text-[#0B1F33] font-normal placeholder-slate-500 transition-all focus:bg-white focus:border-[#C9A45C] focus:outline-none focus:ring-1 focus:ring-[#C9A45C]"
                 />
               </div>
