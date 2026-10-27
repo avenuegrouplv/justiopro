@@ -63,7 +63,8 @@ export default function PracticesPage({ onOpenLightbox }: PracticesPageProps) {
 
   useEffect(() => {
     if (location.hash) {
-      const targetId = location.hash.replace('#', '');
+      const rawTargetId = location.hash.replace('#', '');
+      const targetId = rawTargetId === 'administrativas-tiesibas' ? 'e-komercija' : rawTargetId;
       const timer = setTimeout(() => {
         const element = document.getElementById(targetId);
         if (element) {
